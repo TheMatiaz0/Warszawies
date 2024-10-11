@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
@@ -10,7 +11,7 @@ public class BuildingManager : MonoBehaviour
 
     private void Awake()
     {
-        foreach (var buildingData in Inventory.CreatedBuildings)
+        foreach (var buildingData in Inventory.CreatedBuildings.ToList())
         {
             SpawnAtZero(buildingData);
         }
@@ -51,14 +52,13 @@ public class BuildingManager : MonoBehaviour
         var buildingInstance = Instantiate(data.PrefabToSpawn, position, Quaternion.identity, parent);
         buildingInstance.Initialize(data);
         BuildingInstances.Add(buildingInstance);
-        Inventory.CreatedBuildings.Add(data);
     }
 
     public void Remove(BuildingData data)
     {
         var buildingInstance = BuildingInstances.Find(x => x.Data == data);
         BuildingInstances.Remove(buildingInstance);
-        Inventory.CreatedBuildings.Remove(data);
+
         Destroy(buildingInstance.gameObject);
     }
 }
