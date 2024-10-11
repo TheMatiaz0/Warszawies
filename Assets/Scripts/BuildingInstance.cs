@@ -11,7 +11,7 @@ public class ResourceExtraction
     public float Cooldown;
 }
 
-public class ResourceExtractor : MonoBehaviour
+public class BuildingInstance : MonoBehaviour
 {
     public ResourceInventory Inventory;
     public ResourceExtraction Extraction; 

@@ -10,5 +10,5 @@ public class BuildingData : ScriptableObject
     public List<CountableResource> Requirements;
     public ResourceData Result;
     [Header("World")]
-    public GameObject PrefabToSpawn;
+    public BuildingInstance PrefabToSpawn;
 }
