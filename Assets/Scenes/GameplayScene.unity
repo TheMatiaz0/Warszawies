@@ -210,6 +210,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41a9827f5e22b78408555fe0c7cc858c, type: 3}
+--- !u!114 &283356474 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 881375106948519886, guid: 41a9827f5e22b78408555fe0c7cc858c,
+    type: 3}
+  m_PrefabInstance: {fileID: 16380918}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5e5ef316649b040afae7b88f9a97b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &427289838
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Building: {fileID: 1868844259}
   PlayerCamera: {fileID: 427289840}
-  player: {fileID: 0}
+  player: {fileID: 283356474}
   Buildings:
   - {fileID: 11400000, guid: ad72bfae7a5cb654e81de836e03c1452, type: 2}
   - {fileID: 11400000, guid: afe7604dd79c61e468df48c3c4a621b4, type: 2}

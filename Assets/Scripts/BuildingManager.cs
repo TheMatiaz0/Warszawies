@@ -39,7 +39,7 @@ public class BuildingManager : MonoBehaviour
         {
             foreach (var currentResource in GameManager.Instance.Inventory.CountableResources)
             {
-                if (currentResource.Count < requiredResource.Count)
+                if (requiredResource.ResourceType == currentResource.ResourceType && currentResource.Count < requiredResource.Count)
                 {
                     return false;
                 }

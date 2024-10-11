@@ -98,10 +98,11 @@ public class PlayerController : MonoBehaviour
                     if (minDist > HouseFromCollisionDistance)
                     {
                         BuildingManager.Build(SelectedBuilding, newPosition);
-                        player.GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
                     }
                 }
-                //BuildingManager.Build(SelectedBuilding, newPosition);
+
+                player.GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
+                GameManager.Instance.Inventory.CreatedBuildings.Add(SelectedBuilding);
             }
         }
     }

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        Inventory = Instantiate(Inventory);
     }
 
     public void Win()
