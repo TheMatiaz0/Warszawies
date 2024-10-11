@@ -51,12 +51,14 @@ public class BuildingManager : MonoBehaviour
         var buildingInstance = Instantiate(data.PrefabToSpawn, position, Quaternion.identity, parent);
         buildingInstance.Initialize(data);
         BuildingInstances.Add(buildingInstance);
+        Inventory.CreatedBuildings.Add(data);
     }
 
     public void Remove(BuildingData data)
     {
         var buildingInstance = BuildingInstances.Find(x => x.Data == data);
         BuildingInstances.Remove(buildingInstance);
+        Inventory.CreatedBuildings.Remove(data);
         Destroy(buildingInstance.gameObject);
     }
 }
