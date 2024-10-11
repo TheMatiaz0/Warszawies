@@ -42,9 +42,12 @@ public class Player : MonoBehaviour
 
     private void OnDestroy()
     {
-        foreach (var resource in Inventory.CountableResources)
+        if (Inventory != null)
         {
-            resource.OnCountChanged -= RefreshHud;
+            foreach (var resource in Inventory.CountableResources)
+            {
+                resource.OnCountChanged -= RefreshHud;
+            }
         }
     }
 

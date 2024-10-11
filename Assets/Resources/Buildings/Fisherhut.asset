@@ -18,5 +18,5 @@ MonoBehaviour:
   - ResourceType: {fileID: 11400000, guid: 9330921651de13043b23d1e558912ca0, type: 2}
     _count: 50
   Result: {fileID: 11400000, guid: ad51526f0ac54154689402196b3d3a2e, type: 2}
-  PrefabToSpawn: {fileID: 8360216374971522776, guid: 00560f7fa94bb7449bb499914dd86b79,
+  PrefabToSpawn: {fileID: 8880888101880426096, guid: 00560f7fa94bb7449bb499914dd86b79,
     type: 3}

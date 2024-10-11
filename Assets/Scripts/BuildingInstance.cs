@@ -13,10 +13,16 @@ public class ResourceExtraction
 
 public class BuildingInstance : MonoBehaviour
 {
+    public BuildingData Data;
     public ResourceInventory Inventory;
     public ResourceExtraction Extraction; 
 
     private Ticker ticker;
+
+    public void Initialize(BuildingData data)
+    {
+        Data = data;
+    }
 
     private void Awake()
     {

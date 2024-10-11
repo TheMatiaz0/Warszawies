@@ -18,8 +18,18 @@ MonoBehaviour:
   - ResourceType: {fileID: 11400000, guid: b80b1d83b2c0d4340b7058a3609f5890, type: 2}
     _count: 30
   - ResourceType: {fileID: 11400000, guid: a9bbbf48696911a4289c312fd14f983c, type: 2}
-    _count: 14
+    _count: 1174
   - ResourceType: {fileID: 11400000, guid: ad51526f0ac54154689402196b3d3a2e, type: 2}
-    _count: 82
+    _count: 796
   CreatedBuildings:
-  - {fileID: 11400000, guid: afe7604dd79c61e468df48c3c4a621b4, type: 2}
+  - {fileID: 11400000, guid: ad72bfae7a5cb654e81de836e03c1452, type: 2}
+  - {fileID: 11400000, guid: ad72bfae7a5cb654e81de836e03c1452, type: 2}
+  - {fileID: 11400000, guid: ad72bfae7a5cb654e81de836e03c1452, type: 2}
+  - {fileID: 11400000, guid: ad72bfae7a5cb654e81de836e03c1452, type: 2}
+  - {fileID: 11400000, guid: ad72bfae7a5cb654e81de836e03c1452, type: 2}
+  - {fileID: 11400000, guid: ad72bfae7a5cb654e81de836e03c1452, type: 2}
+  - {fileID: 11400000, guid: ad72bfae7a5cb654e81de836e03c1452, type: 2}
+  - {fileID: 11400000, guid: ad72bfae7a5cb654e81de836e03c1452, type: 2}
+  - {fileID: 11400000, guid: ad72bfae7a5cb654e81de836e03c1452, type: 2}
+  - {fileID: 11400000, guid: ad72bfae7a5cb654e81de836e03c1452, type: 2}
+  - {fileID: 11400000, guid: ad72bfae7a5cb654e81de836e03c1452, type: 2}
