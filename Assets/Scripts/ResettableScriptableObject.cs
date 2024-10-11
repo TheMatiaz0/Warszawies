@@ -19,14 +19,21 @@ public abstract class ResettableScriptableObject : ScriptableObject
 #endif
     }
 
+    private void OnDisable()
+    {
+#if UNITY_EDITOR
+
+        EditorJsonUtility.FromJsonOverwrite(_initialJson, this);
+
+#endif
+    }
+
 #if UNITY_EDITOR
     private void OnPlayModeStateChanged(PlayModeStateChange obj)
     {
         switch (obj)
         {
             case PlayModeStateChange.ExitingPlayMode:
-                EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
-                EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
                 EditorJsonUtility.FromJsonOverwrite(_initialJson, this);
                 break;
         }

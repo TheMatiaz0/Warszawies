@@ -40,11 +40,25 @@ public class BuildingManager : MonoBehaviour
         {
             foreach (var currentResource in Inventory.CountableResources)
             {
-                return currentResource.Count >= requiredResource.Count;
+                if (currentResource.Count < requiredResource.Count)
+                {
+                    return false;
+                }
             }
         }
 
-        return false;
+        return true;
+    }
+
+    public void SpendResources(BuildingData data)
+    {
+        foreach (var requiredResource in data.Requirements)
+        {
+            foreach (var currentResource in Inventory.CountableResources)
+            {
+                currentResource.Count -= requiredResource.Count;
+            }
+        }
     }
 
     public void Build(BuildingData data, Vector3 position)
@@ -52,6 +66,7 @@ public class BuildingManager : MonoBehaviour
         var buildingInstance = Instantiate(data.PrefabToSpawn, position, Quaternion.identity, parent);
         buildingInstance.Initialize(data);
         BuildingInstances.Add(buildingInstance);
+        SpendResources(data);
     }
 
     public void Remove(BuildingData data)
