@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5e5ef316649b040afae7b88f9a97b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Inventory: {fileID: 11400000, guid: 1d70f8bfff2e76046b6f08b3c0d8346a, type: 2}
+  Inventory: {fileID: 11400000, guid: 6a7d5e59b210c6e4a93812ea5b20dc8c, type: 2}
   ResourceHuds:
   - {fileID: 1522232374}
   - {fileID: 1622697263}
@@ -831,7 +831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuildingInstances: []
-  Inventory: {fileID: 11400000, guid: 1d70f8bfff2e76046b6f08b3c0d8346a, type: 2}
+  Inventory: {fileID: 11400000, guid: 6a7d5e59b210c6e4a93812ea5b20dc8c, type: 2}
   parent: {fileID: 2074318636}
 --- !u!1001 &796603290841749370
 PrefabInstance:
