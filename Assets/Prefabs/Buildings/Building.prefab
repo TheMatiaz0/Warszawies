@@ -47,6 +47,6 @@ MonoBehaviour:
   Inventory: {fileID: 11400000, guid: 1d70f8bfff2e76046b6f08b3c0d8346a, type: 2}
   Extraction:
     CountableResource:
-      ResourceType: {fileID: 0}
+      ResourceType: {fileID: 11400000, guid: a9bbbf48696911a4289c312fd14f983c, type: 2}
       _count: 2
     Cooldown: 0.2
