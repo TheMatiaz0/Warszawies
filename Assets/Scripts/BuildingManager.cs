@@ -66,7 +66,7 @@ public class BuildingManager : MonoBehaviour
         var buildingInstance = Instantiate(data.PrefabToSpawn, position, Quaternion.identity, parent);
         buildingInstance.Initialize(data);
         BuildingInstances.Add(buildingInstance);
-        SpendResources(data);
+        // SpendResources(data);
     }
 
     public void Remove(BuildingData data)
