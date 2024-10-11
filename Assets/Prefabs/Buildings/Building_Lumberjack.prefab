@@ -60,6 +60,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6770640039368544838, guid: b1d69c31667f65f4aba3215694c35287,
         type: 3}
+      propertyPath: Data
+      value: 
+      objectReference: {fileID: 11400000, guid: aa2ea2ec73184674dbcdcb93e1cd45ba,
+        type: 2}
+    - target: {fileID: 6770640039368544838, guid: b1d69c31667f65f4aba3215694c35287,
+        type: 3}
       propertyPath: Extraction.CountableResource.ResourceType
       value: 
       objectReference: {fileID: 11400000, guid: 9330921651de13043b23d1e558912ca0,

@@ -19,11 +19,6 @@ public class BuildingInstance : MonoBehaviour
 
     private Ticker ticker;
 
-    public void Initialize(BuildingData data)
-    {
-        Data = data;
-    }
-
     private void Awake()
     {
         ticker = TickerCreator.CreateNormalTime(Extraction.Cooldown);
