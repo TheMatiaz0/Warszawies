@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         CreateFields();
-        foreach (var resource in Inventory.CountableResources)
+        foreach (var resource in Inventory?.CountableResources)
         {
             RefreshHud(resource);
             resource.OnCountChanged += RefreshHud;
