@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     public Dictionary<Vector2Int, FieldData> GridData = new Dictionary<Vector2Int, FieldData>();
 
 
-    private void Awake()
+    private void Start()
     {
         CreateFields();
         UpdateFieldCollisions();
