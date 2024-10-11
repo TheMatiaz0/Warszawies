@@ -4,32 +4,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class ResourceExtraction
-{
-    public CountableResource CountableResource;
-    public float Cooldown;
-}
-
 public class BuildingInstance : MonoBehaviour
 {
     public BuildingData Data;
     public ResourceInventory Inventory;
-    public ResourceExtraction Extraction; 
+    public float Cooldown;
 
     private Ticker ticker;
 
     private void Awake()
     {
-        ticker = TickerCreator.CreateNormalTime(Extraction.Cooldown);
+        ticker = TickerCreator.CreateNormalTime(Cooldown);
     }
 
     private void Update()
     {
         if (ticker.Push())
         {
-            var countableResource = Inventory.CountableResources.Find(x => x.ResourceType == Extraction.CountableResource.ResourceType);
-            countableResource.Count += Extraction.CountableResource.Count;
+            foreach (var result in Data.Result)
+            {
+                var inventoryRef = Inventory.CountableResources.Find(x => x.ResourceType == result.ResourceType);
+                inventoryRef.Count += result.Count;
+            }
         }
     }
 }

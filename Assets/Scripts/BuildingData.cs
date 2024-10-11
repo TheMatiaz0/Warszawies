@@ -8,7 +8,7 @@ public class BuildingData : ResettableScriptableObject
 {
     [Header("Crafting")]
     public List<CountableResource> Requirements;
-    public ResourceData Result;
+    public List<CountableResource> Result;
     [Header("World")]
     public BuildingInstance PrefabToSpawn;
 }
