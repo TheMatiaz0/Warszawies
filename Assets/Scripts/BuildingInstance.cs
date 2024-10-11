@@ -22,7 +22,6 @@ public class BuildingInstance : MonoBehaviour
             foreach (var result in Data.Result)
             {
                 var inventoryRef = GameManager.Instance.Inventory.CountableResources.Find(x => x.ResourceType == result.ResourceType);
-                Debug.Log(result.Count);
                 inventoryRef.Count += result.Count;
             }
         }
