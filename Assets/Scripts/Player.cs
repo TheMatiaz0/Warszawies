@@ -42,10 +42,13 @@ public class Player : MonoBehaviour
         UpdateFieldCollisions();
         RemoveLandscapeColliders();
         CalculateDistanceArrays();
-        foreach (var resource in GameManager.Instance.Inventory.CountableResources)
+        if (GameManager.Instance != null || GameManager.Instance.Inventory != null)
         {
-            RefreshHud(resource);
-            resource.OnCountChanged += RefreshHud;
+            foreach (var resource in GameManager.Instance.Inventory.CountableResources)
+            {
+                RefreshHud(resource);
+                resource.OnCountChanged += RefreshHud;
+            }
         }
     }
 
