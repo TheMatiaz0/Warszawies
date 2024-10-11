@@ -11,12 +11,9 @@ public class ResourceHUD : MonoBehaviour
     public Text CountDisplay;
     public Image IconDisplay;
 
-    public void Refresh(CountableResource countableResource)
+    public void Refresh(int count, Sprite representation)
     {
-        if (ResourceType == countableResource.ResourceType)
-        {
-            CountDisplay.text = countableResource.Count.ToString();
-            IconDisplay.sprite = countableResource.ResourceType.Icon;
-        }
+        CountDisplay.text = count.ToString();
+        IconDisplay.sprite = representation;
     }
 }

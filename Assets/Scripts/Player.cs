@@ -19,8 +19,8 @@ public class Player : MonoBehaviour
 
     private void RefreshHud(CountableResource countableResource)
     {
-        var resource = ResourceHuds.Find(x => x.ResourceType == countableResource.ResourceType);
-        resource.CountDisplay.text = countableResource.Count.ToString();
+        var resourceHud = ResourceHuds.Find(x => x.ResourceType == countableResource.ResourceType);
+        resourceHud.Refresh(countableResource.Count, countableResource.ResourceType.Icon);
     }
 
     private void OnDestroy()
