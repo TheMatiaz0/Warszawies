@@ -3,6 +3,9 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
+/// <summary>
+/// This doesn't work, don't relay on this piece of garbage
+/// </summary>
 public abstract class ResettableScriptableObject : ScriptableObject
 {
 #if UNITY_EDITOR
