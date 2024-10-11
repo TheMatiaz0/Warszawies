@@ -11,4 +11,5 @@ public class BuildingData : ResettableScriptableObject
     public ResourceData Result;
     [Header("World")]
     public BuildingInstance PrefabToSpawn;
+    public BlockingObjects AllowedObjects;
 }

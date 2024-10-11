@@ -1,7 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
+
+   [System.Flags]
+    public enum BlockingObjects
+    {
+        None = 0,
+        River = 1,
+        Cave = 2,
+        Forest = 4,
+        Blocked = 8,
+        House = 16
+    }
+
 
 public class Player : MonoBehaviour
 {
@@ -10,18 +23,16 @@ public class Player : MonoBehaviour
     public List<ResourceHUD> ResourceHuds;
 
     public int GridSize = 30;
-    
-    [System.Flags]
-    public enum BlockingObjects
-    {
-        River = 0,
-        Cave = 1,
-        Forest = 2,
-        Blocked = 4
-    }
+
+
+    public int[,] RiverDistanceArray = new int[31, 31];
+    public int[,] ForestDistanceArray = new int[31, 31];
+    public int[,] CaveDistanceArray = new int[31, 31];
+
     public class FieldData
     {
         public BlockingObjects Objects;
+        public bool ObjectPlaced = false;
     };
 
     public Dictionary<Vector2Int, FieldData> GridData = new Dictionary<Vector2Int, FieldData>();
@@ -31,6 +42,8 @@ public class Player : MonoBehaviour
     {
         CreateFields();
         UpdateFieldCollisions();
+        RemoveLandscapeColliders();
+        CalculateDistanceArrays();
         foreach (var resource in Inventory?.CountableResources)
         {
             RefreshHud(resource);
@@ -66,6 +79,24 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void RemoveLandscapeColliders()
+    {
+        var collidersRiver = FindObjectsOfType<RiverObstacle>();
+        foreach (var collider in collidersRiver)
+        {
+            Destroy(collider.gameObject);
+        }
+        var collidersForest = FindObjectsOfType<ForestObstacle>();
+        foreach (var collider in collidersForest)
+        {
+            Destroy(collider.gameObject);
+        }
+        var collidersCave = FindObjectsOfType<CaveObstacle>();
+        foreach (var collider in collidersCave)
+        {
+            Destroy(collider.gameObject);
+        }
+    }
     private void UpdateFieldCollisions()
     {
         foreach(var Field in GridData)
@@ -74,7 +105,6 @@ public class Player : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(coordinates, Vector3.up, out hit, 1000))
             {
-                Debug.DrawRay(coordinates, Vector3.up * 1000, Color.yellow);
                 // debug start
                 string hitObj = "";
                 if (hit.collider.GetComponent<RiverObstacle>() != null)
@@ -83,18 +113,97 @@ public class Player : MonoBehaviour
                 }
                 else if (hit.collider.GetComponent<ForestObstacle>() != null)
                 {
+                    Debug.Log("Hit forest");
                     Field.Value.Objects = Field.Value.Objects | BlockingObjects.Forest;
                 }
-                Debug.Log("Did Hit " + hitObj + " at: "+ Field.Key);
+                else if (hit.collider.GetComponent<CaveObstacle>() != null)
+                {
+                    Debug.Log("Hit cave");
+                    Field.Value.Objects = Field.Value.Objects | BlockingObjects.Cave;
+                }
 
                 // debug end
             }
 
         }
     }
-    private void Update()
-    {
+ 
 
-        UpdateFieldCollisions();
+    void CalculateDistanceArrays()
+    {
+        for (int i = 0; i <= GridSize; i++)
+        {
+            for (int j = 0; j <= GridSize; j++)
+            {
+                RiverDistanceArray[i, j] = 999;
+                CaveDistanceArray[i, j] = 999;
+                ForestDistanceArray[i, j] = 999;
+            }
+        }
+        for (int i = 0; i < GridSize; i++)
+        {
+            for (int j = 0; j < GridSize; j++)
+            {
+                if (GridData.ContainsKey(new Vector2Int(i * 5, j * 5)))
+                {
+                    if (GridData[new Vector2Int(i * 5, j * 5)].Objects.HasFlag(BlockingObjects.River))
+                    {
+                        RiverDistanceArray[i, j] = 0;
+                    }
+                    if (GridData[new Vector2Int(i * 5, j * 5)].Objects.HasFlag(BlockingObjects.Forest))
+                    {
+                        ForestDistanceArray[i, j] = 0;
+                    }
+                    if (GridData[new Vector2Int(i * 5, j * 5)].Objects.HasFlag(BlockingObjects.Cave))
+                    {
+                        CaveDistanceArray[i, j] = 0;
+                    }
+                }
+
+            }
+        }
+        for (int a = 0; a < GridSize; a++)
+        {
+            for (int i = 1; i < GridSize; i++)
+            {
+                for (int j = 1; j < GridSize; j++)
+                {
+                    int minRiver = RiverDistanceArray[i, j];
+                    if (RiverDistanceArray[i + 1, j] + 1 < minRiver) minRiver = RiverDistanceArray[i + 1, j] +1;
+                    if (RiverDistanceArray[i - 1, j] + 1< minRiver) minRiver = RiverDistanceArray[i - 1, j] + 1;
+                    if (RiverDistanceArray[i, j - 1] + 1< minRiver) minRiver = RiverDistanceArray[i, j - 1] + 1;
+                    if (RiverDistanceArray[i, j + 1] + 1< minRiver) minRiver = RiverDistanceArray[i, j + 1] + 1;
+                    RiverDistanceArray[i, j] = minRiver;
+
+                    //TODO:
+                    int minForest = ForestDistanceArray[i, j];
+                    if (ForestDistanceArray[i + 1, j] + 1 < minForest) minForest = ForestDistanceArray[i + 1, j] + 1;
+                    if (ForestDistanceArray[i - 1, j] + 1 < minForest) minForest = ForestDistanceArray[i - 1, j] + 1;
+                    if (ForestDistanceArray[i, j - 1] + 1 < minForest) minForest = ForestDistanceArray[i, j - 1] + 1;
+                    if (ForestDistanceArray[i, j + 1] + 1 < minForest) minForest = ForestDistanceArray[i, j + 1]    ;
+                    ForestDistanceArray[i, j] = minForest;
+
+                    int minCave = CaveDistanceArray[i, j];
+                    if (CaveDistanceArray[i + 1, j] + 1 < minCave) minCave = CaveDistanceArray[i + 1, j] + 1;
+                    if (CaveDistanceArray[i - 1, j] + 1 < minCave) minCave = CaveDistanceArray[i - 1, j] + 1;
+                    if (CaveDistanceArray[i, j - 1] + 1 < minCave) minCave = CaveDistanceArray[i, j - 1] + 1;
+                    if (CaveDistanceArray[i, j + 1] + 1 < minCave) minCave = CaveDistanceArray[i, j + 1] + 1;
+                    CaveDistanceArray[i, j] = minCave;
+                }
+            }
+        }
+        /*
+        for (int i = 1; i < GridSize; i++)
+        {
+                //Debug.Log("i = " + i);
+            string debugStr = "i = " + i;
+            for (int j = 1; j < GridSize; j++)
+            {
+                debugStr += "[j=" + j + "]:";
+                debugStr += RiverDistanceArray[i, j];
+                debugStr += " ";
+            }
+            Debug.Log(debugStr);
+        }*/
     }
 }

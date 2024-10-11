@@ -337,6 +337,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Building: {fileID: 1868844259}
   PlayerCamera: {fileID: 427289840}
+  Buildings:
+  - {fileID: 11400000, guid: ad72bfae7a5cb654e81de836e03c1452, type: 2}
+  - {fileID: 11400000, guid: afe7604dd79c61e468df48c3c4a621b4, type: 2}
+  - {fileID: 11400000, guid: aa2ea2ec73184674dbcdcb93e1cd45ba, type: 2}
+  - {fileID: 11400000, guid: 3b72e7fd9fbf8c84d91ad2f4d6be602b, type: 2}
+  BuildingManager: {fileID: 2103171961}
 --- !u!4 &479467125
 Transform:
   m_ObjectHideFlags: 0
@@ -362,6 +368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 618033507}
   - component: {fileID: 618033506}
+  - component: {fileID: 618033508}
   m_Layer: 0
   m_Name: ForestCollider
   m_TagString: Untagged
@@ -405,6 +412,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &618033508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618033505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5ea408afe4f57429c0512847165fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &722408812
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,6 +434,7 @@ GameObject:
   m_Component:
   - component: {fileID: 722408814}
   - component: {fileID: 722408813}
+  - component: {fileID: 722408815}
   m_Layer: 0
   m_Name: RiverCollider
   m_TagString: Untagged
@@ -458,6 +478,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &722408815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722408812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65e0ade5e591f9548be4267702d8b789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1646022768
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,8 +813,55 @@ Transform:
   m_GameObject: {fileID: 1969836158}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.049552917, y: -0.8498411, z: 0.6918154}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 8.0121, y: 8.0121, z: 8.0121}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2103171960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2103171962}
+  - component: {fileID: 2103171961}
+  m_Layer: 0
+  m_Name: BuildingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2103171961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103171960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e0659c3d4b4ff64ebe8920bd96bc791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuildingInstances: []
+  Inventory: {fileID: 11400000, guid: 1d70f8bfff2e76046b6f08b3c0d8346a, type: 2}
+  parent: {fileID: 2103171962}
+--- !u!4 &2103171962
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103171960}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -799,3 +878,4 @@ SceneRoots:
   - {fileID: 722408814}
   - {fileID: 618033507}
   - {fileID: 271686879}
+  - {fileID: 2103171962}
