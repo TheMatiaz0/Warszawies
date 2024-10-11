@@ -6,20 +6,21 @@ using UnityEngine;
 [Serializable]
 public class CountableResource
 {
-    public event Action<ResourceData, int> OnCountChanged;
+    public event Action<CountableResource> OnCountChanged = delegate {};
 
     public ResourceData ResourceType;
+
     public int Count 
     {
         get => _count;
-        private set
+        set
         {
             _count = value;
-            OnCountChanged.Invoke(ResourceType, value);
+            OnCountChanged?.Invoke(this);
         }
     }
 
-    private int _count;
+    public int _count;
 }
 
 [CreateAssetMenu(fileName = "Building", menuName = "CRPK/Building", order = 1)]

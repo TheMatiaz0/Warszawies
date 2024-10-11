@@ -6,4 +6,12 @@ using UnityEngine;
 public class ResourceInventory : ScriptableObject
 {
     public List<CountableResource> CountableResources;
+
+    private void OnValidate()
+    {
+        foreach (var item in CountableResources)
+        {
+            item.Count = item._count;
+        }
+    }
 }

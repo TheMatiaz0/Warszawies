@@ -6,24 +6,28 @@ public class Player : MonoBehaviour
 {
     public ResourceInventory Inventory;
 
+    public List<ResourceHUD> ResourceHuds;
+
     private void Awake()
     {
         foreach (var resource in Inventory.CountableResources)
         {
-            resource.OnCountChanged += UpdateCount;
+            RefreshHud(resource);
+            resource.OnCountChanged += RefreshHud;
         }
     }
 
-    private void UpdateCount(ResourceData data, int obj)
+    private void RefreshHud(CountableResource countableResource)
     {
-
+        var resource = ResourceHuds.Find(x => x.ResourceType == countableResource.ResourceType);
+        resource.CountDisplay.text = countableResource.Count.ToString();
     }
 
     private void OnDestroy()
     {
         foreach (var resource in Inventory.CountableResources)
         {
-            resource.OnCountChanged += UpdateCount;
+            resource.OnCountChanged -= RefreshHud;
         }
     }
 }
