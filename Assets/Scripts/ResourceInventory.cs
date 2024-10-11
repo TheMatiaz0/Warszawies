@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Resource", menuName = "CRPK/Inventory", order = 1)]
-public class ResourceInventory : ScriptableObject
+public class ResourceInventory : ResettableScriptableObject
 {
     public event Action<BuildingData> OnBuildingAdded;
     public event Action<BuildingData> OnBuildingRemoved;

@@ -10,32 +10,26 @@ public class BuildingManager : MonoBehaviour
 
     private void Awake()
     {
-        foreach (var item in Inventory.CreatedBuildings)
+        foreach (var buildingData in Inventory.CreatedBuildings)
         {
-            Build(item, Vector3.zero);
+            SpawnAtZero(buildingData);
         }
 
-        Inventory.OnBuildingAdded += Inventory_OnBuildingAdded;
-        Inventory.OnBuildingRemoved += Inventory_OnBuildingRemoved;
+        Inventory.OnBuildingAdded += SpawnAtZero;
+        Inventory.OnBuildingRemoved += Remove;
     }
 
-    private void Inventory_OnBuildingRemoved(BuildingData obj)
+    private void SpawnAtZero(BuildingData buildingData)
     {
-        Remove(obj);
-    }
-
-    private void Inventory_OnBuildingAdded(BuildingData obj)
-    {
-        Debug.Log("spawn?");
-        Build(obj, Vector3.zero);
+        Build(buildingData, Vector3.zero);
     }
 
     private void OnDestroy()
     {
         if (Inventory != null)
         {
-            Inventory.OnBuildingAdded -= Inventory_OnBuildingAdded;
-            Inventory.OnBuildingRemoved -= Inventory_OnBuildingRemoved;
+            Inventory.OnBuildingAdded -= SpawnAtZero;
+            Inventory.OnBuildingRemoved -= Remove;
         }
     }
 
