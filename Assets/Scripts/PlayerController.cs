@@ -37,8 +37,10 @@ public class PlayerController : MonoBehaviour
             
             Building.transform.position = newPosition;
         }
-        
-        
-
+       
+        if(Input.GetMouseButton(0))
+        {
+            
+        }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -9,16 +10,18 @@ public class Player : MonoBehaviour
     public List<ResourceHUD> ResourceHuds;
 
     public int GridSize = 30;
-    public struct FieldData
+    
+    [System.Flags]
+    public enum BlockingObjects
     {
-        [System.Flags]
-        public enum AvailableBuildings
-        {
-            River = 0,
-            Cave = 1,
-            Forest = 2,
-            Blocked = 4
-        }
+        River = 0,
+        Cave = 1,
+        Forest = 2,
+        Blocked = 4
+    }
+    public class FieldData
+    {
+        public BlockingObjects Objects;
     };
 
     public Dictionary<Vector2Int, FieldData> GridData = new Dictionary<Vector2Int, FieldData>();
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         CreateFields();
+        UpdateFieldCollisions();
         foreach (var resource in Inventory?.CountableResources)
         {
             RefreshHud(resource);
@@ -60,5 +64,37 @@ public class Player : MonoBehaviour
                 GridData.Add(new Vector2Int(i*5, j*5), new FieldData());
             }
         }
+    }
+
+    private void UpdateFieldCollisions()
+    {
+        foreach(var Field in GridData)
+        {
+            Vector3 coordinates = new Vector3(Field.Key.x, 0, Field.Key.y);
+            RaycastHit hit;
+            if(Physics.Raycast(coordinates, Vector3.up, out hit, 1000))
+            {
+                Debug.DrawRay(coordinates, Vector3.up * 1000, Color.yellow);
+                // debug start
+                string hitObj = "";
+                if (hit.collider.GetComponent<RiverObstacle>() != null)
+                {
+                    Field.Value.Objects = Field.Value.Objects | BlockingObjects.River;
+                }
+                else if (hit.collider.GetComponent<ForestObstacle>() != null)
+                {
+                    Field.Value.Objects = Field.Value.Objects | BlockingObjects.Forest;
+                }
+                Debug.Log("Did Hit " + hitObj + " at: "+ Field.Key);
+
+                // debug end
+            }
+
+        }
+    }
+    private void Update()
+    {
+
+        UpdateFieldCollisions();
     }
 }
