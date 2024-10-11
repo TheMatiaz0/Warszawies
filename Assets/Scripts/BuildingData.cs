@@ -12,4 +12,5 @@ public class BuildingData : ResettableScriptableObject
     [Header("World")]
     public BuildingInstance PrefabToSpawn;
     public BlockingObjects AllowedObjects;
+    public Vector3 StartPosition;
 }

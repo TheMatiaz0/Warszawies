@@ -14,15 +14,15 @@ public class PopulationFoodDeployer : MonoBehaviour
 
     private void Awake()
     {
-        Ticker = TickerCreator.CreateNormalTime(Balance.Instance.CooldownForCheckingFood);
+        Ticker = TickerCreator.CreateNormalTime(GameManager.Instance.Balance.CooldownForCheckingFood);
 
-        population = Balance.Instance.Inventory.CountableResources.Find(x => x.ResourceType == PopulationResource);
-        food = Balance.Instance.Inventory.CountableResources.Find(x => x.ResourceType == FoodResource);
+        population = GameManager.Instance.Inventory.CountableResources.ToType(ResourceType.Population);
+        food = GameManager.Instance.Inventory.CountableResources.ToType(ResourceType.Food);
     }
 
     public void CheckRequiredFood()
     {
-        var requiredFood = population.Count * Balance.Instance.FoodEatenPerPerson;
+        var requiredFood = population.Count * GameManager.Instance.Balance.FoodEatenPerPerson;
 
         if (food.Count >= requiredFood)
         {
@@ -36,7 +36,7 @@ public class PopulationFoodDeployer : MonoBehaviour
 
     private void StartStarving()
     {
-        population.Count -= Balance.Instance.PopulationEatenByStarvation;
+        population.Count -= GameManager.Instance.Balance.PopulationEatenByStarvation;
     }
 
     private void Update()

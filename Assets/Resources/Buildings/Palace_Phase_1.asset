@@ -16,6 +16,10 @@ MonoBehaviour:
   Result:
   - ResourceType: {fileID: 11400000, guid: 9330921651de13043b23d1e558912ca0, type: 2}
     _count: 1
+    ShouldChangePermanently: 1
   - ResourceType: {fileID: 11400000, guid: b80b1d83b2c0d4340b7058a3609f5890, type: 2}
     _count: 1
-  PrefabToSpawn: {fileID: 0}
+    ShouldChangePermanently: 1
+  PrefabToSpawn: {fileID: 6180039705268661490, guid: 2847d5f34ad5a134b83a4977506e11b5,
+    type: 3}
+  StartPosition: {x: 0, y: 0, z: 0}

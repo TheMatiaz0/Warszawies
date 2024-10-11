@@ -8,28 +8,28 @@ public class BuildingManager : MonoBehaviour
     public List<BuildingInstance> BuildingInstances;
     public Transform parent;
 
-    private void Awake()
+    private void Start()
     {
-        foreach (var buildingData in Balance.Instance.Inventory.CreatedBuildings.ToList())
+        foreach (var buildingData in GameManager.Instance.Inventory.CreatedBuildings.ToList())
         {
             SpawnAtZero(buildingData);
         }
 
-        Balance.Instance.Inventory.OnBuildingAdded += SpawnAtZero;
-        Balance.Instance.Inventory.OnBuildingRemoved += Remove;
+        GameManager.Instance.Inventory.OnBuildingAdded += SpawnAtZero;
+        GameManager.Instance.Inventory.OnBuildingRemoved += Remove;
     }
 
     private void SpawnAtZero(BuildingData buildingData)
     {
-        Build(buildingData, Vector3.zero);
+        Build(buildingData, buildingData.StartPosition);
     }
 
     private void OnDestroy()
     {
-        if (Balance.Instance != null)
+        if (GameManager.Instance != null)
         {
-            Balance.Instance.Inventory.OnBuildingAdded -= SpawnAtZero;
-            Balance.Instance.Inventory.OnBuildingRemoved -= Remove;
+            GameManager.Instance.Inventory.OnBuildingAdded -= SpawnAtZero;
+            GameManager.Instance.Inventory.OnBuildingRemoved -= Remove;
         }
     }
 
@@ -37,7 +37,7 @@ public class BuildingManager : MonoBehaviour
     {
         foreach (var requiredResource in data.Requirements)
         {
-            foreach (var currentResource in Balance.Instance.Inventory.CountableResources)
+            foreach (var currentResource in GameManager.Instance.Inventory.CountableResources)
             {
                 if (currentResource.Count < requiredResource.Count)
                 {
@@ -53,7 +53,7 @@ public class BuildingManager : MonoBehaviour
     {
         foreach (var requiredResource in data.Requirements)
         {
-            foreach (var currentResource in Balance.Instance.Inventory.CountableResources)
+            foreach (var currentResource in GameManager.Instance.Inventory.CountableResources)
             {
                 if (currentResource.ResourceType == requiredResource.ResourceType)
                 {
@@ -70,6 +70,7 @@ public class BuildingManager : MonoBehaviour
 
     public void Build(BuildingData data, Vector3 position)
     {
+        if (data.PrefabToSpawn == null) return;
         var buildingInstance = Instantiate(data.PrefabToSpawn, position, Quaternion.identity, parent);
         BuildingInstances.Add(buildingInstance);
         SpendResources(data);

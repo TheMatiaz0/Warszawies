@@ -18,8 +18,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public ResourceInventory Inventory;
-
     public List<ResourceHUD> ResourceHuds;
 
     public int GridSize = 30;
@@ -44,7 +42,7 @@ public class Player : MonoBehaviour
         UpdateFieldCollisions();
         RemoveLandscapeColliders();
         CalculateDistanceArrays();
-        foreach (var resource in Inventory?.CountableResources)
+        foreach (var resource in GameManager.Instance.Inventory.CountableResources)
         {
             RefreshHud(resource);
             resource.OnCountChanged += RefreshHud;
@@ -59,9 +57,9 @@ public class Player : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (Inventory != null)
+        if (GameManager.Instance.Inventory != null)
         {
-            foreach (var resource in Inventory.CountableResources)
+            foreach (var resource in GameManager.Instance.Inventory.CountableResources)
             {
                 resource.OnCountChanged -= RefreshHud;
             }
