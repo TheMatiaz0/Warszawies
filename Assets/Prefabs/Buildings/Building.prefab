@@ -45,5 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 0}
-  Inventory: {fileID: 11400000, guid: 6a7d5e59b210c6e4a93812ea5b20dc8c, type: 2}
-  Cooldown: 2
+  Balance: {fileID: 11400000, guid: 8c4a19b926301f94e8e15ffd05b1a817, type: 2}

@@ -7,14 +7,12 @@ using UnityEngine;
 public class BuildingInstance : MonoBehaviour
 {
     public BuildingData Data;
-    public ResourceInventory Inventory;
-    public float Cooldown;
 
     private Ticker ticker;
 
     private void Awake()
     {
-        ticker = TickerCreator.CreateNormalTime(Cooldown);
+        ticker = TickerCreator.CreateNormalTime(Balance.Instance.CooldownForAllBuildings);
     }
 
     private void Update()
@@ -23,7 +21,7 @@ public class BuildingInstance : MonoBehaviour
         {
             foreach (var result in Data.Result)
             {
-                var inventoryRef = Inventory.CountableResources.Find(x => x.ResourceType == result.ResourceType);
+                var inventoryRef = Balance.Instance.Inventory.CountableResources.Find(x => x.ResourceType == result.ResourceType);
                 inventoryRef.Count += result.Count;
             }
         }

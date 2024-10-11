@@ -29,6 +29,7 @@ public abstract class ResettableScriptableObject : ScriptableObject
         switch (obj)
         {
             case PlayModeStateChange.ExitingEditMode:
+                if (Application.isPlaying) return;
                 _initialJson = EditorJsonUtility.ToJson(this);
                 break;
 

@@ -6,18 +6,17 @@ using UnityEngine;
 public class BuildingManager : MonoBehaviour
 {
     public List<BuildingInstance> BuildingInstances;
-    public ResourceInventory Inventory;
     public Transform parent;
 
     private void Awake()
     {
-        foreach (var buildingData in Inventory.CreatedBuildings.ToList())
+        foreach (var buildingData in Balance.Instance.Inventory.CreatedBuildings.ToList())
         {
             SpawnAtZero(buildingData);
         }
 
-        Inventory.OnBuildingAdded += SpawnAtZero;
-        Inventory.OnBuildingRemoved += Remove;
+        Balance.Instance.Inventory.OnBuildingAdded += SpawnAtZero;
+        Balance.Instance.Inventory.OnBuildingRemoved += Remove;
     }
 
     private void SpawnAtZero(BuildingData buildingData)
@@ -27,10 +26,10 @@ public class BuildingManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (Inventory != null)
+        if (Balance.Instance != null)
         {
-            Inventory.OnBuildingAdded -= SpawnAtZero;
-            Inventory.OnBuildingRemoved -= Remove;
+            Balance.Instance.Inventory.OnBuildingAdded -= SpawnAtZero;
+            Balance.Instance.Inventory.OnBuildingRemoved -= Remove;
         }
     }
 
@@ -38,7 +37,7 @@ public class BuildingManager : MonoBehaviour
     {
         foreach (var requiredResource in data.Requirements)
         {
-            foreach (var currentResource in Inventory.CountableResources)
+            foreach (var currentResource in Balance.Instance.Inventory.CountableResources)
             {
                 if (currentResource.Count < requiredResource.Count)
                 {
@@ -52,10 +51,9 @@ public class BuildingManager : MonoBehaviour
 
     public void SpendResources(BuildingData data)
     {
-        Debug.Log(data.ToString());
         foreach (var requiredResource in data.Requirements)
         {
-            foreach (var currentResource in Inventory.CountableResources)
+            foreach (var currentResource in Balance.Instance.Inventory.CountableResources)
             {
                 if (currentResource.ResourceType == requiredResource.ResourceType)
                 {
@@ -63,6 +61,11 @@ public class BuildingManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public int GetAllBuildingsOfData(BuildingData data)
+    {
+        return BuildingInstances.Count(x => x.Data == data);
     }
 
     public void Build(BuildingData data, Vector3 position)
