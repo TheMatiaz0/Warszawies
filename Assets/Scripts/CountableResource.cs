@@ -22,4 +22,6 @@ public class CountableResource
 
     [Header("Dynamic")]
     public int _count;
+
+    public bool ShouldChangePermanently = true;
 }

@@ -10,15 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fe80701ddd9e714c8a2f9fa26cc6600, type: 3}
-  m_Name: House
+  m_Name: Palace_Phase_3
   m_EditorClassIdentifier: 
   Requirements:
   - ResourceType: {fileID: 11400000, guid: b80b1d83b2c0d4340b7058a3609f5890, type: 2}
-    _count: 100
+    _count: 1000
+    ShouldChangePermanently: 1
   - ResourceType: {fileID: 11400000, guid: 9330921651de13043b23d1e558912ca0, type: 2}
-    _count: 100
-  Result:
+    _count: 1000
+    ShouldChangePermanently: 1
   - ResourceType: {fileID: 11400000, guid: a9bbbf48696911a4289c312fd14f983c, type: 2}
-    _count: 1
-  PrefabToSpawn: {fileID: 8880888101880426096, guid: 0865bbd87a414dc41b647e8ed413d8e8,
-    type: 3}
+    _count: 500
+    ShouldChangePermanently: 0
+  Result:
+  - ResourceType: {fileID: 11400000, guid: b80b1d83b2c0d4340b7058a3609f5890, type: 2}
+    _count: 10
+    ShouldChangePermanently: 1
+  - ResourceType: {fileID: 11400000, guid: 9330921651de13043b23d1e558912ca0, type: 2}
+    _count: 10
+    ShouldChangePermanently: 1
+  PrefabToSpawn: {fileID: 0}

@@ -44,9 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656931199504b7e4f9dc9dbd2152dbcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Inventory: {fileID: 11400000, guid: 1d70f8bfff2e76046b6f08b3c0d8346a, type: 2}
-  Extraction:
-    CountableResource:
-      ResourceType: {fileID: 11400000, guid: a9bbbf48696911a4289c312fd14f983c, type: 2}
-      _count: 2
-    Cooldown: 0.2
+  Data: {fileID: 0}
+  Balance: {fileID: 11400000, guid: 8c4a19b926301f94e8e15ffd05b1a817, type: 2}
