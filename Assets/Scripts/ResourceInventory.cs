@@ -6,7 +6,7 @@ using UnityEngine;
 public class ResourceInventory : ScriptableObject
 {
     public List<CountableResource> CountableResources;
-    public List<BuildingData> Buildings;
+    public List<BuildingData> CreatedBuildings;
 
     private void OnValidate()
     {
