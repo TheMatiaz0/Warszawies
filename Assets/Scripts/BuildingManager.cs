@@ -68,6 +68,11 @@ public class BuildingManager : MonoBehaviour
         return BuildingInstances.Count(x => x.Data == data);
     }
 
+    public List<BuildingInstance> GetAllBuildingsOfFlag(BlockingObjects blockingObjects)
+    {
+        return BuildingInstances.FindAll(x => x.Data.AllowedObjects.HasFlag(blockingObjects));
+    }
+
     public void Build(BuildingData data, Vector3 position)
     {
         if (data.PrefabToSpawn == null) return;

@@ -39,6 +39,11 @@ public class AutomaticUpgrade : MonoBehaviour
         {
             if (population.Count >= thresholdBuilding.Threshold && BuildingManager.GetAllBuildingsOfData(thresholdBuilding.Building) == 0)
             {
+                foreach (var item in BuildingManager.GetAllBuildingsOfFlag(BlockingObjects.Palace))
+                {
+                    BuildingManager.Remove(item.Data);
+                }
+
                 return thresholdBuilding.Building;
             }
         }
