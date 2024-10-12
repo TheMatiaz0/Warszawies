@@ -670,6 +670,7 @@ MonoBehaviour:
     type: 3}
   resultParent: {fileID: 6862631867660759237}
   requirementParent: {fileID: 2555212063972536430}
+  SelectedBuilding: {fileID: 0}
 --- !u!1 &2406305906995333233
 GameObject:
   m_ObjectHideFlags: 0

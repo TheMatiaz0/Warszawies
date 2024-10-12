@@ -37,13 +37,17 @@ public class PlayerController : MonoBehaviour
 
     public BuildingManager BuildingManager;
 
+    public Transform Parent;
+
     private int GridSize = 30;
 
     [SerializeField]
     SelectedBuildingHud hud;
 
     [SerializeField]
-    Sprite BuildingPieMenuSprite;
+    GameObject BuildingPiePrefab;
+
+    private GameObject cachedPie;
 
    
     public int HouseFromCollisionDistance = 2;
@@ -88,8 +92,11 @@ public class PlayerController : MonoBehaviour
         {
             if (EventSystem.current.IsPointerOverGameObject())
             {
+                TryClearPie();
                 return;
             }
+            OpenBuildingPieMenu();
+
             //Debug.Log($"key: { new Vector2Int((int)newPosition.x, (int)newPosition.z) }");
             if (BuildingManager.CanBuild(SelectedBuilding) && player.GridData.TryGetValue(new Vector2Int((int)newPosition.x, (int)newPosition.z), out var fieldData) && fieldData.ObjectPlaced == false)
             {
@@ -175,16 +182,31 @@ public class PlayerController : MonoBehaviour
             previousPosition = PlayerCamera.ScreenToViewportPoint(Input.mousePosition);
             UpdateCameraPosition();
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            TryClearPie();
+        }
+    }
+
+    private void TryClearPie()
+    {
+        if (cachedPie != null && cachedPie.activeInHierarchy)
+        {
+            Destroy(cachedPie);
+        }
     }
 
     void OpenBuildingPieMenu()
     {
-        Vector3 mousePosition = Input.mousePosition;
-        //Instantiate(BuildingPieMenuSprite, mousePosition, Quaternion.identity);
-        
-        Debug.Log("Pie menu");
+        TryClearPie();
 
+        Vector3 mousePosition = Input.mousePosition;
+        var worldSpacePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        cachedPie = Instantiate(BuildingPiePrefab, mousePosition, Quaternion.identity, Parent);
     }
+
     void UpdateCameraPosition()
     {
 
