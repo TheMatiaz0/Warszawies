@@ -96,9 +96,6 @@ public class PlayerController : MonoBehaviour
                 return;
             }
             OpenBuildingPieMenu();
-
-            //Debug.Log($"key: { new Vector2Int((int)newPosition.x, (int)newPosition.z) }");
-
         }
 
         // Esc to Main Menu
@@ -207,10 +204,13 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(cachedPie.gameObject);
         }
+
+        Building.gameObject.SetActive(true);
     }
 
-    void OpenBuildingPieMenu()
+    private void OpenBuildingPieMenu()
     {
+        Building.gameObject.SetActive(false);
         TryClearPie();
 
         Vector3 mousePosition = Input.mousePosition;
@@ -238,9 +238,10 @@ public class PlayerController : MonoBehaviour
         hud.Setup(SelectedBuilding);
     }
 
-    private void OnPointerClick(PointerEventData obj)
+    private void OnPointerClick()
     {
-        BuildAt(obj.position);
+        Debug.Log("test");
+        // BuildAt(obj.position);
     }
 
     void UpdateCameraPosition()
