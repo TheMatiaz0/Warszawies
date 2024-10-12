@@ -88,8 +88,6 @@ public class PlayerController : MonoBehaviour
             Building.transform.position = newPosition;
         }
 
-        PickBuilding();
-
         if(Input.GetMouseButtonDown(0))
         {
             if (EventSystem.current.IsPointerOverGameObject())
