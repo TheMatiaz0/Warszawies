@@ -12,7 +12,7 @@ public class PopulationFoodDeployer : MonoBehaviour
     private CountableResource population;
     private CountableResource food;
 
-    private void Awake()
+    private void Start()
     {
         Ticker = TickerCreator.CreateNormalTime(GameManager.Instance.Balance.CooldownForCheckingFood);
 
