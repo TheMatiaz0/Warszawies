@@ -34,6 +34,7 @@ public class CardModal : MonoBehaviour
         ModalBackground.onClick.AddListener(Close);
         AcceptButton.onClick.AddListener(Accept);
         CancelButton.onClick.AddListener(Cancel);
+        Open();
     }
 
     private void Clear()
@@ -61,7 +62,6 @@ public class CardModal : MonoBehaviour
 
     private void Close()
     {
-        gameObject.SetActive(false);
         CanvasGroup.alpha = 0;
         Clear();
     }
@@ -69,6 +69,5 @@ public class CardModal : MonoBehaviour
     private void Open()
     {
         CanvasGroup.alpha = 1;
-        gameObject.SetActive(true);
     }
 }

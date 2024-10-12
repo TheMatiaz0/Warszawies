@@ -18,8 +18,8 @@ MonoBehaviour:
   - ResourceType: {fileID: 11400000, guid: b80b1d83b2c0d4340b7058a3609f5890, type: 2}
     _count: 10
   - ResourceType: {fileID: 11400000, guid: a9bbbf48696911a4289c312fd14f983c, type: 2}
-    _count: 99
+    _count: 1
   - ResourceType: {fileID: 11400000, guid: ad51526f0ac54154689402196b3d3a2e, type: 2}
-    _count: 100
+    _count: 1
   CreatedBuildings:
   - {fileID: 11400000, guid: baf6764981e030b4dae22590d416cb95, type: 2}
