@@ -84,12 +84,14 @@ public class CardModal : MonoBehaviour
     private void Close()
     {
         CanvasGroup.alpha = 0;
+        Time.timeScale = 1;
         Clear();
     }
 
     private void Open()
     {
         CanvasGroup.alpha = 1;
+        Time.timeScale = 0;
     }
 
     private void Restart()
