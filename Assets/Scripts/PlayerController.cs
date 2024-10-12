@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using static Player;
 
 public class PlayerController : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     public Transform Parent;
 
-    private int GridSize = 30;
+    private int GridSize = 20;
 
     [SerializeField]
     SelectedBuildingHud hud;
@@ -56,6 +57,8 @@ public class PlayerController : MonoBehaviour
     public int FisherhutFromRiverDistance = 2;
     public int LumberjackFromForestDistance = 2;
     public int StonecutterFromCaveDistance = 2;
+
+    //public Dictionary<Vector2Int, FieldData> GridData = new Dictionary<Vector2Int, FieldData>();
 
     private Vector3 previousPosition = new Vector3();
 
@@ -74,7 +77,7 @@ public class PlayerController : MonoBehaviour
         Ray ray = PlayerCamera.ViewportPointToRay(PlayerCamera.ScreenToViewportPoint(Input.mousePosition));
         RaycastHit hit;
         newPosition = new Vector3();
-        if(Physics.Raycast(ray, out hit, 1000)) 
+        if(Physics.Raycast(ray, out hit, 10000)) 
         {
             newPosition = hit.point;
             if(newPosition.x < 0) newPosition.x = newPosition.x - newPosition.x % 10 - 5;
@@ -83,6 +86,8 @@ public class PlayerController : MonoBehaviour
 
             if (newPosition.z < 0) newPosition.z = newPosition.z - newPosition.z % 10 - 5;
             else newPosition.z = newPosition.z - newPosition.z % 10 + 5;
+
+            newPosition.y = 0;
            
             
             Building.transform.position = newPosition;
@@ -138,53 +143,59 @@ public class PlayerController : MonoBehaviour
 
     private void BuildAt(Vector3 newPosition)
     {
-        if (BuildingManager.CanBuild(SelectedBuilding) && player.GridData.TryGetValue(new Vector2Int((int)newPosition.x, (int)newPosition.z), out var fieldData) && fieldData.ObjectPlaced == false)
+        Debug.Log("Position: " + newPosition);
+        
+        if (BuildingManager.CanBuild(SelectedBuilding) && GridData.TryGetValue(new Vector2Int((int)newPosition.x, (int)newPosition.z), out var fieldData) && fieldData.ObjectPlaced == false)
         {
+
             int riverDistance = CheckForNearestRiver((int)newPosition.x, (int)newPosition.z);
             int forestDistance = CheckForNearestForest((int)newPosition.x, (int)newPosition.z);
             int caveDistance = CheckForNearestCave((int)newPosition.x, (int)newPosition.z);
-            // Debug.Log("Distance from river: " + riverDistance);
-            // Debug.Log("Distance from cave: " + caveDistance);
-            // Debug.Log("Distance from forest: " + forestDistance);
-
+            Debug.Log("Distance from river: " + riverDistance);
+            Debug.Log("Distance from cave: " + caveDistance);
+            Debug.Log("Distance from forest: " + forestDistance);
             if (SelectedBuilding.AllowedObjects.HasFlag(BlockingObjects.River)) // Mozna postawic nad rzeka
             {
                 if (riverDistance == 0)
                 {
                     BuildingManager.Build(SelectedBuilding, newPosition);
 
-                    player.GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
+                    GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
                     GameManager.Instance.Inventory.CreatedBuildings.Add(SelectedBuilding);
+                }
+                else
+                {
+                    Debug.Log("zero");
                 }
             }
             else if (SelectedBuilding.AllowedObjects.HasFlag(BlockingObjects.Forest)) // Mozna postawic przy lesie
             {
-                if (forestDistance > 0 && forestDistance < LumberjackFromForestDistance)
+                if (forestDistance < LumberjackFromForestDistance)
                 {
                     BuildingManager.Build(SelectedBuilding, newPosition);
 
-                    player.GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
+                    GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
                     GameManager.Instance.Inventory.CreatedBuildings.Add(SelectedBuilding);
                 }
             }
             else if (SelectedBuilding.AllowedObjects.HasFlag(BlockingObjects.Cave)) // Mozna postawic przy jaskiniach
             {
-                if (caveDistance > 0 && caveDistance < StonecutterFromCaveDistance)
+                if (caveDistance < StonecutterFromCaveDistance)
                 {
                     BuildingManager.Build(SelectedBuilding, newPosition);
 
-                    player.GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
+                    GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
                     GameManager.Instance.Inventory.CreatedBuildings.Add(SelectedBuilding);
                 }
             }
             else if (SelectedBuilding.AllowedObjects.HasFlag(BlockingObjects.House)) // to dom
             {
                 int minDist = Mathf.Min(caveDistance, forestDistance, riverDistance);
-                if (minDist > HouseFromCollisionDistance)
+                if (minDist < HouseFromCollisionDistance)
                 {
                     BuildingManager.Build(SelectedBuilding, newPosition);
 
-                    player.GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
+                    GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
                     GameManager.Instance.Inventory.CreatedBuildings.Add(SelectedBuilding);
                 }
             }
@@ -264,15 +275,16 @@ public class PlayerController : MonoBehaviour
 
     int CheckForNearestRiver(int x, int z)
     {
-        return player.RiverDistanceArray[x / 5, z / 5];
+        Debug.Log(RiverDistanceArray[x / 5, z / 5]);
+        return RiverDistanceArray[x / 5, z / 5];
         //player.GridData[new Vector2Int(x, z)].Objects.HasFlag(BlockingObjects.River)
     }
     int CheckForNearestForest(int x, int z)
     {
-        return player.ForestDistanceArray[x / 5, z / 5];
+        return ForestDistanceArray[x / 5, z / 5];
     }
     int CheckForNearestCave(int x, int z)
     {
-        return player.CaveDistanceArray[x / 5, z / 5];
+        return CaveDistanceArray[x / 5, z / 5];
     }
 }
