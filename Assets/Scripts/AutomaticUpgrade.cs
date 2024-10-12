@@ -10,25 +10,26 @@ public class AutomaticUpgrade : MonoBehaviour
     private CountableResource population;
     private BuildingData currentUpgrade;
 
-    private void Awake()
+    private void Start()
     {
-        population = GameManager.Instance.Inventory.CountableResources.ToType(ResourceType.Population)
-        population.OnCountChanged += AutomaticUpgrade_OnCountChanged;
+        population = GameManager.Instance.Inventory.CountableResources.ToType(ResourceType.Population);
+        population.OnCountChanged += OnPopulationChanged;
     }
 
     private void OnDestroy()
     {
-        population.OnCountChanged -= AutomaticUpgrade_OnCountChanged;
+        population.OnCountChanged -= OnPopulationChanged;
     }
 
-    private void AutomaticUpgrade_OnCountChanged(CountableResource obj)
+    private void OnPopulationChanged(CountableResource countableResource)
     {
-        var count = obj.Count;
+        var count = countableResource.Count;
         var upgradeBuilding = GetUpgradeBuilding();
 
         if (upgradeBuilding != null)
         {
             BuildingManager.SpawnAtZero(upgradeBuilding);
+            currentUpgrade = upgradeBuilding;
         }
     }
 
@@ -36,7 +37,7 @@ public class AutomaticUpgrade : MonoBehaviour
     {
         foreach (var thresholdBuilding in GameManager.Instance.Balance.PopulationThresholds)
         {
-            if (population.Count >= thresholdBuilding.Threshold && currentUpgrade != thresholdBuilding.Building)
+            if (population.Count >= thresholdBuilding.Threshold && BuildingManager.GetAllBuildingsOfData(thresholdBuilding.Building) == 0)
             {
                 return thresholdBuilding.Building;
             }

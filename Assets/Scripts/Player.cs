@@ -12,7 +12,8 @@ using UnityEngine;
         Cave = 2,
         Forest = 4,
         Blocked = 8,
-        House = 16
+        House = 16,
+        Palace = 32,
     }
 
 
@@ -81,8 +82,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void RemoveLandscapeColliders()
+    private void RemoveLandscapeColliders() // huh?!
     {
+        /*
         var collidersRiver = FindObjectsOfType<RiverObstacle>();
         foreach (var collider in collidersRiver)
         {
@@ -98,6 +100,7 @@ public class Player : MonoBehaviour
         {
             Destroy(collider.gameObject);
         }
+        */
     }
     private void UpdateFieldCollisions()
     {

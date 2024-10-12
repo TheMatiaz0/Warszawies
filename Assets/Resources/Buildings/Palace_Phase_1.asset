@@ -22,4 +22,5 @@ MonoBehaviour:
     ShouldChangePermanently: 1
   PrefabToSpawn: {fileID: 6180039705268661490, guid: 2847d5f34ad5a134b83a4977506e11b5,
     type: 3}
+  AllowedObjects: 32
   StartPosition: {x: 0, y: 0, z: 0}
