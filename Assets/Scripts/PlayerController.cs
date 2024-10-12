@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,7 +21,13 @@ public class PlayerController : MonoBehaviour
     Transform cameraRotationPivot;
 
     [SerializeField] 
-    float distanceToPivotPoint;
+    float maxDistanceToPivotPoint = 70;
+
+    [SerializeField] 
+    float minDistanceToPivotPoint = 30;
+
+    float currentDistanceToPivotPoint = 40;
+    float currentTargetDistanceToPivotPoint = 40;
 
     [SerializeField]
     private float xRotSpeed = 1;
@@ -72,15 +79,15 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
-            Debug.Log($"key: { new Vector2Int((int)newPosition.x, (int)newPosition.z) }");
+            //Debug.Log($"key: { new Vector2Int((int)newPosition.x, (int)newPosition.z) }");
             if (BuildingManager.CanBuild(SelectedBuilding) && player.GridData.TryGetValue(new Vector2Int((int)newPosition.x, (int)newPosition.z), out var fieldData) && fieldData.ObjectPlaced == false)
             {
                 int riverDistance = CheckForNearestRiver((int)newPosition.x, (int)newPosition.z);
                 int forestDistance = CheckForNearestForest((int)newPosition.x, (int)newPosition.z);
                 int caveDistance = CheckForNearestCave((int)newPosition.x, (int)newPosition.z);
-                Debug.Log("Distance from river: " + riverDistance);
-                Debug.Log("Distance from cave: " + caveDistance);
-                Debug.Log("Distance from forest: " + forestDistance);
+                //Debug.Log("Distance from river: " + riverDistance);
+                //Debug.Log("Distance from cave: " + caveDistance);
+               // Debug.Log("Distance from forest: " + forestDistance);
 
                 if (SelectedBuilding.AllowedObjects.HasFlag(BlockingObjects.River)) // Mozna postawic przy rzece
                 {
@@ -126,7 +133,20 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        // Esc to Main Menu
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            //SceneManager. activeSceneChanged scene main menu;
+        }
+
         // Camera rotation
+        if (Input.GetAxis("Mouse ScrollWheel") != 0)
+        {
+            currentTargetDistanceToPivotPoint = Mathf.Clamp(currentDistanceToPivotPoint + Input.GetAxis("Mouse ScrollWheel") * -100, minDistanceToPivotPoint, maxDistanceToPivotPoint);
+            
+            previousPosition = PlayerCamera.ScreenToViewportPoint(Input.mousePosition);
+            UpdateCameraPosition();
+        }
 
         if (Input.GetMouseButtonDown(2))
         {
@@ -134,6 +154,14 @@ public class PlayerController : MonoBehaviour
         }
         else if(Input.GetMouseButton(2))
         {
+            UpdateCameraPosition();
+            currentDistanceToPivotPoint = Mathf.Lerp(currentDistanceToPivotPoint, currentTargetDistanceToPivotPoint, 0.1f);
+            previousPosition = PlayerCamera.ScreenToViewportPoint(Input.mousePosition);
+        }
+        else
+        {
+            currentDistanceToPivotPoint = Mathf.Lerp(currentDistanceToPivotPoint, currentTargetDistanceToPivotPoint, 0.1f);
+            previousPosition = PlayerCamera.ScreenToViewportPoint(Input.mousePosition);
             UpdateCameraPosition();
         }
     }
@@ -145,20 +173,11 @@ public class PlayerController : MonoBehaviour
         Vector3 direction = previousPosition - currentPosition;
 
         float rotationAroundYAxis = -direction.x * 180 * xRotSpeed;
-        float rotationAroundXAxis = direction.y * 180;
 
         PlayerCamera.transform.position = cameraRotationPivot.position;
-        // min 60 max 20
-        if ((PlayerCamera.transform.rotation.eulerAngles.x < 60 && rotationAroundXAxis > 0)
-            || (PlayerCamera.transform.rotation.eulerAngles.x > 20 && rotationAroundXAxis < 0))
-        {
-            PlayerCamera.transform.Rotate(new Vector3(1, 0, 0), rotationAroundXAxis);
-        }
-
 
         PlayerCamera.transform.Rotate(new Vector3(0, 1, 0), rotationAroundYAxis, Space.World);
-
-        PlayerCamera.transform.Translate(new Vector3(0, 0, -distanceToPivotPoint));
+        PlayerCamera.transform.Translate(new Vector3(0, 0, -currentDistanceToPivotPoint));
 
         previousPosition = currentPosition;
     }
