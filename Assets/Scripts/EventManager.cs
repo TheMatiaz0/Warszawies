@@ -7,7 +7,7 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
     private Ticker Ticker;
-    private readonly Queue<EventData> EventQueue;
+    private readonly Queue<EventData> EventQueue = new();
 
     private void Awake()
     {
@@ -103,7 +103,7 @@ public class EventManager : MonoBehaviour
 
     private void Update()
     {
-        if (Ticker.Push())
+        if (Ticker.Push() && EventQueue != null)
         {
             for (int i = 0; i < EventQueue.Count; i++)
             {
