@@ -88,8 +88,6 @@ public class PlayerController : MonoBehaviour
             Building.transform.position = newPosition;
         }
 
-        PickBuilding();
-
         if(Input.GetMouseButtonDown(0))
         {
             if (EventSystem.current.IsPointerOverGameObject())
@@ -145,13 +143,13 @@ public class PlayerController : MonoBehaviour
             int riverDistance = CheckForNearestRiver((int)newPosition.x, (int)newPosition.z);
             int forestDistance = CheckForNearestForest((int)newPosition.x, (int)newPosition.z);
             int caveDistance = CheckForNearestCave((int)newPosition.x, (int)newPosition.z);
-            //Debug.Log("Distance from river: " + riverDistance);
-            //Debug.Log("Distance from cave: " + caveDistance);
+            // Debug.Log("Distance from river: " + riverDistance);
+            // Debug.Log("Distance from cave: " + caveDistance);
             // Debug.Log("Distance from forest: " + forestDistance);
 
-            if (SelectedBuilding.AllowedObjects.HasFlag(BlockingObjects.River)) // Mozna postawic przy rzece
+            if (SelectedBuilding.AllowedObjects.HasFlag(BlockingObjects.River)) // Mozna postawic nad rzeka
             {
-                if (riverDistance > 0 && riverDistance < FisherhutFromRiverDistance)
+                if (riverDistance == 0)
                 {
                     BuildingManager.Build(SelectedBuilding, newPosition);
 
@@ -220,6 +218,8 @@ public class PlayerController : MonoBehaviour
         cachedPiePosition = newPosition;
 
         cachedPie = Instantiate(BuildingPiePrefab, mousePosition, Quaternion.identity, Parent);
+        cachedPie.transform.SetSiblingIndex(0);
+
         foreach (var item in cachedPie.Buttons)
         {
             item.OnPointerClickEvent += OnPointerClick;
@@ -274,25 +274,5 @@ public class PlayerController : MonoBehaviour
     int CheckForNearestCave(int x, int z)
     {
         return player.CaveDistanceArray[x / 5, z / 5];
-    }
-    void PickBuilding()
-    {
-        if(Input.GetKey(KeyCode.Alpha1))
-        {
-            SelectedBuilding = Buildings[0];
-        }
-        else if (Input.GetKey(KeyCode.Alpha2))
-        {
-            SelectedBuilding = Buildings[1];
-        }
-        else if (Input.GetKey(KeyCode.Alpha3))
-        {
-            SelectedBuilding = Buildings[2];
-        }
-        else if(Input.GetKey(KeyCode.Alpha4))
-        {
-            SelectedBuilding = Buildings[3];
-        }
-        hud.Setup(SelectedBuilding);
     }
 }

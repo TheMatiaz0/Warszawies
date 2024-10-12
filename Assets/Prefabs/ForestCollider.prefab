@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3434840456508844990}
   - component: {fileID: 5523426151718812411}
   - component: {fileID: 7140540572238284887}
+  - component: {fileID: 4401734748713290134}
   m_Layer: 0
   m_Name: ForestCollider
   m_TagString: Untagged
@@ -69,6 +70,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trees: {fileID: 4820435292696266517}
+--- !u!114 &4401734748713290134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7817900703091533770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac9d02f3e82e7046a27d89ed667c873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectsToClear:
+  - {fileID: 4820435292696266517}
 --- !u!1001 &4852667123970401829
 PrefabInstance:
   m_ObjectHideFlags: 0
