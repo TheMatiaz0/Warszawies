@@ -17,7 +17,7 @@ public class EventData : ScriptableObject
     public List<CountableResource> WinCondition;
     public List<CountableResource> FailCondition;
 
-    public bool ShowCancelButton = true;
-    public bool ShowAcceptButton = true;
-    public bool ShowRestartButton = false;
+    public bool AbleToCancel = true;
+    public bool AbleToAccept = true;
+    public bool AbleToRestart = false;
 }

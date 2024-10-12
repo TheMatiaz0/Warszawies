@@ -21,3 +21,6 @@ MonoBehaviour:
   Requirement: []
   WinCondition: []
   FailCondition: []
+  ShowCancelButton: 0
+  ShowAcceptButton: 0
+  ShowRestartButton: 1

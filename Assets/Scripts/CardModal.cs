@@ -15,6 +15,7 @@ public class CardModal : MonoBehaviour
     public Text Description;
 
     public ResourceAmountHud PaymentPrefab;
+
     public Transform RequiredLayout;
     public Transform PayLayout;
     public Transform RewardLayout;
@@ -42,6 +43,15 @@ public class CardModal : MonoBehaviour
         RestartButton.onClick.AddListener(Restart);
         Title.text = eventData.Title;
         Description.text = eventData.Description;
+
+        RequiredLayout.gameObject.SetActive(!eventData.AbleToRestart);
+        PayLayout.gameObject.SetActive(eventData.AbleToCancel);
+        RewardLayout.gameObject.SetActive(eventData.AbleToAccept);
+
+        AcceptButton.gameObject.SetActive(eventData.AbleToAccept);
+        CancelButton.gameObject.SetActive(eventData.AbleToCancel);
+        RestartButton.gameObject.SetActive(eventData.AbleToRestart);
+
         Open();
     }
 
