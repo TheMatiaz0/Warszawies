@@ -40,15 +40,17 @@ public class SelectedBuildingHud : MonoBehaviour
         {
             BuildingIcon.sprite = buildingData.BuildingIcon;
         }
+
         foreach (var resultData in buildingData.Result)
         {
             var display = Instantiate(ResourceAmountPrefab, resultParent);
-            display.Setup(resultData.ResourceType.Icon, resultData.Count);
+            display.Setup(resultData.ResourceType.Icon, resultData.Count, true);
         }
+
         foreach (var item in buildingData.Requirements)
         {
             var display = Instantiate(ResourceAmountPrefab, requirementParent);
-            display.Setup(item.ResourceType.Icon, item.Count);
+            display.Setup(item.ResourceType.Icon, item.Count, true);
         }
 
         Open();

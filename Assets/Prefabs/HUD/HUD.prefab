@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 7992952784287745278}
   - component: {fileID: 2645989178734527706}
   m_Layer: 5
-  m_Name: PaymentLayout
+  m_Name: RequirementResults
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -328,12 +328,12 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 75
-  m_ChildForceExpandWidth: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
+  m_ChildControlWidth: 1
   m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
+  m_ChildScaleWidth: 1
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
 --- !u!1 &1578242958173803122
@@ -1174,9 +1174,9 @@ MonoBehaviour:
   IllustrationSlot: {fileID: 4812838510283726688}
   PaymentPrefab: {fileID: 3866868674693164238, guid: f8f58c2b5e4645f44b7a6fc45958c3fd,
     type: 3}
-  RequiredLayout: {fileID: 1599840957540448563}
-  PayLayout: {fileID: 6185164377505551069}
-  RewardLayout: {fileID: 2956445301908561456}
+  RequirementLayout: {fileID: 7992952784287745278}
+  PenaltyLayout: {fileID: 2947009091564801054}
+  RewardLayout: {fileID: 7216345482321205043}
   CancelButton: {fileID: 8963227751106293449}
   AcceptButton: {fileID: 5759884186149895425}
   RestartButton: {fileID: 3583445799598751847}
@@ -1417,9 +1417,9 @@ MonoBehaviour:
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
+  m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
 --- !u!1 &4284326574134361296
 GameObject:
@@ -1639,9 +1639,9 @@ MonoBehaviour:
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
+  m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
 --- !u!1 &5745409514622761869
 GameObject:
@@ -3475,7 +3475,7 @@ PrefabInstance:
     - target: {fileID: 232956179561449129, guid: f8f58c2b5e4645f44b7a6fc45958c3fd,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 87.6396
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 232956179561449129, guid: f8f58c2b5e4645f44b7a6fc45958c3fd,
         type: 3}
@@ -3654,7 +3654,7 @@ PrefabInstance:
     - target: {fileID: 232956179561449129, guid: f8f58c2b5e4645f44b7a6fc45958c3fd,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 227.4075
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 232956179561449129, guid: f8f58c2b5e4645f44b7a6fc45958c3fd,
         type: 3}
@@ -3992,7 +3992,7 @@ PrefabInstance:
     - target: {fileID: 232956179561449129, guid: f8f58c2b5e4645f44b7a6fc45958c3fd,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 87.6396
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 232956179561449129, guid: f8f58c2b5e4645f44b7a6fc45958c3fd,
         type: 3}
@@ -5045,7 +5045,7 @@ PrefabInstance:
     - target: {fileID: 232956179561449129, guid: f8f58c2b5e4645f44b7a6fc45958c3fd,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 227.4075
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 232956179561449129, guid: f8f58c2b5e4645f44b7a6fc45958c3fd,
         type: 3}
@@ -5219,7 +5219,7 @@ PrefabInstance:
     - target: {fileID: 232956179561449129, guid: f8f58c2b5e4645f44b7a6fc45958c3fd,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 87.6396
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 232956179561449129, guid: f8f58c2b5e4645f44b7a6fc45958c3fd,
         type: 3}
@@ -5567,7 +5567,7 @@ PrefabInstance:
     - target: {fileID: 232956179561449129, guid: f8f58c2b5e4645f44b7a6fc45958c3fd,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 87.6396
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 232956179561449129, guid: f8f58c2b5e4645f44b7a6fc45958c3fd,
         type: 3}

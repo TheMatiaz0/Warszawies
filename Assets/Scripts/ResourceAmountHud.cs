@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,9 +8,16 @@ public class ResourceAmountHud : MonoBehaviour
     public Image ResourceIcon;
     public Text Count;
 
-    public void Setup(Sprite resourceIcon, int count)
+    public void Setup(Sprite resourceIcon, int count, bool shouldAddPrefix = false)
     {
         ResourceIcon.sprite = resourceIcon;
-        Count.text = count.ToString();
+
+        string prefix = string.Empty;
+        if (shouldAddPrefix)
+        {
+            prefix = count > 0 ? "+" : "-";
+        }
+
+        Count.text = $"{prefix}{count}";
     }
 }

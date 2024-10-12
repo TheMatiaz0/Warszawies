@@ -36,6 +36,8 @@ public class CardModal : MonoBehaviour
 
     public void OpenWith(EventData eventData)
     {
+        Purge();
+
         EventData = eventData;
 
         if (!eventData.AbleToRestart)
@@ -44,6 +46,7 @@ public class CardModal : MonoBehaviour
             ModalBackground.onClick.AddListener(Close);
             AcceptButton.onClick.AddListener(Accept);
             CancelButton.onClick.AddListener(Cancel);
+            SpawnPayments(eventData);
         }
         else
         {
@@ -55,8 +58,6 @@ public class CardModal : MonoBehaviour
         RequirementLayout.gameObject.SetActive(!eventData.AbleToRestart);
         PenaltyLayout.gameObject.SetActive(eventData.AbleToCancel);
         RewardLayout.gameObject.SetActive(eventData.AbleToAccept);
-
-        SpawnPayments(eventData);
 
         AcceptButton.gameObject.SetActive(eventData.AbleToAccept);
         CancelButton.gameObject.SetActive(eventData.AbleToCancel);
@@ -87,24 +88,24 @@ public class CardModal : MonoBehaviour
     {
         foreach (var resource in data.Requirement)
         {
-            SpawnSinglePayment(RequirementLayout, resource);
+            SpawnSinglePayment(RequirementLayout, resource, false);
         }
 
         foreach (var resource in data.FailCondition)
         {
-            SpawnSinglePayment(PenaltyLayout, resource);
+            SpawnSinglePayment(PenaltyLayout, resource, true);
         }
 
         foreach (var resource in data.WinCondition)
         {
-            SpawnSinglePayment(RewardLayout, resource);
+            SpawnSinglePayment(RewardLayout, resource, true);
         }
     }
 
-    private void SpawnSinglePayment(Transform parent, CountableResource resource)
+    private void SpawnSinglePayment(Transform parent, CountableResource resource, bool shouldAddPrefix)
     {
-        var payment = Instantiate(PaymentPrefab, RequirementLayout);
-        payment.Setup(resource.ResourceType.Icon, resource.Count);
+        var payment = Instantiate(PaymentPrefab, parent);
+        payment.Setup(resource.ResourceType.Icon, resource.Count, shouldAddPrefix);
     }
 
     private void SetupVisuals(EventData eventData)
