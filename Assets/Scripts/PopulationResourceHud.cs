@@ -7,7 +7,7 @@ public class PopulationResourceHud : ResourceHUD
     public override void Refresh(int count, int idleCount)
     {
         var goalForPopulation = GameManager.Instance.NextPopulationThreshold;
-        CountDisplay.text = $"{count.ToString()}/{goalForPopulation}";
+        CountDisplay.text = $"{count}/{goalForPopulation}";
         // IdleCountDisplay.text = $"(+{idleCount.ToString()})";
     }
 }

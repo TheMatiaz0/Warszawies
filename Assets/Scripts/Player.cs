@@ -59,7 +59,17 @@ public class Player : MonoBehaviour
             {
                 RefreshHud(resource);
                 resource.OnCountChanged += RefreshHud;
+                GameManager.Instance.Inventory.OnBuildingAdded += OnNewBuilding;
+                GameManager.Instance.Inventory.OnBuildingRemoved += OnNewBuilding;
             }
+        }
+    }
+
+    private void OnNewBuilding(BuildingData obj)
+    {
+        foreach (var resource in GameManager.Instance.Inventory.CountableResources)
+        {
+            RefreshHud(resource);
         }
     }
 
@@ -76,6 +86,8 @@ public class Player : MonoBehaviour
             foreach (var resource in GameManager.Instance.Inventory.CountableResources)
             {
                 resource.OnCountChanged -= RefreshHud;
+                GameManager.Instance.Inventory.OnBuildingAdded -= OnNewBuilding;
+                GameManager.Instance.Inventory.OnBuildingRemoved -= OnNewBuilding;
             }
         }
     }

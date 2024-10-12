@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameplayBalance
   m_EditorClassIdentifier: 
   CooldownForAllBuildings: 2
-  CooldownForCheckingFood: 0.1
+  CooldownForCheckingFood: 2
   FoodEatenPerPerson: 1
   PopulationEatenByStarvation: 1
   MinPopulationToLose: 0
@@ -24,3 +24,6 @@ MonoBehaviour:
     Threshold: 100
   - Building: {fileID: 11400000, guid: edb6e2b6b2ee8b74c85d1ff129eab063, type: 2}
     Threshold: 1000
+  NextPopulationThreshold:
+    Building: {fileID: 0}
+    Threshold: 0
