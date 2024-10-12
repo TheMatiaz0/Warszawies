@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69e1ae325582c1c418e80b6f9e2c7a71, type: 3}
+  m_Name: GameOver
+  m_EditorClassIdentifier: 
+  Title: Anarchia w Warszawie
+  Description: "Anarchia zaw\u0119drowa\u0142a do Warszawy m\xF3j Panie! Nawet ksi\u0119\u017Ca
+    nie zdo\u0142ali powstrzyma\u0107 si\u0142 natury, poniewa\u017C ka\u017Cdy opu\u015Bci\u0142
+    nasz\u0105 wie\u015B."
+  Illustration: {fileID: 1626168990, guid: 9e4c4d658375af848b526ecee0a6a6c8, type: 3}
+  SmallThumbnail: {fileID: 0}
+  Requirement: []
+  WinCondition: []
+  FailCondition: []

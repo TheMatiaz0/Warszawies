@@ -13,10 +13,22 @@ MonoBehaviour:
   m_Name: VisulaMonsters
   m_EditorClassIdentifier: 
   Title: Jasna Topielica!
-  Description: "Topielce nadci\u0105gaj\u0105, panie! Wszelkie r\u0119ce na pok\u0142ad,
-    albowiem czeka nas wzburzone morze znad Wis\u0142y!"
+  Description: "Pod os\u0142on\u0105 nocy topielce zjadaj\u0105 nasze ryby i atakuj\u0105
+    nasz spichlerz. Powiadaj\u0105, \u017Ce nadeszli od strony Wis\u0142y. \u015Aliski
+    temat! Potrzebujemy wyszkoli\u0107 naszych ludzi, \u017Ceby nauczyli si\u0119
+    p\u0142ywa\u0107 inaczej sko\u0144cz\u0105 tak samo jak te topielce!"
   Illustration: {fileID: -1898890223, guid: 9e4c4d658375af848b526ecee0a6a6c8, type: 3}
   SmallThumbnail: {fileID: 499317665, guid: 369a885745b3c3143ba9add92e501552, type: 3}
-  Requirement: []
-  WinCondition: []
-  FailCondition: []
+  Requirement:
+  - ResourceType: {fileID: 11400000, guid: a9bbbf48696911a4289c312fd14f983c, type: 2}
+    _count: 50
+  - ResourceType: {fileID: 11400000, guid: 9330921651de13043b23d1e558912ca0, type: 2}
+    _count: 25
+  - ResourceType: {fileID: 11400000, guid: b80b1d83b2c0d4340b7058a3609f5890, type: 2}
+    _count: 25
+  WinCondition:
+  - ResourceType: {fileID: 11400000, guid: a9bbbf48696911a4289c312fd14f983c, type: 2}
+    _count: 100
+  FailCondition:
+  - ResourceType: {fileID: 11400000, guid: ad51526f0ac54154689402196b3d3a2e, type: 2}
+    _count: 200

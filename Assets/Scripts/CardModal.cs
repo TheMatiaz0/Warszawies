@@ -15,4 +15,9 @@ public class CardModal : MonoBehaviour
 
     public Button CancelButton;
     public Button AcceptButton;
+
+    private void Setup()
+    {
+
+    }
 }
