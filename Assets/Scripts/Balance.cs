@@ -16,7 +16,7 @@ public class Balance : ScriptableObject
     public float CooldownForAllBuildings = 2;
     [Header("Food")]
     public float CooldownForCheckingFood = 2;
-    public int FoodEatenPerPerson;
+    public int FoodEatenPerTick;
     public int PopulationEatenByStarvation;
     public int MinPopulationToLose = 0;
     [Header("Palace")]

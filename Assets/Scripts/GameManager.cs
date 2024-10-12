@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public CardModal Card;
     public EventData GameOverEvent;
     public BuildingManager BuildingManager;
+    public EventManager EventManager;
 
     public static GameManager Instance { get; private set; }
 

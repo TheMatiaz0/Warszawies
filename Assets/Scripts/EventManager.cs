@@ -1,4 +1,5 @@
 using Rubin;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,19 +8,40 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
     private Ticker Ticker;
-    private readonly Queue<EventData> EventQueue = new();
+    public readonly Queue<EventInstance> EventQueue = new();
 
     public List<EventData> AllPossibleEvents;
     public Transform Parent;
     public PortraitEventHud PortraitPrefab;
     public CardModal Card;
 
-    private List<PortraitEventHud> portraits = new();
+    private readonly List<PortraitEventHud> portraits = new();
 
     private void Start()
     {
         Ticker = TickerCreator.CreateNormalTime(GameManager.Instance.Balance.TimeToFinishEvent);
         Clear();
+
+        foreach (var item in GameManager.Instance.Inventory.CountableResources)
+        {
+            item.OnCountChanged += OnResourcesCountChanged;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var item in GameManager.Instance.Inventory.CountableResources)
+        {
+            item.OnCountChanged -= OnResourcesCountChanged;
+        }
+    }
+
+    private void OnResourcesCountChanged(CountableResource obj)
+    {
+        foreach (var eventData in EventQueue)
+        {
+            eventData.IsGoalAccomplished = IsEventAccomplished(eventData.Data);
+        }
     }
 
     private void Clear()
@@ -32,7 +54,7 @@ public class EventManager : MonoBehaviour
 
     public void Accept(EventData eventData)
     {
-        if (CanGetReward(eventData))
+        if (IsEventAccomplished(eventData))
         {
             SpendResources(eventData);
             GetRewards(eventData);
@@ -45,7 +67,10 @@ public class EventManager : MonoBehaviour
 
     public void Cancel(EventData eventData)
     {
-        EventQueue.ToList().Remove(eventData);
+        var instances = EventQueue.ToList();
+
+        var instance = instances.Find(x => x.Data == eventData);
+        instances.Remove(instance);
         PayResources(eventData);
     }
 
@@ -91,7 +116,7 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public bool CanGetReward(EventData eventData)
+    public bool IsEventAccomplished(EventData eventData)
     {
         foreach (var requiredResource in eventData.Requirement)
         {
@@ -109,7 +134,7 @@ public class EventManager : MonoBehaviour
 
     public void AddToQueue(EventData eventData)
     {
-        EventQueue.Enqueue(eventData);
+        EventQueue.Enqueue(new(eventData, false));
         var createdPortrait = Instantiate(PortraitPrefab, Parent);
 
         var p = Ticker.TimeGetter;
@@ -119,10 +144,10 @@ public class EventManager : MonoBehaviour
         portraits.Add(createdPortrait);
     }
 
-    public EventData GetFromQueue()
+    public EventInstance GetFromQueue()
     {
         var eventData = EventQueue.Dequeue();
-        var portraitToBeRemoved = portraits.Find(x => x.EventData == eventData);
+        var portraitToBeRemoved = portraits.Find(x => x.EventData == eventData.Data);
         if (portraitToBeRemoved != null)
         {
             Destroy(portraitToBeRemoved.gameObject);
@@ -139,10 +164,10 @@ public class EventManager : MonoBehaviour
             for (int i = 0; i < EventQueue.Count; i++)
             {
                 var eventDataToCancel = GetFromQueue();
-                Cancel(eventDataToCancel);
+                Cancel(eventDataToCancel.Data);
             }
 
-            var rngNum = Random.Range(1, 3);
+            var rngNum = UnityEngine.Random.Range(1, 3);
 
             for (int i = 0; i < rngNum; i++)
             {
