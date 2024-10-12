@@ -323,13 +323,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427289838}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.44916782, y: -0, z: -0, w: 0.89344746}
-  m_LocalPosition: {x: 31, y: 49.3, z: -14}
+  m_LocalRotation: {x: 0.40240636, y: -0, z: -0, w: 0.9154611}
+  m_LocalPosition: {x: 39, y: 25, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 53.381, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 47.457, y: 0, z: 0}
 --- !u!114 &427289842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,6 +411,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: afe7604dd79c61e468df48c3c4a621b4, type: 2}
   - {fileID: 11400000, guid: aa2ea2ec73184674dbcdcb93e1cd45ba, type: 2}
   - {fileID: 11400000, guid: 3b72e7fd9fbf8c84d91ad2f4d6be602b, type: 2}
+  cameraRotationPivot: {fileID: 1763549972}
+  distanceToPivotPoint: 20
   BuildingManager: {fileID: 2103171961}
   HouseFromCollisionDistance: 2
   FisherhutFromRiverDistance: 2
@@ -1733,6 +1735,37 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &1763549971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1763549972}
+  m_Layer: 0
+  m_Name: CameraPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1763549972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763549971}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 40, y: 9, z: 40}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1868844259
 GameObject:
   m_ObjectHideFlags: 0
@@ -2172,3 +2205,4 @@ SceneRoots:
   - {fileID: 6008244544723025183}
   - {fileID: 1573392704}
   - {fileID: 1114427986}
+  - {fileID: 1763549972}

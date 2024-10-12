@@ -16,6 +16,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     List<BuildingData> Buildings;
 
+    [SerializeField] 
+    Transform cameraRotationPivot;
+
+    [SerializeField] 
+    float distanceToPivotPoint;
+
+    [SerializeField]
+    private float xRotSpeed = 1;
+
     BuildingData SelectedBuilding;
 
     public BuildingManager BuildingManager;
@@ -28,13 +37,13 @@ public class PlayerController : MonoBehaviour
     public int LumberjackFromForestDistance = 2;
     public int StonecutterFromCaveDistance = 2;
 
-
+    private Vector3 previousPosition = new Vector3();
 
     // Start is called before the first frame update
     void Start()
     {
         SelectedBuilding = Buildings[0];
-        
+        //UpdateCameraPosition();
     }
 
     // Update is called once per frame
@@ -116,6 +125,42 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
+        // Camera rotation
+
+        if (Input.GetMouseButtonDown(2))
+        {
+            previousPosition = PlayerCamera.ScreenToViewportPoint(Input.mousePosition);
+        }
+        else if(Input.GetMouseButton(2))
+        {
+            UpdateCameraPosition();
+        }
+    }
+
+    void UpdateCameraPosition()
+    {
+
+        Vector3 currentPosition = PlayerCamera.ScreenToViewportPoint(Input.mousePosition);
+        Vector3 direction = previousPosition - currentPosition;
+
+        float rotationAroundYAxis = -direction.x * 180 * xRotSpeed;
+        float rotationAroundXAxis = direction.y * 180;
+
+        PlayerCamera.transform.position = cameraRotationPivot.position;
+        // min 60 max 20
+        if ((PlayerCamera.transform.rotation.eulerAngles.x < 60 && rotationAroundXAxis > 0)
+            || (PlayerCamera.transform.rotation.eulerAngles.x > 20 && rotationAroundXAxis < 0))
+        {
+            PlayerCamera.transform.Rotate(new Vector3(1, 0, 0), rotationAroundXAxis);
+        }
+
+
+        PlayerCamera.transform.Rotate(new Vector3(0, 1, 0), rotationAroundYAxis, Space.World);
+
+        PlayerCamera.transform.Translate(new Vector3(0, 0, -distanceToPivotPoint));
+
+        previousPosition = currentPosition;
     }
 
     int CheckForNearestRiver(int x, int z)
