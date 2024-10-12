@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 80180696850711442}
   - component: {fileID: 1422337016857492397}
   - component: {fileID: 6070753857901549456}
-  - component: {fileID: 5988372082516126384}
+  - component: {fileID: 5405347859917172706}
   m_Layer: 5
   m_Name: HUD_Wood
   m_TagString: Untagged
@@ -78,32 +78,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5988372082516126384
+--- !u!114 &5405347859917172706
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2547989465457719311}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Script: {fileID: 11500000, guid: 09b8a5785f463b4439adf93e749584ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: -8
-    m_Top: 8
-    m_Bottom: 0
-  m_ChildAlignment: 5
-  m_Spacing: -35.9
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
+  ResourceType: {fileID: 11400000, guid: 9330921651de13043b23d1e558912ca0, type: 2}
+  CountDisplay: {fileID: 1355112242117533810}
+  IdleCountDisplay: {fileID: 7804518490306233532}
 --- !u!1 &3934222347537398933
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +127,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 128.2, y: -45}
+  m_AnchoredPosition: {x: 125.6, y: -45.7}
   m_SizeDelta: {x: 160, y: 57.1783}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1038556801820658570
@@ -171,7 +160,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b9391ca0d9ae6c84aa9b69fe2876f10b, type: 3}
-    m_FontSize: 28
+    m_FontSize: 26
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -217,7 +206,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 187.1, y: -45}
+  m_AnchoredPosition: {x: 181.2, y: -45.4}
   m_SizeDelta: {x: 160, y: 57.1783}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5958742294095826526

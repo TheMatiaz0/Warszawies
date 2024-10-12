@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69e1ae325582c1c418e80b6f9e2c7a71, type: 3}
+  m_Name: BloodyMermaid
+  m_EditorClassIdentifier: 
+  Title: "G\u0142odna Syrena"
+  Description: "Powiadaj\u0105 \u017Ce jej wycie to alarm, ale nasi poddani kochaj\u0105
+    jej koncerty. Powinni\u015Bmy przyj\u0105\u0107 j\u0105 z otwartymi p\u0142etwa...
+    znaczy ramionami."
+  Illustration: {fileID: -2025876032, guid: 9e4c4d658375af848b526ecee0a6a6c8, type: 3}
+  SmallThumbnail: {fileID: 1672448967, guid: 369a885745b3c3143ba9add92e501552, type: 3}
+  Requirement: []
+  WinCondition: []
+  FailCondition: []

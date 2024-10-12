@@ -8,6 +8,8 @@ public class BuildingManager : MonoBehaviour
     public List<BuildingInstance> BuildingInstances;
     public Transform parent;
 
+    private List<CountableResource> CountableResources;
+
     private void Start()
     {
         foreach (var buildingData in GameManager.Instance.Inventory.CreatedBuildings.ToList())
@@ -71,6 +73,12 @@ public class BuildingManager : MonoBehaviour
     public List<BuildingInstance> GetAllBuildingsOfFlag(BlockingObjects blockingObjects)
     {
         return BuildingInstances.FindAll(x => x.Data.AllowedObjects.HasFlag(blockingObjects));
+    }
+
+    public int GetIdleCount(ResourceData resourceData)
+    {
+        return BuildingInstances.Where(x => x.Data == resourceData)
+            .Sum(x => x.Data.Result.Count);
     }
 
     public void Build(BuildingData data, Vector3 position)

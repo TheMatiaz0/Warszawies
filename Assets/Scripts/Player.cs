@@ -20,6 +20,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public List<ResourceHUD> ResourceHuds;
+    public BuildingManager BuildingManager;
 
     public int GridSize = 30;
 
@@ -56,7 +57,7 @@ public class Player : MonoBehaviour
     private void RefreshHud(CountableResource countableResource)
     {
         var resourceHud = ResourceHuds.Find(x => x.ResourceType == countableResource.ResourceType);
-        resourceHud.Refresh(countableResource.Count);
+        resourceHud.Refresh(countableResource.Count, BuildingManager.GetIdleCount(countableResource.ResourceType));
     }
 
     private void OnDestroy()

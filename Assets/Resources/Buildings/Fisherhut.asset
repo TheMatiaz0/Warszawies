@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe80701ddd9e714c8a2f9fa26cc6600, type: 3}
   m_Name: Fisherhut
   m_EditorClassIdentifier: 
+  Name: Chata Rybacka
   Requirements:
   - ResourceType: {fileID: 11400000, guid: b80b1d83b2c0d4340b7058a3609f5890, type: 2}
     _count: 50

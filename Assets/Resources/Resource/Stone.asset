@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c25af2edb0174f40b49a6a5b01fcc23, type: 3}
   m_Name: Stone
   m_EditorClassIdentifier: 
-  Name: Stone
+  Name: "Kamie\u0144"
   Icon: {fileID: 21300000, guid: 7ac01c9b19341ec4aa335b2668d95d30, type: 3}

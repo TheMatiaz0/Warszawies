@@ -113,6 +113,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD_Stone
       objectReference: {fileID: 0}
+    - target: {fileID: 5405347859917172706, guid: 87a8a230cfe9d914a83e8217632b5ddd,
+        type: 3}
+      propertyPath: ResourceType
+      value: 
+      objectReference: {fileID: 11400000, guid: b80b1d83b2c0d4340b7058a3609f5890,
+        type: 2}
     - target: {fileID: 6070753857901549456, guid: 87a8a230cfe9d914a83e8217632b5ddd,
         type: 3}
       propertyPath: m_Sprite

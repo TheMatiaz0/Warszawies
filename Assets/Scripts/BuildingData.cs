@@ -6,6 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Building", menuName = "CRPK/Building", order = 1)]
 public class BuildingData : ResettableScriptableObject
 {
+    public string Name;
+
     [Header("Crafting")]
     public List<CountableResource> Requirements;
     public List<CountableResource> Result;

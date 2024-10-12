@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe80701ddd9e714c8a2f9fa26cc6600, type: 3}
   m_Name: Lumberjack
   m_EditorClassIdentifier: 
+  Name: Chata Drwala
   Requirements:
   - ResourceType: {fileID: 11400000, guid: 9330921651de13043b23d1e558912ca0, type: 2}
     _count: 4

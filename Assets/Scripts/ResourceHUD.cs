@@ -9,24 +9,13 @@ public class ResourceHUD : MonoBehaviour
     public ResourceData ResourceType;
 
     public Text CountDisplay;
-    public Image IconDisplay;
+    public Text IdleCountDisplay;
 
-    public void Refresh(int count)
+    public void Refresh(int count, int idleCount)
     {
         CountDisplay.text = count.ToString();
-        IconDisplay.sprite = ResourceType.Icon;
-    }
+        IdleCountDisplay.text = $"(+{idleCount.ToString()})";
 
-    private void OnValidate()
-    {
-        if (IconDisplay == null)
-        {
-            return;
-        }
-        if (ResourceType == null)
-        {
-            return;
-        }
-        IconDisplay.sprite = ResourceType.Icon;
+        // IconDisplay.sprite = ResourceType.Icon;
     }
 }
