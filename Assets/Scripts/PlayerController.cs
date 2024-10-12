@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
@@ -32,11 +33,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float xRotSpeed = 1;
 
-    BuildingData SelectedBuilding;
+    public BuildingData SelectedBuilding;
 
     public BuildingManager BuildingManager;
 
     private int GridSize = 30;
+
+    [SerializeField]
+    SelectedBuildingHud hud;
+
+    [SerializeField]
+    Sprite BuildingPieMenuSprite;
 
    
     public int HouseFromCollisionDistance = 2;
@@ -79,6 +86,10 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
             //Debug.Log($"key: { new Vector2Int((int)newPosition.x, (int)newPosition.z) }");
             if (BuildingManager.CanBuild(SelectedBuilding) && player.GridData.TryGetValue(new Vector2Int((int)newPosition.x, (int)newPosition.z), out var fieldData) && fieldData.ObjectPlaced == false)
             {
@@ -166,6 +177,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OpenBuildingPieMenu()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+        //Instantiate(BuildingPieMenuSprite, mousePosition, Quaternion.identity);
+        
+        Debug.Log("Pie menu");
+
+    }
     void UpdateCameraPosition()
     {
 
@@ -213,5 +232,6 @@ public class PlayerController : MonoBehaviour
         {
             SelectedBuilding = Buildings[3];
         }
+        hud.SelectedBuilding = SelectedBuilding;
     }
 }

@@ -415,7 +415,10 @@ MonoBehaviour:
   maxDistanceToPivotPoint: 70
   minDistanceToPivotPoint: 30
   xRotSpeed: 1.5
+  SelectedBuilding: {fileID: 0}
   BuildingManager: {fileID: 2103171961}
+  hud: {fileID: 2102621822}
+  BuildingPieMenuSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   HouseFromCollisionDistance: 2
   FisherhutFromRiverDistance: 2
   LumberjackFromForestDistance: 2
@@ -585,6 +588,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf28848738a278b4ba38dd75f50529b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AllPossibleEvents:
+  - {fileID: 11400000, guid: 719daff77c3a5d14cbe85e1277347aa7, type: 2}
+  - {fileID: 11400000, guid: d8005a20f00f0594aa07b88ce3beaa8a, type: 2}
+  - {fileID: 11400000, guid: e5a393fc3bfbef342ab7f3037ae3eb4a, type: 2}
+  - {fileID: 11400000, guid: 5173f3a0b9008994f9c861233ecd0f9c, type: 2}
+  Parent: {fileID: 550433222}
+  PortraitPrefab: {fileID: 3386155699414854205, guid: ce46188b02915c645b34ee7f5642e4d0,
+    type: 3}
+  Card: {fileID: 2146780604}
 --- !u!1001 &699772054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1065,26 +1077,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 603991152319367214, guid: 582f34fd7b55b2e40bbb1ce89411f9dd,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 685512515355651238, guid: 582f34fd7b55b2e40bbb1ce89411f9dd,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 685512515355651238, guid: 582f34fd7b55b2e40bbb1ce89411f9dd,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 685512515355651238, guid: 582f34fd7b55b2e40bbb1ce89411f9dd,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 685512515355651238, guid: 582f34fd7b55b2e40bbb1ce89411f9dd,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0

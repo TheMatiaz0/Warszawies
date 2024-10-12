@@ -9,9 +9,27 @@ public class EventManager : MonoBehaviour
     private Ticker Ticker;
     private readonly Queue<EventData> EventQueue = new();
 
+    // rng num (at start 1, later 2, maybe later 3?)
+    // rng content
+    public List<EventData> AllPossibleEvents;
+    public Transform Parent;
+    public PortraitEventHud PortraitPrefab;
+    public CardModal Card;
+
+    private List<PortraitEventHud> portraits = new();
+
     private void Start()
     {
         Ticker = TickerCreator.CreateNormalTime(GameManager.Instance.Balance.TimeToFinishEvent);
+        Clear();
+    }
+
+    private void Clear()
+    {
+        foreach (Transform item in Parent)
+        {
+            Destroy(item.gameObject);
+        }
     }
 
     public void Accept(EventData eventData)
@@ -94,11 +112,26 @@ public class EventManager : MonoBehaviour
     public void AddToQueue(EventData eventData)
     {
         EventQueue.Enqueue(eventData);
+        var createdPortrait = Instantiate(PortraitPrefab, Parent);
+
+        var p = Ticker.TimeGetter;
+        var time = p.Invoke();
+        createdPortrait.Setup(time, eventData, Card);
+
+        portraits.Add(createdPortrait);
     }
 
     public EventData GetFromQueue()
     {
-        return EventQueue.Dequeue();
+        var eventData = EventQueue.Dequeue();
+        var portraitToBeRemoved = portraits.Find(x => x.EventData == eventData);
+        if (portraitToBeRemoved != null)
+        {
+            Destroy(portraitToBeRemoved.gameObject);
+        }
+        portraits.Remove(portraitToBeRemoved);
+
+        return eventData;
     }
 
     private void Update()
@@ -109,6 +142,18 @@ public class EventManager : MonoBehaviour
             {
                 var eventDataToCancel = GetFromQueue();
                 Cancel(eventDataToCancel);
+            }
+
+            // get rng num
+            // get rng content from nums for loop
+
+            // 1 OR 2
+            var rngNum = Random.Range(1, 3);
+
+            for (int i = 0; i < rngNum; i++)
+            {
+                var rngEventData = Randomer.Base.NextRandomElement(AllPossibleEvents);
+                Card.OpenWith(rngEventData);
             }
         }
     }
