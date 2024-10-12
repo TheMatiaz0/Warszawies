@@ -561,6 +561,37 @@ MonoBehaviour:
   PortraitPrefab: {fileID: 3386155699414854205, guid: ce46188b02915c645b34ee7f5642e4d0,
     type: 3}
   Card: {fileID: 2146780604}
+--- !u!1 &656540166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 656540167}
+  m_Layer: 0
+  m_Name: ParticleRoutine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &656540167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656540166}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &665654447 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5639550415785897990, guid: 582f34fd7b55b2e40bbb1ce89411f9dd,
@@ -2967,3 +2998,4 @@ SceneRoots:
   - {fileID: 1363945416}
   - {fileID: 1133362947}
   - {fileID: 992009230}
+  - {fileID: 656540167}
