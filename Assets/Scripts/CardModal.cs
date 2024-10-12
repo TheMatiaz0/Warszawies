@@ -22,6 +22,11 @@ public class CardModal : MonoBehaviour
 
     private EventData EventData;
 
+    private void Awake()
+    {
+        Close();
+    }
+
     public void Setup(EventData eventData)
     {
         EventData = eventData;
@@ -56,6 +61,7 @@ public class CardModal : MonoBehaviour
 
     private void Close()
     {
+        gameObject.SetActive(false);
         CanvasGroup.alpha = 0;
         Clear();
     }
@@ -63,5 +69,6 @@ public class CardModal : MonoBehaviour
     private void Open()
     {
         CanvasGroup.alpha = 1;
+        gameObject.SetActive(true);
     }
 }
