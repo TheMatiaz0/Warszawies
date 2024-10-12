@@ -9,17 +9,20 @@ public class GameManager : MonoBehaviour
     public int NextPopulationThreshold;
     public CardModal Card;
     public EventData GameOverEvent;
+    public BuildingManager BuildingManager;
 
     public static GameManager Instance { get; private set; }
 
     private CountableResource populationResource;
+    private int currentIndex;
 
     private void Awake()
     {
         Instance = this;
         Inventory = Instantiate(Inventory);
 
-        NextPopulationThreshold = Balance.PopulationThresholds[1].Threshold;
+        currentIndex = 1;
+        NextPopulationThreshold = Balance.PopulationThresholds[currentIndex].Threshold;
         populationResource = GameManager.Instance.Inventory.CountableResources.ToType(ResourceType.Population);
         populationResource.OnCountChanged += OnPopulationChanged;
     }
@@ -31,8 +34,18 @@ public class GameManager : MonoBehaviour
 
     private void OnPopulationChanged(CountableResource countable)
     {
+        CheckAdvanceCondition(countable);
+
         CheckWinCondition();
         CheckLoseCondition();
+    }
+
+    private void CheckAdvanceCondition(CountableResource countable)
+    {
+        if (countable.Count >= NextPopulationThreshold)
+        {
+            NextPopulationThreshold = Balance.PopulationThresholds[currentIndex + 1].Threshold;
+        }
     }
 
     public void CheckWinCondition()

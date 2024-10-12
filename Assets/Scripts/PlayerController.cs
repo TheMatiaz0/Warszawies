@@ -45,9 +45,9 @@ public class PlayerController : MonoBehaviour
     SelectedBuildingHud hud;
 
     [SerializeField]
-    GameObject BuildingPiePrefab;
+    BuildingPieInstance BuildingPiePrefab;
 
-    private GameObject cachedPie;
+    private BuildingPieInstance cachedPie;
 
    
     public int HouseFromCollisionDistance = 2;
@@ -191,7 +191,13 @@ public class PlayerController : MonoBehaviour
 
     private void TryClearPie()
     {
-        if (cachedPie != null && cachedPie.activeInHierarchy)
+        foreach (var item in cachedPie.ButtonEvents)
+        {
+            item.OnPointerClickEvent -= OnPointerClick;
+            item.OnPointerEnterEvent -= OnPointerEnter;
+            item.OnPointerExitEvent -= OnPointerExit;
+        }
+        if (cachedPie.gameObject != null && cachedPie.gameObject.activeInHierarchy)
         {
             Destroy(cachedPie);
         }
@@ -205,6 +211,27 @@ public class PlayerController : MonoBehaviour
         var worldSpacePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
         cachedPie = Instantiate(BuildingPiePrefab, mousePosition, Quaternion.identity, Parent);
+        foreach (var item in cachedPie.ButtonEvents)
+        {
+            item.OnPointerClickEvent += OnPointerClick;
+            item.OnPointerEnterEvent += OnPointerEnter;
+            item.OnPointerExitEvent += OnPointerExit;
+        }
+    }
+
+    private void OnPointerExit(PointerEventData obj)
+    {
+        
+    }
+
+    private void OnPointerEnter(PointerEventData obj)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private void OnPointerClick(PointerEventData obj)
+    {
+        throw new System.NotImplementedException();
     }
 
     void UpdateCameraPosition()
