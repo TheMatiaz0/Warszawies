@@ -75,6 +75,9 @@ public class Player : MonoBehaviour
     private void RefreshHud(CountableResource countableResource)
     {
         var resourceHud = ResourceHuds.Find(x => x.ResourceType == countableResource.ResourceType);
+
+        Debug.Log(BuildingManager.GetIdleCount(countableResource.ResourceType));
+
         resourceHud.Refresh(countableResource.Count, BuildingManager.GetIdleCount(countableResource.ResourceType));
     }
 
