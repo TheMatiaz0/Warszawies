@@ -16,8 +16,8 @@ MonoBehaviour:
   Description: "Jaki\u015B siwy i natarczywy pan powiada, \u017Ce jest Leszym i \u017Ce
     chroni las przed wycink\u0105. Mo\u017Ce to wp\u0142yn\u0105\u0107 powa\u017Cnie
     na nasze zbiory na opa\u0142. Wymusza na nas u\u017Cywanie kamienia."
-  Illustration: {fileID: 0}
-  SmallThumbnail: {fileID: 0}
+  Illustration: {fileID: 2098746256, guid: 9e4c4d658375af848b526ecee0a6a6c8, type: 3}
+  SmallThumbnail: {fileID: -140402850, guid: 369a885745b3c3143ba9add92e501552, type: 3}
   Requirement:
   - ResourceType: {fileID: 11400000, guid: b80b1d83b2c0d4340b7058a3609f5890, type: 2}
     _count: 200
@@ -27,3 +27,6 @@ MonoBehaviour:
   FailCondition:
   - ResourceType: {fileID: 11400000, guid: a9bbbf48696911a4289c312fd14f983c, type: 2}
     _count: 50
+  AbleToCancel: 1
+  AbleToAccept: 1
+  AbleToRestart: 0
