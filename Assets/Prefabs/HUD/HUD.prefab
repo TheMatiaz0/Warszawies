@@ -668,11 +668,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 8728896694098732254}
   BuildingName: {fileID: 3240970970598250319}
+  BuildingIcon: {fileID: 5852991087200907847}
   ResourceAmountPrefab: {fileID: 3866868674693164238, guid: f8f58c2b5e4645f44b7a6fc45958c3fd,
     type: 3}
   resultParent: {fileID: 6862631867660759237}
   requirementParent: {fileID: 2555212063972536430}
-  SelectedBuilding: {fileID: 0}
 --- !u!225 &8728896694098732254
 CanvasGroup:
   m_ObjectHideFlags: 0
