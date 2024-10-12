@@ -9,8 +9,6 @@ public class EventManager : MonoBehaviour
     private Ticker Ticker;
     private readonly Queue<EventData> EventQueue = new();
 
-    // rng num (at start 1, later 2, maybe later 3?)
-    // rng content
     public List<EventData> AllPossibleEvents;
     public Transform Parent;
     public PortraitEventHud PortraitPrefab;

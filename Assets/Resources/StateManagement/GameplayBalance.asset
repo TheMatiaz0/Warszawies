@@ -27,4 +27,4 @@ MonoBehaviour:
   NextPopulationThreshold:
     Building: {fileID: 0}
     Threshold: 0
-  TimeToFinishEvent: 5
+  TimeToFinishEvent: 15

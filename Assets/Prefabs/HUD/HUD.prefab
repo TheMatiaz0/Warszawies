@@ -574,7 +574,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 204, y: 0}
+  m_AnchoredPosition: {x: 177, y: -9.8}
   m_SizeDelta: {x: 1202, y: 722}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1830387905253950975
@@ -992,7 +992,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.3
   m_Text: "Utopce wysz\u0142y z wis\u0142y i porywaj\u0105 ludzi. S\u0142ynny \u0142owca
     \r\npotwor\xF3w i dziewek wszelakich za odrobine rybiego \r\njad\u0142a zgodzi
     si\u0119 pom\xF3c i potworzyd\u0142a odgoni\u0107 bo\u0105\u0107 ubi\u0107."
@@ -1095,7 +1095,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3500104593275348357
 RectTransform:
   m_ObjectHideFlags: 0

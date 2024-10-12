@@ -37,16 +37,20 @@ public class CardModal : MonoBehaviour
     public void OpenWith(EventData eventData)
     {
         EventData = eventData;
-        CloseButton.onClick.AddListener(Close);
-        ModalBackground.onClick.AddListener(Close);
-        AcceptButton.onClick.AddListener(Accept);
-        CancelButton.onClick.AddListener(Cancel);
-        RestartButton.onClick.AddListener(Restart);
+        if (!eventData.AbleToRestart)
+        {
+            CloseButton.onClick.AddListener(Close);
+            ModalBackground.onClick.AddListener(Close);
+            AcceptButton.onClick.AddListener(Accept);
+            CancelButton.onClick.AddListener(Cancel);
+        }
+        else
+        {
+            RestartButton.onClick.AddListener(Restart);
+        }
 
-        Title.text = eventData.Title;
-        Description.text = eventData.Description;
-        IllustrationSlot.sprite = eventData.Illustration;
-        
+        SetupVisuals(eventData);
+
         RequiredLayout.gameObject.SetActive(!eventData.AbleToRestart);
         PayLayout.gameObject.SetActive(eventData.AbleToCancel);
         RewardLayout.gameObject.SetActive(eventData.AbleToAccept);
@@ -56,6 +60,13 @@ public class CardModal : MonoBehaviour
         RestartButton.gameObject.SetActive(eventData.AbleToRestart);
 
         Open();
+    }
+
+    private void SetupVisuals(EventData eventData)
+    {
+        Title.text = eventData.Title;
+        Description.text = eventData.Description;
+        IllustrationSlot.sprite = eventData.Illustration;
     }
 
     private void Clear()
@@ -84,12 +95,18 @@ public class CardModal : MonoBehaviour
     private void Close()
     {
         CanvasGroup.alpha = 0;
+        CanvasGroup.blocksRaycasts = false;
+        CanvasGroup.interactable = false;
+        Time.timeScale = 1;
         Clear();
     }
 
     private void Open()
     {
+        CanvasGroup.blocksRaycasts = true;
+        CanvasGroup.interactable = true;
         CanvasGroup.alpha = 1;
+        Time.timeScale = 0;
     }
 
     private void Restart()

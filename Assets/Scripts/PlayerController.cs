@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
     BuildingPieInstance BuildingPiePrefab;
 
     private BuildingPieInstance cachedPie;
+    private Vector3 newPosition;
+    private Vector3 cachedPiePosition;
 
    
     public int HouseFromCollisionDistance = 2;
@@ -71,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
         Ray ray = PlayerCamera.ViewportPointToRay(PlayerCamera.ScreenToViewportPoint(Input.mousePosition));
         RaycastHit hit;
-        Vector3 newPosition = new Vector3();
+        newPosition = new Vector3();
         if(Physics.Raycast(ray, out hit, 1000)) 
         {
             newPosition = hit.point;
@@ -86,19 +88,14 @@ public class PlayerController : MonoBehaviour
             Building.transform.position = newPosition;
         }
 
-        PickBuilding();
-
         if(Input.GetMouseButtonDown(0))
         {
             if (EventSystem.current.IsPointerOverGameObject())
             {
-                TryClearPie();
+                // TryClearPie();
                 return;
             }
             OpenBuildingPieMenu();
-
-            //Debug.Log($"key: { new Vector2Int((int)newPosition.x, (int)newPosition.z) }");
-
         }
 
         // Esc to Main Menu
@@ -207,14 +204,18 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(cachedPie.gameObject);
         }
+
+        hud.Setup(null);
+        Building.gameObject.SetActive(true);
     }
 
-    void OpenBuildingPieMenu()
+    private void OpenBuildingPieMenu()
     {
+        Building.gameObject.SetActive(false);
         TryClearPie();
 
         Vector3 mousePosition = Input.mousePosition;
-        var worldSpacePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        cachedPiePosition = newPosition;
 
         cachedPie = Instantiate(BuildingPiePrefab, mousePosition, Quaternion.identity, Parent);
         foreach (var item in cachedPie.Buttons)
@@ -238,9 +239,9 @@ public class PlayerController : MonoBehaviour
         hud.Setup(SelectedBuilding);
     }
 
-    private void OnPointerClick(PointerEventData obj)
+    private void OnPointerClick()
     {
-        BuildAt(obj.position);
+        BuildAt(cachedPiePosition);
     }
 
     void UpdateCameraPosition()
@@ -271,25 +272,5 @@ public class PlayerController : MonoBehaviour
     int CheckForNearestCave(int x, int z)
     {
         return player.CaveDistanceArray[x / 5, z / 5];
-    }
-    void PickBuilding()
-    {
-        if(Input.GetKey(KeyCode.Alpha1))
-        {
-            SelectedBuilding = Buildings[0];
-        }
-        else if (Input.GetKey(KeyCode.Alpha2))
-        {
-            SelectedBuilding = Buildings[1];
-        }
-        else if (Input.GetKey(KeyCode.Alpha3))
-        {
-            SelectedBuilding = Buildings[2];
-        }
-        else if(Input.GetKey(KeyCode.Alpha4))
-        {
-            SelectedBuilding = Buildings[3];
-        }
-        hud.Setup(SelectedBuilding);
     }
 }
