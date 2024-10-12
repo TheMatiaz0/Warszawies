@@ -9,6 +9,7 @@ public class SelectedBuildingHud : MonoBehaviour
     public ResourceAmountHud ResourceAmountPrefab;
     public Transform resultParent;
     public Transform requirementParent;
+    public BuildingData SelectedBuilding;
 
     public void Setup(BuildingData buildingData)
     {

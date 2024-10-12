@@ -15,4 +15,5 @@ public class BuildingData : ResettableScriptableObject
     public BuildingInstance PrefabToSpawn;
     public BlockingObjects AllowedObjects;
     public Vector3 StartPosition;
+    public Sprite BuildingIcon;
 }
