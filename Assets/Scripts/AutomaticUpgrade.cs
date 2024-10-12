@@ -1,6 +1,7 @@
 using Rubin;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AutomaticUpgrade : MonoBehaviour
@@ -8,7 +9,7 @@ public class AutomaticUpgrade : MonoBehaviour
     public BuildingManager BuildingManager;
 
     private CountableResource population;
-    private BuildingData currentUpgrade;
+    private int currentUpgradeIndex;
 
     private void Start()
     {
@@ -29,24 +30,49 @@ public class AutomaticUpgrade : MonoBehaviour
         if (upgradeBuilding != null)
         {
             BuildingManager.SpawnAtZero(upgradeBuilding);
-            currentUpgrade = upgradeBuilding;
         }
     }
 
     private BuildingData GetUpgradeBuilding()
     {
+        for (int i = 0; i < GameManager.Instance.Balance.PopulationThresholds.Count; i++)
+        {
+            var current = GameManager.Instance.Balance.PopulationThresholds[i];
+            if (i < currentUpgradeIndex)
+            {
+                if (BuildingManager.BuildingInstances.Find(x => x.Data == current.Building))
+                {
+                    BuildingManager.Remove(current.Building);
+                }
+
+                continue;
+            }
+            if (population.Count >= current.Threshold && BuildingManager.GetAllBuildingsOfData(current.Building) == 0)
+            {
+                currentUpgradeIndex = i;
+                return current.Building;
+            }
+        }
+
+        /*
         foreach (var thresholdBuilding in GameManager.Instance.Balance.PopulationThresholds)
         {
             if (population.Count >= thresholdBuilding.Threshold && BuildingManager.GetAllBuildingsOfData(thresholdBuilding.Building) == 0)
             {
-                foreach (var item in BuildingManager.GetAllBuildingsOfFlag(BlockingObjects.Palace))
+                var exceptThisBuilding = GameManager.Instance.Balance.PopulationThresholds.FindAll(x => x.Building != thresholdBuilding.Building).ToList();
+                foreach (var threshold in exceptThisBuilding)
                 {
-                    BuildingManager.Remove(item.Data);
+                    if (BuildingManager.BuildingInstances.Find(x => x.Data == threshold.Building))
+                    {
+                        // BuildingManager.Remove(threshold.Building);
+                    }
                 }
+
 
                 return thresholdBuilding.Building;
             }
         }
+        */
 
         return null;
     }
