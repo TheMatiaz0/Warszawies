@@ -34,7 +34,7 @@ public class CardModal : MonoBehaviour
         Close();
     }
 
-    public void Setup(EventData eventData)
+    public void OpenWith(EventData eventData)
     {
         EventData = eventData;
         CloseButton.onClick.AddListener(Close);
@@ -47,7 +47,6 @@ public class CardModal : MonoBehaviour
         Description.text = eventData.Description;
         IllustrationSlot.sprite = eventData.Illustration;
         
-
         RequiredLayout.gameObject.SetActive(!eventData.AbleToRestart);
         PayLayout.gameObject.SetActive(eventData.AbleToCancel);
         RewardLayout.gameObject.SetActive(eventData.AbleToAccept);

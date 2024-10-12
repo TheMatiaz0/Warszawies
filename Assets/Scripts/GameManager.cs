@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         if (populationResource.Count <= Balance.MinPopulationToLose)
         {
             // Run GameOver card
-            Card.Setup(GameOverEvent);
+            Card.OpenWith(GameOverEvent);
 
             Debug.Log("you lose!");
         }

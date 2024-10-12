@@ -9,6 +9,12 @@ public class EventManager : MonoBehaviour
     private Ticker Ticker;
     private readonly Queue<EventData> EventQueue = new();
 
+    public Transform Parent;
+    public PortraitEventHud PortraitPrefab;
+    public CardModal Card;
+
+    private List<PortraitEventHud> portraits = new();
+
     private void Start()
     {
         Ticker = TickerCreator.CreateNormalTime(GameManager.Instance.Balance.TimeToFinishEvent);
@@ -94,11 +100,26 @@ public class EventManager : MonoBehaviour
     public void AddToQueue(EventData eventData)
     {
         EventQueue.Enqueue(eventData);
+        var createdPortrait = Instantiate(PortraitPrefab, Parent);
+
+        var p = Ticker.TimeGetter;
+        var time = p.Invoke();
+        createdPortrait.Setup(time, eventData, Card);
+
+        portraits.Add(createdPortrait);
     }
 
     public EventData GetFromQueue()
     {
-        return EventQueue.Dequeue();
+        var eventData = EventQueue.Dequeue();
+        var portraitToBeRemoved = portraits.Find(x => x.EventData == eventData);
+        if (portraitToBeRemoved != null)
+        {
+            Destroy(portraitToBeRemoved.gameObject);
+        }
+        portraits.Remove(portraitToBeRemoved);
+
+        return eventData;
     }
 
     private void Update()
