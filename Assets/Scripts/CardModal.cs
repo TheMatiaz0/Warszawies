@@ -95,12 +95,16 @@ public class CardModal : MonoBehaviour
     private void Close()
     {
         CanvasGroup.alpha = 0;
+        CanvasGroup.blocksRaycasts = false;
+        CanvasGroup.interactable = false;
         Time.timeScale = 1;
         Clear();
     }
 
     private void Open()
     {
+        CanvasGroup.blocksRaycasts = true;
+        CanvasGroup.interactable = true;
         CanvasGroup.alpha = 1;
         Time.timeScale = 0;
     }
