@@ -191,7 +191,8 @@ public class PlayerController : MonoBehaviour
 
     private void TryClearPie()
     {
-        foreach (var item in cachedPie.ButtonEvents)
+        if (cachedPie == null) return;
+        foreach (var item in cachedPie.Buttons)
         {
             item.OnPointerClickEvent -= OnPointerClick;
             item.OnPointerEnterEvent -= OnPointerEnter;
@@ -199,7 +200,7 @@ public class PlayerController : MonoBehaviour
         }
         if (cachedPie.gameObject != null && cachedPie.gameObject.activeInHierarchy)
         {
-            Destroy(cachedPie);
+            Destroy(cachedPie.gameObject);
         }
     }
 
@@ -211,7 +212,7 @@ public class PlayerController : MonoBehaviour
         var worldSpacePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
         cachedPie = Instantiate(BuildingPiePrefab, mousePosition, Quaternion.identity, Parent);
-        foreach (var item in cachedPie.ButtonEvents)
+        foreach (var item in cachedPie.Buttons)
         {
             item.OnPointerClickEvent += OnPointerClick;
             item.OnPointerEnterEvent += OnPointerEnter;
@@ -221,17 +222,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnPointerExit(PointerEventData obj)
     {
-        
+        var test = obj.pointerEnter;
+        Debug.Log($"Was on {test.name}");
     }
 
     private void OnPointerEnter(PointerEventData obj)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("hello?");
     }
 
     private void OnPointerClick(PointerEventData obj)
     {
-        throw new System.NotImplementedException();
     }
 
     void UpdateCameraPosition()
