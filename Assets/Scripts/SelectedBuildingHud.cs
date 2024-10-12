@@ -58,10 +58,14 @@ public class SelectedBuildingHud : MonoBehaviour
     private void Open()
     {
         CanvasGroup.alpha = 1;
+        CanvasGroup.interactable = true;
+        CanvasGroup.blocksRaycasts = true;
     }
 
     private void Close()
     {
         CanvasGroup.alpha = 0;
+        CanvasGroup.interactable = false;
+        CanvasGroup.blocksRaycasts = false;  
     }
 }
