@@ -323,13 +323,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427289838}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10192035, y: -0, z: -0, w: 0.9947926}
+  m_LocalRotation: {x: 0.3194249, y: -0, z: -0, w: 0.94761163}
   m_LocalPosition: {x: 39, y: 25, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 11.7, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 37.256, y: 0, z: 0}
 --- !u!114 &427289842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,8 +412,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aa2ea2ec73184674dbcdcb93e1cd45ba, type: 2}
   - {fileID: 11400000, guid: 3b72e7fd9fbf8c84d91ad2f4d6be602b, type: 2}
   cameraRotationPivot: {fileID: 1763549972}
-  distanceToPivotPoint: 60
-  xRotSpeed: 1
+  maxDistanceToPivotPoint: 70
+  minDistanceToPivotPoint: 30
+  xRotSpeed: 1.5
   BuildingManager: {fileID: 2103171961}
   HouseFromCollisionDistance: 2
   FisherhutFromRiverDistance: 2
@@ -1766,7 +1767,7 @@ Transform:
   m_GameObject: {fileID: 1763549971}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40, y: 9, z: 40}
+  m_LocalPosition: {x: 40, y: -8, z: 40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
