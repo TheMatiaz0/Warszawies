@@ -7,6 +7,7 @@ public class SelectedBuildingHud : MonoBehaviour
 {
     public CanvasGroup CanvasGroup;
     public Text BuildingName;
+    public Image BuildingIcon;
     public ResourceAmountHud ResourceAmountPrefab;
     public Transform resultParent;
     public Transform requirementParent;
@@ -37,6 +38,7 @@ public class SelectedBuildingHud : MonoBehaviour
 
         // create children
         BuildingName.text = buildingData.Name;
+        BuildingIcon.sprite = buildingData.BuildingIcon;
         foreach (var resultData in buildingData.Result)
         {
             var display = Instantiate(ResourceAmountPrefab, resultParent);
