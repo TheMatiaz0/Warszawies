@@ -20,7 +20,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public List<ResourceHUD> ResourceHuds;
+    public CardModal EventCard;
     public BuildingManager BuildingManager;
+
+    /// <summary>
+    /// 2 cases:
+    /// - game over from GameManager
+    /// - event based on time
+    /// </summary>
 
     public int GridSize = 30;
 
@@ -44,6 +51,7 @@ public class Player : MonoBehaviour
         UpdateFieldCollisions();
         RemoveLandscapeColliders();
         CalculateDistanceArrays();
+
         if (GameManager.Instance != null || GameManager.Instance.Inventory != null)
         {
             foreach (var resource in GameManager.Instance.Inventory.CountableResources)
