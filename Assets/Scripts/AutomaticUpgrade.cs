@@ -50,10 +50,11 @@ public class AutomaticUpgrade : MonoBehaviour
             if (population.Count >= current.Threshold && BuildingManager.GetAllBuildingsOfData(current.Building) == 0)
             {
                 currentUpgradeIndex = i;
+                /* PIECE OF SHIT
                 if (GameManager.Instance.Balance.PopulationThresholds.Count <= currentUpgradeIndex + 1)
                 {
                     GameManager.Instance.NextPopulationThreshold = GameManager.Instance.Balance.PopulationThresholds[currentUpgradeIndex + 1].Threshold;
-                }
+                }*/
 
                 return current.Building;
             }

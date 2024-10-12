@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public Balance Balance;
     public ResourceInventory Inventory;
     public int NextPopulationThreshold;
+    public CardModal Card;
+    public EventData GameOverEvent;
 
     public static GameManager Instance { get; private set; }
 
@@ -46,6 +48,9 @@ public class GameManager : MonoBehaviour
     {
         if (populationResource.Count <= Balance.MinPopulationToLose)
         {
+            // Run GameOver card
+            Card.Setup(GameOverEvent);
+
             Debug.Log("you lose!");
         }
     }
