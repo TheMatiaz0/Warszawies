@@ -165,7 +165,6 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("zero");
                 }
             }
             else if (SelectedBuilding.AllowedObjects.HasFlag(BlockingObjects.Forest)) // Mozna postawic przy lesie
@@ -275,7 +274,7 @@ public class PlayerController : MonoBehaviour
 
     int CheckForNearestRiver(int x, int z)
     {
-        Debug.Log(RiverDistanceArray[x / 5, z / 5]);
+        //Debug.Log(RiverDistanceArray[x / 5, z / 5]);
         return RiverDistanceArray[x / 5, z / 5];
         //player.GridData[new Vector2Int(x, z)].Objects.HasFlag(BlockingObjects.River)
     }

@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
         {
             for (int j = 0; j < GridSize; j++)
             {
-                var key = new Vector2Int(i * 5, j * 5);
+                var key = new Vector2Int(j * 10 + 5, i * 10 + 5);
                 GridData.Add(key, new FieldData());
             }
         }
@@ -136,6 +136,7 @@ public class Player : MonoBehaviour
                 // debug start
                 if (hit.collider.GetComponent<RiverObstacle>() != null)
                 {
+                    Debug.Log("River on: " + Field.Key.x + " "+ Field.Key.y);
                     Field.Value.Objects = Field.Value.Objects | BlockingObjects.River;
                 }
                 else if (hit.collider.GetComponent<ForestObstacle>() != null)
@@ -169,19 +170,19 @@ public class Player : MonoBehaviour
         {
             for (int j = 0; j <= GridSize; j++)
             {
-                if (GridData.ContainsKey(new Vector2Int(i * 5, j * 5)))
+                if (GridData.ContainsKey(new Vector2Int(i * 10 + 5, j * 10 + 5)))
                 {
-                    if (GridData[new Vector2Int(i * 5, j * 5)].Objects.HasFlag(BlockingObjects.River))
+                    if (GridData[new Vector2Int(i * 10 + 5, j * 10 + 5)].Objects.HasFlag(BlockingObjects.River))
                     {
                         RiverDistanceArray[i, j] = 0;
-                        Debug.Log("River hit");
+                        Debug.Log("River hit on "+ i * 10 + 5 + ", " + j * 10 + 5);
                     }
-                    if (GridData[new Vector2Int(i * 5, j * 5)].Objects.HasFlag(BlockingObjects.Forest))
+                    if (GridData[new Vector2Int(i * 10 + 5, j * 10 + 5)].Objects.HasFlag(BlockingObjects.Forest))
                     {
                         ForestDistanceArray[i, j] = 0;
                         Debug.Log("Forest hit");
                     }
-                    if (GridData[new Vector2Int(i * 5, j * 5)].Objects.HasFlag(BlockingObjects.Cave))
+                    if (GridData[new Vector2Int(i * 10 + 5, j * 10 + 5)].Objects.HasFlag(BlockingObjects.Cave))
                     {
                         CaveDistanceArray[i, j] = 0;
                         Debug.Log("Cave hit");
@@ -190,7 +191,7 @@ public class Player : MonoBehaviour
 
             }
         }
-        for (int a = 0; a < GridSize; a++)
+        /*for (int a = 0; a < GridSize; a++)
         {
             for (int i = 1; i < GridSize; i++)
             {
@@ -203,7 +204,6 @@ public class Player : MonoBehaviour
                     if (RiverDistanceArray[i, j + 1] + 1 < minRiver) minRiver = RiverDistanceArray[i, j + 1] + 1;
                     RiverDistanceArray[i, j] = minRiver;
 
-                    //TODO:
                     int minForest = ForestDistanceArray[i, j];
                     if (ForestDistanceArray[i + 1, j] + 1 < minForest) minForest = ForestDistanceArray[i + 1, j] + 1;
                     if (ForestDistanceArray[i - 1, j] + 1 < minForest) minForest = ForestDistanceArray[i - 1, j] + 1;
@@ -219,14 +219,14 @@ public class Player : MonoBehaviour
                     CaveDistanceArray[i, j] = minCave;
                 }
             }
-        }
+        }*/
         
         for (int i = 1; i < GridSize; i++)
         {
             string debugStr = "i = " + i;
             for (int j = 1; j < GridSize; j++)
             {
-                debugStr += "[j=" + j + "]:";
+                //debugStr += "[j=" + j + "]:";
                 debugStr += RiverDistanceArray[i, j];
                 debugStr += " ";
             }
