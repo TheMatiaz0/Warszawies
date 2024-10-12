@@ -275,24 +275,4 @@ public class PlayerController : MonoBehaviour
     {
         return player.CaveDistanceArray[x / 5, z / 5];
     }
-    void PickBuilding()
-    {
-        if(Input.GetKey(KeyCode.Alpha1))
-        {
-            SelectedBuilding = Buildings[0];
-        }
-        else if (Input.GetKey(KeyCode.Alpha2))
-        {
-            SelectedBuilding = Buildings[1];
-        }
-        else if (Input.GetKey(KeyCode.Alpha3))
-        {
-            SelectedBuilding = Buildings[2];
-        }
-        else if(Input.GetKey(KeyCode.Alpha4))
-        {
-            SelectedBuilding = Buildings[3];
-        }
-        hud.Setup(SelectedBuilding);
-    }
 }
