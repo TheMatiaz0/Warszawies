@@ -75,7 +75,8 @@ public class Player : MonoBehaviour
         {
             for (int j = 0; j < GridSize; j++)
             {
-                GridData.Add(new Vector2Int(i*5, j*5), new FieldData());
+                var key = new Vector2Int(i * 5, j * 5);
+                GridData.Add(key, new FieldData());
             }
         }
     }
