@@ -20,12 +20,11 @@ public class ButtonEvents : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private void Start()
     {
-        Button.onClick.AddListener(Test);
+        Button.onClick.AddListener(InvokeEvent);
     }
 
-    private void Test()
+    private void InvokeEvent()
     {
-        Debug.Log("test");
         OnPointerClickEvent?.Invoke();
     }
 

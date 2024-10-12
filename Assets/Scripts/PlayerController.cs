@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     BuildingPieInstance BuildingPiePrefab;
 
     private BuildingPieInstance cachedPie;
+    private Vector3 newPosition;
 
    
     public int HouseFromCollisionDistance = 2;
@@ -71,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
         Ray ray = PlayerCamera.ViewportPointToRay(PlayerCamera.ScreenToViewportPoint(Input.mousePosition));
         RaycastHit hit;
-        Vector3 newPosition = new Vector3();
+        newPosition = new Vector3();
         if(Physics.Raycast(ray, out hit, 1000)) 
         {
             newPosition = hit.point;
@@ -92,7 +93,7 @@ public class PlayerController : MonoBehaviour
         {
             if (EventSystem.current.IsPointerOverGameObject())
             {
-                TryClearPie();
+                // TryClearPie();
                 return;
             }
             OpenBuildingPieMenu();
@@ -240,8 +241,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnPointerClick()
     {
-        Debug.Log("test");
-        // BuildAt(obj.position);
+        BuildAt(newPosition);
     }
 
     void UpdateCameraPosition()
