@@ -21,7 +21,6 @@ public class Balance : ScriptableObject
     public int MinPopulationToLose = 0;
     [Header("Palace")]
     public List<ThresholdBuilding> PopulationThresholds;
-    public ThresholdBuilding NextPopulationThreshold;
     [Header("Event")]
     public float TimeToFinishEvent;
 }

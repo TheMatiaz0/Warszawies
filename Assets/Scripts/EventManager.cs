@@ -142,10 +142,6 @@ public class EventManager : MonoBehaviour
                 Cancel(eventDataToCancel);
             }
 
-            // get rng num
-            // get rng content from nums for loop
-
-            // 1 OR 2
             var rngNum = Random.Range(1, 3);
 
             for (int i = 0; i < rngNum; i++)

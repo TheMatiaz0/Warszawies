@@ -1,7 +1,3 @@
-using Rubin;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class AutomaticUpgrade : MonoBehaviour
@@ -50,35 +46,10 @@ public class AutomaticUpgrade : MonoBehaviour
             if (population.Count >= current.Threshold && BuildingManager.GetAllBuildingsOfData(current.Building) == 0)
             {
                 currentUpgradeIndex = i;
-                /* PIECE OF SHIT
-                if (GameManager.Instance.Balance.PopulationThresholds.Count <= currentUpgradeIndex + 1)
-                {
-                    GameManager.Instance.NextPopulationThreshold = GameManager.Instance.Balance.PopulationThresholds[currentUpgradeIndex + 1].Threshold;
-                }*/
 
                 return current.Building;
             }
         }
-
-        /*
-        foreach (var thresholdBuilding in GameManager.Instance.Balance.PopulationThresholds)
-        {
-            if (population.Count >= thresholdBuilding.Threshold && BuildingManager.GetAllBuildingsOfData(thresholdBuilding.Building) == 0)
-            {
-                var exceptThisBuilding = GameManager.Instance.Balance.PopulationThresholds.FindAll(x => x.Building != thresholdBuilding.Building).ToList();
-                foreach (var threshold in exceptThisBuilding)
-                {
-                    if (BuildingManager.BuildingInstances.Find(x => x.Data == threshold.Building))
-                    {
-                        // BuildingManager.Remove(threshold.Building);
-                    }
-                }
-
-
-                return thresholdBuilding.Building;
-            }
-        }
-        */
 
         return null;
     }

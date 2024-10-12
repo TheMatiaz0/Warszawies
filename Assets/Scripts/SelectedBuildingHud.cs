@@ -25,7 +25,6 @@ public class SelectedBuildingHud : MonoBehaviour
             return;
         }
 
-        // clear up all children from parent
         foreach (Transform item in resultParent)
         {
             Destroy(item.gameObject);
@@ -36,7 +35,6 @@ public class SelectedBuildingHud : MonoBehaviour
             Destroy(item.gameObject);
         }
 
-        // create children
         BuildingName.text = buildingData.Name;
         if (buildingData.BuildingIcon != null)
         {

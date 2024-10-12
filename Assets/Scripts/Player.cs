@@ -24,12 +24,6 @@ public class Player : MonoBehaviour
     public CardModal EventCard;
     public BuildingManager BuildingManager;
 
-    /// <summary>
-    /// 2 cases:
-    /// - game over from GameManager
-    /// - event based on time
-    /// </summary>
-
     public int GridSize = 30;
 
 
