@@ -22,4 +22,6 @@ public class Balance : ScriptableObject
     [Header("Palace")]
     public List<ThresholdBuilding> PopulationThresholds;
     public ThresholdBuilding NextPopulationThreshold;
+    [Header("Event")]
+    public float TimeToFinishEvent;
 }
