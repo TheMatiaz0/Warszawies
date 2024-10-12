@@ -146,13 +146,13 @@ public class PlayerController : MonoBehaviour
             int riverDistance = CheckForNearestRiver((int)newPosition.x, (int)newPosition.z);
             int forestDistance = CheckForNearestForest((int)newPosition.x, (int)newPosition.z);
             int caveDistance = CheckForNearestCave((int)newPosition.x, (int)newPosition.z);
-            //Debug.Log("Distance from river: " + riverDistance);
-            //Debug.Log("Distance from cave: " + caveDistance);
+            // Debug.Log("Distance from river: " + riverDistance);
+            // Debug.Log("Distance from cave: " + caveDistance);
             // Debug.Log("Distance from forest: " + forestDistance);
 
-            if (SelectedBuilding.AllowedObjects.HasFlag(BlockingObjects.River)) // Mozna postawic przy rzece
+            if (SelectedBuilding.AllowedObjects.HasFlag(BlockingObjects.River)) // Mozna postawic nad rzeka
             {
-                if (riverDistance > 0 && riverDistance < FisherhutFromRiverDistance)
+                if (riverDistance == 0)
                 {
                     BuildingManager.Build(SelectedBuilding, newPosition);
 
