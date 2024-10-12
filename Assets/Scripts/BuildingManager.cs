@@ -19,7 +19,7 @@ public class BuildingManager : MonoBehaviour
         GameManager.Instance.Inventory.OnBuildingRemoved += Remove;
     }
 
-    private void SpawnAtZero(BuildingData buildingData)
+    public void SpawnAtZero(BuildingData buildingData)
     {
         Build(buildingData, buildingData.StartPosition);
     }

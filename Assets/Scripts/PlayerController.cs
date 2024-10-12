@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
+            Debug.Log($"key: { new Vector2Int((int)newPosition.x, (int)newPosition.z) }");
             if (BuildingManager.CanBuild(SelectedBuilding) && player.GridData.TryGetValue(new Vector2Int((int)newPosition.x, (int)newPosition.z), out var fieldData) && fieldData.ObjectPlaced == false)
             {
                 int riverDistance = CheckForNearestRiver((int)newPosition.x, (int)newPosition.z);

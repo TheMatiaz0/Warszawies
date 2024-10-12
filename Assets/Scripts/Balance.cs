@@ -1,6 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+[Serializable]
+public class ThresholdBuilding
+{
+    public BuildingData Building;
+    public int Threshold;
+}
 
 [CreateAssetMenu(fileName = "Balance", menuName = "CRPK/Balance", order = 1)]
 public class Balance : ScriptableObject
@@ -11,4 +19,6 @@ public class Balance : ScriptableObject
     public int FoodEatenPerPerson;
     public int PopulationEatenByStarvation;
     public int MinPopulationToLose = 0;
+    [Header("Palace")]
+    public List<ThresholdBuilding> PopulationThresholds;
 }

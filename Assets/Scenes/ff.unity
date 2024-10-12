@@ -122,52 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &18964059
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 18964060}
-  - component: {fileID: 18964061}
-  m_Layer: 0
-  m_Name: FoodDeployer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &18964060
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 18964059}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &18964061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 18964059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04ee25b5304b0f0429de6d909dee6657, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FoodResource: {fileID: 11400000, guid: ad51526f0ac54154689402196b3d3a2e, type: 2}
-  PopulationResource: {fileID: 11400000, guid: a9bbbf48696911a4289c312fd14f983c, type: 2}
 --- !u!1 &317604760
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +540,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuildingInstances: []
   parent: {fileID: 2074318636}
+--- !u!1001 &1264642185900395134
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4605493513466007690, guid: fc4501edaae5cae46a5027e57ee802a9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4605493513466007690, guid: fc4501edaae5cae46a5027e57ee802a9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4605493513466007690, guid: fc4501edaae5cae46a5027e57ee802a9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4605493513466007690, guid: fc4501edaae5cae46a5027e57ee802a9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4605493513466007690, guid: fc4501edaae5cae46a5027e57ee802a9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4605493513466007690, guid: fc4501edaae5cae46a5027e57ee802a9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4605493513466007690, guid: fc4501edaae5cae46a5027e57ee802a9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4605493513466007690, guid: fc4501edaae5cae46a5027e57ee802a9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4605493513466007690, guid: fc4501edaae5cae46a5027e57ee802a9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4605493513466007690, guid: fc4501edaae5cae46a5027e57ee802a9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418273872928385423, guid: fc4501edaae5cae46a5027e57ee802a9,
+        type: 3}
+      propertyPath: m_Name
+      value: FoodDeployer
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fc4501edaae5cae46a5027e57ee802a9, type: 3}
 --- !u!1001 &1602629640218446748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -962,5 +984,5 @@ SceneRoots:
   - {fileID: 1602629640218446748}
   - {fileID: 1113416685}
   - {fileID: 2074318636}
-  - {fileID: 18964060}
+  - {fileID: 1264642185900395134}
   - {fileID: 895814952}
