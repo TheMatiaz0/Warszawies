@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf28848738a278b4ba38dd75f50529b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Parent: {fileID: 0}
+  Parent: {fileID: 550433222}
   PortraitPrefab: {fileID: 3386155699414854205, guid: ce46188b02915c645b34ee7f5642e4d0,
     type: 3}
   Card: {fileID: 2146780604}

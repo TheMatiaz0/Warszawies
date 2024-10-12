@@ -18,6 +18,15 @@ public class EventManager : MonoBehaviour
     private void Start()
     {
         Ticker = TickerCreator.CreateNormalTime(GameManager.Instance.Balance.TimeToFinishEvent);
+        Clear();
+    }
+
+    private void Clear()
+    {
+        foreach (Transform item in Parent)
+        {
+            Destroy(item.gameObject);
+        }
     }
 
     public void Accept(EventData eventData)
