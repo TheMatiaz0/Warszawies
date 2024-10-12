@@ -1,16 +1,31 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class ButtonEvents : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class ButtonEvents : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public event Action<PointerEventData> OnPointerClickEvent;
+    public Button Button { get; private set; }
+
+    public event Action OnPointerClickEvent;
     public event Action<PointerEventData> OnPointerEnterEvent;
     public event Action<PointerEventData> OnPointerExitEvent;
 
-    public void OnPointerClick(PointerEventData eventData)
+    private void Awake()
     {
-        OnPointerClickEvent?.Invoke(eventData);
+        Button = GetComponent<Button>();
+    }
+
+    private void Start()
+    {
+        Button.onClick.AddListener(InvokeEvent);
+    }
+
+    private void InvokeEvent()
+    {
+        OnPointerClickEvent?.Invoke();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
