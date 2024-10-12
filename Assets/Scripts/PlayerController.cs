@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
-            if (BuildingManager.CanBuild(SelectedBuilding) && player.GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced == false)
+            if (BuildingManager.CanBuild(SelectedBuilding) && player.GridData.TryGetValue(new Vector2Int((int)newPosition.x, (int)newPosition.z), out var fieldData) && fieldData.ObjectPlaced == false)
             {
                 int riverDistance = CheckForNearestRiver((int)newPosition.x, (int)newPosition.z);
                 int forestDistance = CheckForNearestForest((int)newPosition.x, (int)newPosition.z);
@@ -76,6 +76,9 @@ public class PlayerController : MonoBehaviour
                     if(riverDistance > 0 && riverDistance < FisherhutFromRiverDistance)
                     {
                         BuildingManager.Build(SelectedBuilding, newPosition);
+
+                        player.GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
+                        GameManager.Instance.Inventory.CreatedBuildings.Add(SelectedBuilding);
                     }
                 }
                 else if(SelectedBuilding.AllowedObjects.HasFlag(BlockingObjects.Forest)) // Mozna postawic przy lesie
@@ -83,6 +86,9 @@ public class PlayerController : MonoBehaviour
                     if(forestDistance > 0 && forestDistance < LumberjackFromForestDistance)
                     {
                         BuildingManager.Build(SelectedBuilding, newPosition);
+
+                        player.GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
+                        GameManager.Instance.Inventory.CreatedBuildings.Add(SelectedBuilding);
                     }
                 }
                 else if(SelectedBuilding.AllowedObjects.HasFlag(BlockingObjects.Cave)) // Mozna postawic przy jaskiniach
@@ -90,6 +96,9 @@ public class PlayerController : MonoBehaviour
                     if (caveDistance > 0 && caveDistance < StonecutterFromCaveDistance)
                     {
                         BuildingManager.Build(SelectedBuilding, newPosition);
+
+                        player.GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
+                        GameManager.Instance.Inventory.CreatedBuildings.Add(SelectedBuilding);
                     }
                 }
                 else if(SelectedBuilding.AllowedObjects.HasFlag(BlockingObjects.House)) // to dom
@@ -98,11 +107,11 @@ public class PlayerController : MonoBehaviour
                     if (minDist > HouseFromCollisionDistance)
                     {
                         BuildingManager.Build(SelectedBuilding, newPosition);
+
+                        player.GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
+                        GameManager.Instance.Inventory.CreatedBuildings.Add(SelectedBuilding);
                     }
                 }
-
-                player.GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
-                GameManager.Instance.Inventory.CreatedBuildings.Add(SelectedBuilding);
             }
         }
     }
