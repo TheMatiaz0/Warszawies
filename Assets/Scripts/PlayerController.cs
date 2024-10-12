@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Distance from river: " + riverDistance);
                 Debug.Log("Distance from cave: " + caveDistance);
                 Debug.Log("Distance from forest: " + forestDistance);
+
                 if (SelectedBuilding.AllowedObjects.HasFlag(BlockingObjects.River)) // Mozna postawic przy rzece
                 {
                     if(riverDistance > 0 && riverDistance < FisherhutFromRiverDistance)

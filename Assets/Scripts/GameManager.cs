@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public Balance Balance;
     public ResourceInventory Inventory;
+    public int NextPopulationThreshold;
 
     public static GameManager Instance { get; private set; }
 

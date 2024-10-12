@@ -11,11 +11,9 @@ public class ResourceHUD : MonoBehaviour
     public Text CountDisplay;
     public Text IdleCountDisplay;
 
-    public void Refresh(int count, int idleCount)
+    public virtual void Refresh(int count, int idleCount)
     {
         CountDisplay.text = count.ToString();
-        IdleCountDisplay.text = $"(+{idleCount.ToString()})";
-
-        // IconDisplay.sprite = ResourceType.Icon;
+        IdleCountDisplay.text = $"(+{idleCount})";
     }
 }

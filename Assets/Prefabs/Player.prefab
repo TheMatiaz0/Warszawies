@@ -49,4 +49,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  EventCard: {fileID: 0}
+  BuildingManager: {fileID: 0}
   GridSize: 30
