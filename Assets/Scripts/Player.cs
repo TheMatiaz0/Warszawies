@@ -104,25 +104,25 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void RemoveLandscapeColliders() // huh?!
+    private void RemoveLandscapeColliders()
     {
-        /*
+        
         var collidersRiver = FindObjectsOfType<RiverObstacle>();
         foreach (var collider in collidersRiver)
         {
-            Destroy(collider.gameObject);
+            Destroy(collider.GetComponent<BoxCollider>());
         }
         var collidersForest = FindObjectsOfType<ForestObstacle>();
         foreach (var collider in collidersForest)
         {
-            Destroy(collider.gameObject);
+            Destroy(collider.GetComponent<BoxCollider>());
         }
         var collidersCave = FindObjectsOfType<CaveObstacle>();
         foreach (var collider in collidersCave)
         {
-            Destroy(collider.gameObject);
+            Destroy(collider.GetComponent<BoxCollider>());
         }
-        */
+        
     }
     private void UpdateFieldCollisions()
     {

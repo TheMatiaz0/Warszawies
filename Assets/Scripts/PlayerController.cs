@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
         // Esc to Main Menu
         if (Input.GetKey(KeyCode.Escape))
         {
-            //SceneManager. activeSceneChanged scene main menu;
+            SceneManager.LoadScene("MainMenu");
         }
 
         // Camera rotation
