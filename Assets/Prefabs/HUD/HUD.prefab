@@ -625,6 +625,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4331837267384068223}
   - component: {fileID: 2584382588139204468}
+  - component: {fileID: 8728896694098732254}
   m_Layer: 0
   m_Name: BottomBar
   m_TagString: Untagged
@@ -665,12 +666,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c83d77c20d563e4287188f6dec381ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanvasGroup: {fileID: 8728896694098732254}
   BuildingName: {fileID: 3240970970598250319}
   ResourceAmountPrefab: {fileID: 3866868674693164238, guid: f8f58c2b5e4645f44b7a6fc45958c3fd,
     type: 3}
   resultParent: {fileID: 6862631867660759237}
   requirementParent: {fileID: 2555212063972536430}
   SelectedBuilding: {fileID: 0}
+--- !u!225 &8728896694098732254
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046068185562478954}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2406305906995333233
 GameObject:
   m_ObjectHideFlags: 0

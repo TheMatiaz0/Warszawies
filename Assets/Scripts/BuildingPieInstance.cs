@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class BuildingPieInstance : MonoBehaviour
 {
-    public List<ButtonEvents> ButtonEvents;
+    public List<BuildingButtonEvents> Buttons = new();
 
     /*
     private void OnPointerClick(UnityEngine.EventSystems.PointerEventData pointerData)

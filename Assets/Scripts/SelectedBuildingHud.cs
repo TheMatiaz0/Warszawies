@@ -5,14 +5,26 @@ using UnityEngine.UI;
 
 public class SelectedBuildingHud : MonoBehaviour
 {
+    public CanvasGroup CanvasGroup;
     public Text BuildingName;
+    public Image BuildingIcon;
     public ResourceAmountHud ResourceAmountPrefab;
     public Transform resultParent;
     public Transform requirementParent;
-    public BuildingData SelectedBuilding;
+
+    private void Awake()
+    {
+        Close();
+    }
 
     public void Setup(BuildingData buildingData)
     {
+        if (buildingData == null)
+        {
+            Close();
+            return;
+        }
+
         // clear up all children from parent
         foreach (Transform item in resultParent)
         {
@@ -26,6 +38,7 @@ public class SelectedBuildingHud : MonoBehaviour
 
         // create children
         BuildingName.text = buildingData.Name;
+        BuildingIcon.sprite = buildingData.BuildingIcon;
         foreach (var resultData in buildingData.Result)
         {
             var display = Instantiate(ResourceAmountPrefab, resultParent);
@@ -36,5 +49,16 @@ public class SelectedBuildingHud : MonoBehaviour
             var display = Instantiate(ResourceAmountPrefab, requirementParent);
             display.Setup(item.ResourceType.Icon, item.Count);
         }
+
+        Open();
     } 
+    private void Open()
+    {
+        CanvasGroup.alpha = 1;
+    }
+
+    private void Close()
+    {
+        CanvasGroup.alpha = 0;
+    }
 }

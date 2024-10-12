@@ -16,15 +16,13 @@ MonoBehaviour:
   Requirements:
   - ResourceType: {fileID: 11400000, guid: b80b1d83b2c0d4340b7058a3609f5890, type: 2}
     _count: 2
-    ShouldChangePermanently: 1
   - ResourceType: {fileID: 11400000, guid: 9330921651de13043b23d1e558912ca0, type: 2}
     _count: 2
-    ShouldChangePermanently: 1
   Result:
   - ResourceType: {fileID: 11400000, guid: a9bbbf48696911a4289c312fd14f983c, type: 2}
     _count: 1
-    ShouldChangePermanently: 1
   PrefabToSpawn: {fileID: 8880888101880426096, guid: 0865bbd87a414dc41b647e8ed413d8e8,
     type: 3}
   AllowedObjects: 16
   StartPosition: {x: 0, y: 0, z: 0}
+  BuildingIcon: {fileID: 1303180767, guid: 369a885745b3c3143ba9add92e501552, type: 3}
