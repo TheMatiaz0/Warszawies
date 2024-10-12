@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CardModal : MonoBehaviour
@@ -14,9 +15,13 @@ public class CardModal : MonoBehaviour
     public Text Description;
 
     public ResourceAmountHud PaymentPrefab;
+    public Transform RequiredLayout;
+    public Transform PayLayout;
+    public Transform RewardLayout;
 
     public Button CancelButton;
     public Button AcceptButton;
+    public Button RestartButton;
 
     public CanvasGroup CanvasGroup;
 
@@ -34,6 +39,9 @@ public class CardModal : MonoBehaviour
         ModalBackground.onClick.AddListener(Close);
         AcceptButton.onClick.AddListener(Accept);
         CancelButton.onClick.AddListener(Cancel);
+        RestartButton.onClick.AddListener(Restart);
+        Title.text = eventData.Title;
+        Description.text = eventData.Description;
         Open();
     }
 
@@ -69,5 +77,10 @@ public class CardModal : MonoBehaviour
     private void Open()
     {
         CanvasGroup.alpha = 1;
+    }
+
+    private void Restart()
+    {
+        SceneManager.LoadScene("GameplayScene");
     }
 }
