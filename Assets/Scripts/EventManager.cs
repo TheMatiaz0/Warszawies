@@ -9,6 +9,9 @@ public class EventManager : MonoBehaviour
     private Ticker Ticker;
     private readonly Queue<EventData> EventQueue = new();
 
+    // rng num (at start 1, later 2, maybe later 3?)
+    // rng content
+    public List<EventData> AllPossibleEvents;
     public Transform Parent;
     public PortraitEventHud PortraitPrefab;
     public CardModal Card;
@@ -139,6 +142,18 @@ public class EventManager : MonoBehaviour
             {
                 var eventDataToCancel = GetFromQueue();
                 Cancel(eventDataToCancel);
+            }
+
+            // get rng num
+            // get rng content from nums for loop
+
+            // 1 OR 2
+            var rngNum = Random.Range(1, 3);
+
+            for (int i = 0; i < rngNum; i++)
+            {
+                var rngEventData = Randomer.Base.NextRandomElement(AllPossibleEvents);
+                Card.OpenWith(rngEventData);
             }
         }
     }
