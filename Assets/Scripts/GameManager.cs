@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
         Inventory = Instantiate(Inventory);
 
+        NextPopulationThreshold = Balance.PopulationThresholds[1].Threshold;
         populationResource = GameManager.Instance.Inventory.CountableResources.ToType(ResourceType.Population);
         populationResource.OnCountChanged += OnPopulationChanged;
     }
