@@ -21,3 +21,6 @@ MonoBehaviour:
   Requirement: []
   WinCondition: []
   FailCondition: []
+  AbleToCancel: 0
+  AbleToAccept: 0
+  AbleToRestart: 1

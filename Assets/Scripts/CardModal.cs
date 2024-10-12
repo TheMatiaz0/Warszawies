@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CardModal : MonoBehaviour
@@ -12,11 +13,17 @@ public class CardModal : MonoBehaviour
 
     public Text Title;
     public Text Description;
+    public Image IllustrationSlot;
 
     public ResourceAmountHud PaymentPrefab;
 
+    public Transform RequiredLayout;
+    public Transform PayLayout;
+    public Transform RewardLayout;
+
     public Button CancelButton;
     public Button AcceptButton;
+    public Button RestartButton;
 
     public CanvasGroup CanvasGroup;
 
@@ -27,13 +34,27 @@ public class CardModal : MonoBehaviour
         Close();
     }
 
-    public void Setup(EventData eventData)
+    public void OpenWith(EventData eventData)
     {
         EventData = eventData;
         CloseButton.onClick.AddListener(Close);
         ModalBackground.onClick.AddListener(Close);
         AcceptButton.onClick.AddListener(Accept);
         CancelButton.onClick.AddListener(Cancel);
+        RestartButton.onClick.AddListener(Restart);
+
+        Title.text = eventData.Title;
+        Description.text = eventData.Description;
+        IllustrationSlot.sprite = eventData.Illustration;
+        
+        RequiredLayout.gameObject.SetActive(!eventData.AbleToRestart);
+        PayLayout.gameObject.SetActive(eventData.AbleToCancel);
+        RewardLayout.gameObject.SetActive(eventData.AbleToAccept);
+
+        AcceptButton.gameObject.SetActive(eventData.AbleToAccept);
+        CancelButton.gameObject.SetActive(eventData.AbleToCancel);
+        RestartButton.gameObject.SetActive(eventData.AbleToRestart);
+
         Open();
     }
 
@@ -69,5 +90,10 @@ public class CardModal : MonoBehaviour
     private void Open()
     {
         CanvasGroup.alpha = 1;
+    }
+
+    private void Restart()
+    {
+        SceneManager.LoadScene("GameplayScene");
     }
 }

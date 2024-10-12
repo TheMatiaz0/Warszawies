@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
@@ -85,7 +86,10 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
-            OpenBuildingPieMenu();
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
             //Debug.Log($"key: { new Vector2Int((int)newPosition.x, (int)newPosition.z) }");
             if (BuildingManager.CanBuild(SelectedBuilding) && player.GridData.TryGetValue(new Vector2Int((int)newPosition.x, (int)newPosition.z), out var fieldData) && fieldData.ObjectPlaced == false)
             {
