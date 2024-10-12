@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
     private BuildingPieInstance cachedPie;
     private Vector3 newPosition;
+    private Vector3 cachedPiePosition;
 
    
     public int HouseFromCollisionDistance = 2;
@@ -206,6 +207,7 @@ public class PlayerController : MonoBehaviour
             Destroy(cachedPie.gameObject);
         }
 
+        hud.Setup(null);
         Building.gameObject.SetActive(true);
     }
 
@@ -215,7 +217,7 @@ public class PlayerController : MonoBehaviour
         TryClearPie();
 
         Vector3 mousePosition = Input.mousePosition;
-        var worldSpacePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        cachedPiePosition = newPosition;
 
         cachedPie = Instantiate(BuildingPiePrefab, mousePosition, Quaternion.identity, Parent);
         foreach (var item in cachedPie.Buttons)
@@ -241,7 +243,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnPointerClick()
     {
-        BuildAt(newPosition);
+        BuildAt(cachedPiePosition);
     }
 
     void UpdateCameraPosition()
