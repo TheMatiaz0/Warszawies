@@ -37,6 +37,7 @@ public class CardModal : MonoBehaviour
     public void OpenWith(EventData eventData)
     {
         EventData = eventData;
+
         if (!eventData.AbleToRestart)
         {
             CloseButton.onClick.AddListener(Close);

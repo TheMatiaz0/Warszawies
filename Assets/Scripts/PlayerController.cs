@@ -218,6 +218,8 @@ public class PlayerController : MonoBehaviour
         cachedPiePosition = newPosition;
 
         cachedPie = Instantiate(BuildingPiePrefab, mousePosition, Quaternion.identity, Parent);
+        cachedPie.transform.SetSiblingIndex(0);
+
         foreach (var item in cachedPie.Buttons)
         {
             item.OnPointerClickEvent += OnPointerClick;
