@@ -17,8 +17,8 @@ public class CardModal : MonoBehaviour
 
     public ResourceAmountHud PaymentPrefab;
 
-    public Transform RequiredLayout;
-    public Transform PayLayout;
+    public Transform RequirementLayout;
+    public Transform PenaltyLayout;
     public Transform RewardLayout;
 
     public Button CancelButton;
@@ -52,15 +52,59 @@ public class CardModal : MonoBehaviour
 
         SetupVisuals(eventData);
 
-        RequiredLayout.gameObject.SetActive(!eventData.AbleToRestart);
-        PayLayout.gameObject.SetActive(eventData.AbleToCancel);
+        RequirementLayout.gameObject.SetActive(!eventData.AbleToRestart);
+        PenaltyLayout.gameObject.SetActive(eventData.AbleToCancel);
         RewardLayout.gameObject.SetActive(eventData.AbleToAccept);
+
+        SpawnPayments(eventData);
 
         AcceptButton.gameObject.SetActive(eventData.AbleToAccept);
         CancelButton.gameObject.SetActive(eventData.AbleToCancel);
         RestartButton.gameObject.SetActive(eventData.AbleToRestart);
 
         Open();
+    }
+
+    private void Purge()
+    {
+        foreach (Transform item in RequirementLayout)
+        {
+            Destroy(item.gameObject);
+        }
+
+        foreach (Transform item in PenaltyLayout)
+        {
+            Destroy(item.gameObject);
+        }
+
+        foreach (Transform item in RewardLayout)
+        {
+            Destroy(item.gameObject);
+        }
+    }
+
+    private void SpawnPayments(EventData data)
+    {
+        foreach (var resource in data.Requirement)
+        {
+            SpawnSinglePayment(RequirementLayout, resource);
+        }
+
+        foreach (var resource in data.FailCondition)
+        {
+            SpawnSinglePayment(PenaltyLayout, resource);
+        }
+
+        foreach (var resource in data.WinCondition)
+        {
+            SpawnSinglePayment(RewardLayout, resource);
+        }
+    }
+
+    private void SpawnSinglePayment(Transform parent, CountableResource resource)
+    {
+        var payment = Instantiate(PaymentPrefab, RequirementLayout);
+        payment.Setup(resource.ResourceType.Icon, resource.Count);
     }
 
     private void SetupVisuals(EventData eventData)
