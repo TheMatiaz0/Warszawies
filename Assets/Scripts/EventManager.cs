@@ -9,7 +9,7 @@ public class EventManager : MonoBehaviour
     private Ticker Ticker;
     private readonly Queue<EventData> EventQueue = new();
 
-    private void Awake()
+    private void Start()
     {
         Ticker = TickerCreator.CreateNormalTime(GameManager.Instance.Balance.TimeToFinishEvent);
     }

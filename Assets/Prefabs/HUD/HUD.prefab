@@ -367,9 +367,9 @@ RectTransform:
   - {fileID: 2712727455913478207}
   m_Father: {fileID: 5089971056816047632}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 441, y: -34}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 234, y: 68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5660099987385784530
@@ -1156,6 +1156,7 @@ MonoBehaviour:
   ModalBackground: {fileID: 2027374644813234611}
   Title: {fileID: 5130470506171617524}
   Description: {fileID: 7005616643185703145}
+  IllustrationSlot: {fileID: 4812838510283726688}
   PaymentPrefab: {fileID: 3866868674693164238, guid: f8f58c2b5e4645f44b7a6fc45958c3fd,
     type: 3}
   RequiredLayout: {fileID: 7992952784287745278}
@@ -1805,9 +1806,9 @@ RectTransform:
   - {fileID: 7936541636130493178}
   m_Father: {fileID: 5089971056816047632}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 117, y: -34}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 234, y: 68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &560611555257328265

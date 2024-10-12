@@ -13,6 +13,7 @@ public class CardModal : MonoBehaviour
 
     public Text Title;
     public Text Description;
+    public Image IllustrationSlot;
 
     public ResourceAmountHud PaymentPrefab;
 
@@ -41,8 +42,11 @@ public class CardModal : MonoBehaviour
         AcceptButton.onClick.AddListener(Accept);
         CancelButton.onClick.AddListener(Cancel);
         RestartButton.onClick.AddListener(Restart);
+
         Title.text = eventData.Title;
         Description.text = eventData.Description;
+        IllustrationSlot.sprite = eventData.Illustration;
+        
 
         RequiredLayout.gameObject.SetActive(!eventData.AbleToRestart);
         PayLayout.gameObject.SetActive(eventData.AbleToCancel);
