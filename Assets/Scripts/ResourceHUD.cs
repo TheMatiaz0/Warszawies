@@ -14,6 +14,9 @@ public class ResourceHUD : MonoBehaviour
     public virtual void Refresh(int count, int idleCount)
     {
         CountDisplay.text = count.ToString();
-        IdleCountDisplay.text = $"(+{idleCount})";
+
+        string prefix = idleCount > 0 ? "+" : "-";
+
+        IdleCountDisplay.text = $"({prefix}{idleCount})";
     }
 }
