@@ -38,7 +38,10 @@ public class SelectedBuildingHud : MonoBehaviour
 
         // create children
         BuildingName.text = buildingData.Name;
-        BuildingIcon.sprite = buildingData.BuildingIcon;
+        if (buildingData.BuildingIcon != null)
+        {
+            BuildingIcon.sprite = buildingData.BuildingIcon;
+        }
         foreach (var resultData in buildingData.Result)
         {
             var display = Instantiate(ResourceAmountPrefab, resultParent);
