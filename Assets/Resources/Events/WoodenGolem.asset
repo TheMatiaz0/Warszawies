@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69e1ae325582c1c418e80b6f9e2c7a71, type: 3}
   m_Name: WoodenGolem
   m_EditorClassIdentifier: 
-  Title: 
+  Title: Warszawiesiwiaj z mojego pola
   Description: "Jaki\u015B siwy i natarczywy pan powiada, \u017Ce jest Leszym i \u017Ce
     chroni las przed wycink\u0105. Mo\u017Ce to wp\u0142yn\u0105\u0107 powa\u017Cnie
     na nasze zbiory na opa\u0142. Wymusza na nas u\u017Cywanie kamienia."
