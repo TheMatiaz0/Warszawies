@@ -45,8 +45,8 @@ public class CardModal : MonoBehaviour
 
         if (!eventData.AbleToRestart)
         {
-            CloseButton.onClick.AddListener(Close);
-            ModalBackground.onClick.AddListener(Close);
+            CloseButton.onClick.AddListener(Accept);
+            ModalBackground.onClick.AddListener(Accept);
             AcceptButton.onClick.AddListener(Accept);
             CancelButton.onClick.AddListener(Cancel);
             SpawnPayments(eventData);

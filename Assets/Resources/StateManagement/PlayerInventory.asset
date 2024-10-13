@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CountableResources:
   - ResourceType: {fileID: 11400000, guid: 9330921651de13043b23d1e558912ca0, type: 2}
-    _count: 1
+    _count: 7
   - ResourceType: {fileID: 11400000, guid: b80b1d83b2c0d4340b7058a3609f5890, type: 2}
-    _count: 1
+    _count: 7
   - ResourceType: {fileID: 11400000, guid: a9bbbf48696911a4289c312fd14f983c, type: 2}
     _count: 2
   - ResourceType: {fileID: 11400000, guid: ad51526f0ac54154689402196b3d3a2e, type: 2}

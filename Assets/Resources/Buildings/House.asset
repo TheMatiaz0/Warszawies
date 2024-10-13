@@ -15,9 +15,9 @@ MonoBehaviour:
   Name: Chata
   Requirements:
   - ResourceType: {fileID: 11400000, guid: b80b1d83b2c0d4340b7058a3609f5890, type: 2}
-    _count: 2
+    _count: 10
   - ResourceType: {fileID: 11400000, guid: 9330921651de13043b23d1e558912ca0, type: 2}
-    _count: 2
+    _count: 10
   Result:
   - ResourceType: {fileID: 11400000, guid: a9bbbf48696911a4289c312fd14f983c, type: 2}
     _count: 1

@@ -198,8 +198,11 @@ public class PlayerController : MonoBehaviour
 
 
                     GridData.TryGetValue(new Vector2Int((int)newPosition.x, (int)newPosition.z), out var fieldDataOut);
-                    Tile tile = fieldDataOut.ObjectReference.GetComponent<Tile>();
-                    tile.ClearTile();
+
+                    if (fieldDataOut.ObjectReference.TryGetComponent<Tile>(out var tile))
+                    {
+                        tile.ClearTile();
+                    }
 
                     GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
                     GameManager.Instance.Inventory.CreatedBuildings.Add(SelectedBuilding);
@@ -261,6 +264,7 @@ public class PlayerController : MonoBehaviour
     private void OnPointerClick()
     {
         BuildAt(cachedPiePosition);
+        TryClearPie();
     }
 
     public void UpdateCameraPosition()

@@ -7,7 +7,8 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    private Ticker Ticker;
+    private Ticker NextEventTicker;
+    private Ticker FinishEventTicker;
     public Queue<EventInstance> EventQueue = new();
 
     public List<EventData> AllPossibleEvents;
@@ -15,11 +16,13 @@ public class EventManager : MonoBehaviour
     public PortraitEventHud PortraitPrefab;
     public CardModal Card;
 
+    private int PreviousEventsCount;
     private readonly List<PortraitEventHud> portraits = new();
+    private bool test;
 
     private void Start()
     {
-        Ticker = TickerCreator.CreateNormalTime(GameManager.Instance.Balance.TimeToFinishEvent);
+        NextEventTicker = TickerCreator.CreateNormalTime(GameManager.Instance.Balance.TimeToNextEvent);
         Clear();
 
         foreach (var item in GameManager.Instance.Inventory.CountableResources)
@@ -58,6 +61,7 @@ public class EventManager : MonoBehaviour
         {
             SpendResources(eventData);
             GetRewards(eventData);
+            Remove(eventData);
         }
 
         var instance = EventQueue.FirstOrDefault(x => x.Data == eventData);
@@ -138,7 +142,7 @@ public class EventManager : MonoBehaviour
         EventQueue.Enqueue(new(eventData, false));
         var createdPortrait = Instantiate(PortraitPrefab, Parent);
 
-        createdPortrait.Setup(ref Ticker, eventData, Card);
+        createdPortrait.Setup(eventData, Card);
 
         portraits.Add(createdPortrait);
     }
@@ -159,11 +163,13 @@ public class EventManager : MonoBehaviour
             Destroy(portraitToBeRemoved.gameObject);
         }
         portraits.Remove(portraitToBeRemoved);
+        NextEventTicker.Reset();
+        test = false;
     }
 
     private void Update()
     {
-        if (Ticker.Push() && EventQueue != null)
+        if (NextEventTicker.Done && EventQueue != null && !test)
         {
             for (int i = 0; i < EventQueue.Count; i++)
             {
@@ -171,13 +177,20 @@ public class EventManager : MonoBehaviour
                 Cancel(eventDataToCancel.Data);
             }
 
-            var rngNum = UnityEngine.Random.Range(1, 3);
+            var rngEventData = Randomer.Base.NextRandomElement(AllPossibleEvents);
+            rngEventData = Instantiate(rngEventData);
+            var percentage = PreviousEventsCount * GameManager.Instance.Balance.DifficultyPercentageForNextEvent;
 
-            for (int i = 0; i < rngNum; i++)
+            foreach (var item in rngEventData.Requirement)
             {
-                var rngEventData = Randomer.Base.NextRandomElement(AllPossibleEvents);
-                Card.OpenWith(rngEventData);
+                // starting from 2
+                var newRequirement = item.Count * (1 + percentage);
+                item.Count = Mathf.CeilToInt(newRequirement);
             }
+
+            Card.OpenWith(rngEventData);
+            PreviousEventsCount += 1;
+            test = true;
         }
     }
 }

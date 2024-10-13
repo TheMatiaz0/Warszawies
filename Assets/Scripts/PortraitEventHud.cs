@@ -17,12 +17,12 @@ public class PortraitEventHud : MonoBehaviour
 
     private Ticker ticker;
 
-    public void Setup(ref Ticker ticker, EventData eventData, CardModal card)
+    public void Setup(EventData eventData, CardModal card)
     {
+        ticker = TickerCreator.CreateNormalTime(GameManager.Instance.Balance.TimeToFinishEvent);
+
         Portrait.sprite = eventData.SmallThumbnail;
         Card = card;
-
-        this.ticker = ticker;
        
         EventData = eventData;
         Hyperlink.onClick.AddListener(GoTo);

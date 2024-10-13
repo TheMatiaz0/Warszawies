@@ -20,14 +20,19 @@ MonoBehaviour:
   SmallThumbnail: {fileID: 1063331247, guid: 369a885745b3c3143ba9add92e501552, type: 3}
   Requirement:
   - ResourceType: {fileID: 11400000, guid: a9bbbf48696911a4289c312fd14f983c, type: 2}
-    _count: 30
+    _count: 15
   - ResourceType: {fileID: 11400000, guid: 9330921651de13043b23d1e558912ca0, type: 2}
-    _count: 30
+    _count: 25
   - ResourceType: {fileID: 11400000, guid: b80b1d83b2c0d4340b7058a3609f5890, type: 2}
-    _count: 30
+    _count: 20
   WinCondition:
   - ResourceType: {fileID: 11400000, guid: ad51526f0ac54154689402196b3d3a2e, type: 2}
-    _count: 100
+    _count: 30
   FailCondition:
   - ResourceType: {fileID: 11400000, guid: a9bbbf48696911a4289c312fd14f983c, type: 2}
-    _count: 75
+    _count: 25
+  - ResourceType: {fileID: 11400000, guid: ad51526f0ac54154689402196b3d3a2e, type: 2}
+    _count: 30
+  AbleToCancel: 1
+  AbleToAccept: 1
+  AbleToRestart: 0
