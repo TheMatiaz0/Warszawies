@@ -6343,7 +6343,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aa2ea2ec73184674dbcdcb93e1cd45ba, type: 2}
   - {fileID: 11400000, guid: 3b72e7fd9fbf8c84d91ad2f4d6be602b, type: 2}
   cameraRotationPivot: {fileID: 1763549972}
-  maxDistanceToPivotPoint: 120
+  maxDistanceToPivotPoint: 65
   minDistanceToPivotPoint: 30
   xRotSpeed: 1.5
   SelectedBuilding: {fileID: 0}
