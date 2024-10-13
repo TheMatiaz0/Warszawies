@@ -19,8 +19,16 @@ public class EventManager : MonoBehaviour
     private readonly List<PortraitEventHud> portraits = new();
     private bool test;
 
+    private List<int> CopiedEventsNum;
+
     private void Start()
     {
+        CopiedEventsNum = new List<int>();
+        for(int i = 0; i < AllPossibleEvents.Count; i++)
+        {
+            CopiedEventsNum.Add(i);
+        }
+        
         NextEventTicker = TickerCreator.CreateNormalTime(GameManager.Instance.Balance.TimeToNextEvent);
         Clear();
 
@@ -170,7 +178,18 @@ public class EventManager : MonoBehaviour
     {
         if (NextEventTicker.Done && EventQueue != null && !test)
         {
-            var rngEventData = Randomer.Base.NextRandomElement(AllPossibleEvents);
+            if(CopiedEventsNum.Count == 0)
+            {
+                CopiedEventsNum = new List<int>();
+                for (int i = 0; i < AllPossibleEvents.Count; i++)
+                {
+                    CopiedEventsNum.Add(i);
+                }
+            }
+            int selectedEventNum = Randomer.Base.NextRandomElement(CopiedEventsNum);
+            var rngEventData = AllPossibleEvents[selectedEventNum];
+            CopiedEventsNum.Remove(selectedEventNum);
+            
             rngEventData = Instantiate(rngEventData);
             var percentage = PreviousEventsCount * GameManager.Instance.Balance.DifficultyPercentageForNextEvent;
 
