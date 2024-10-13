@@ -6220,6 +6220,7 @@ MonoBehaviour:
   FisherhutFromRiverDistance: 2
   LumberjackFromForestDistance: 2
   StonecutterFromCaveDistance: 2
+  IsInputActive: 1
 --- !u!4 &479467125
 Transform:
   m_ObjectHideFlags: 0
@@ -29010,6 +29011,7 @@ MonoBehaviour:
   GameOverEvent: {fileID: 11400000, guid: 779a4b00613024f4f8b9e268151430c9, type: 2}
   BuildingManager: {fileID: 2103171961}
   EventManager: {fileID: 550433223}
+  PlayerController: {fileID: 479467124}
 --- !u!1001 &2030379468
 PrefabInstance:
   m_ObjectHideFlags: 0
