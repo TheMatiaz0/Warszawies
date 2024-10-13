@@ -20,10 +20,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public List<ResourceHUD> ResourceHuds;
-    public SelectedBuildingHud SelectedBuildingHud;
     public CardModal EventCard;
     public BuildingManager BuildingManager;
-    public PlayerController pc;
 
     public int GridSize = 20;
 

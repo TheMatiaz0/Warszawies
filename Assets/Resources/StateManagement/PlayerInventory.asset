@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CountableResources:
   - ResourceType: {fileID: 11400000, guid: 9330921651de13043b23d1e558912ca0, type: 2}
-    _count: 200
-  - ResourceType: {fileID: 11400000, guid: b80b1d83b2c0d4340b7058a3609f5890, type: 2}
-    _count: 200
-  - ResourceType: {fileID: 11400000, guid: a9bbbf48696911a4289c312fd14f983c, type: 2}
     _count: 10
+  - ResourceType: {fileID: 11400000, guid: b80b1d83b2c0d4340b7058a3609f5890, type: 2}
+    _count: 10
+  - ResourceType: {fileID: 11400000, guid: a9bbbf48696911a4289c312fd14f983c, type: 2}
+    _count: 5
   - ResourceType: {fileID: 11400000, guid: ad51526f0ac54154689402196b3d3a2e, type: 2}
-    _count: 400
+    _count: 15
   CreatedBuildings:
-  - {fileID: 11400000, guid: edb6e2b6b2ee8b74c85d1ff129eab063, type: 2}
+  - {fileID: 11400000, guid: baf6764981e030b4dae22590d416cb95, type: 2}

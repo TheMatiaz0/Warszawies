@@ -1,3 +1,4 @@
+using Rubin;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,23 +13,33 @@ public class PortraitEventHud : MonoBehaviour
     [Header("Dynamic")]
     public EventData EventData;
     public CardModal Card;
-    public EventManager EventManager;
 
-    public void Setup(float time, EventData eventData, CardModal card)
+    private Ticker ticker;
+
+    public void Setup(EventData eventData, CardModal card)
     {
+        ticker = TickerCreator.CreateNormalTime(GameManager.Instance.Balance.TimeToFinishEvent);
+
         Portrait.sprite = eventData.SmallThumbnail;
         Card = card;
-
-        // time
-        var percentage = time / GameManager.Instance.Balance.TimeToFinishEvent;
-        TimeSlider.fillAmount = percentage;
-
+       
         EventData = eventData;
         Hyperlink.onClick.AddListener(GoTo);
 
         foreach (var eventQueue in GameManager.Instance.EventManager.EventQueue.ToList())
         {
             eventQueue.OnAccomplishmentChanged += OnAccomplishmentChanged;
+        }
+    }
+
+    private void Update()
+    {
+        var percentage = ticker.Passed / GameManager.Instance.Balance.TimeToFinishEvent;
+        TimeSlider.fillAmount = percentage;
+
+        if (percentage >= 0.99f)
+        {
+            GameManager.Instance.EventManager.Cancel(EventData);
         }
     }
 

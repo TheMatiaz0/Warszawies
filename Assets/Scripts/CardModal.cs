@@ -26,6 +26,7 @@ public class CardModal : MonoBehaviour
     public Button RestartButton;
 
     public CanvasGroup CanvasGroup;
+    public bool IsActive = true;
 
     private EventData EventData;
 
@@ -36,14 +37,16 @@ public class CardModal : MonoBehaviour
 
     public void OpenWith(EventData eventData)
     {
+        if (!IsActive) return;
+
         Purge();
 
         EventData = eventData;
 
         if (!eventData.AbleToRestart)
         {
-            CloseButton.onClick.AddListener(Close);
-            ModalBackground.onClick.AddListener(Close);
+            CloseButton.onClick.AddListener(Accept);
+            ModalBackground.onClick.AddListener(Accept);
             AcceptButton.onClick.AddListener(Accept);
             CancelButton.onClick.AddListener(Cancel);
             SpawnPayments(eventData);
@@ -68,6 +71,12 @@ public class CardModal : MonoBehaviour
 
     private void Purge()
     {
+        CloseButton.onClick.RemoveAllListeners();
+        ModalBackground.onClick.RemoveAllListeners();
+        AcceptButton.onClick.RemoveAllListeners();
+        CancelButton.onClick.RemoveAllListeners();
+        RestartButton.onClick.RemoveAllListeners();
+
         foreach (Transform item in RequirementLayout)
         {
             Destroy(item.gameObject);
@@ -88,24 +97,24 @@ public class CardModal : MonoBehaviour
     {
         foreach (var resource in data.Requirement)
         {
-            SpawnSinglePayment(RequirementLayout, resource, false);
+            SpawnSinglePayment(RequirementLayout, resource, false, false);
         }
 
         foreach (var resource in data.FailCondition)
         {
-            SpawnSinglePayment(PenaltyLayout, resource, true);
+            SpawnSinglePayment(PenaltyLayout, resource, true, true);
         }
 
         foreach (var resource in data.WinCondition)
         {
-            SpawnSinglePayment(RewardLayout, resource, true);
+            SpawnSinglePayment(RewardLayout, resource, true, false);
         }
     }
 
-    private void SpawnSinglePayment(Transform parent, CountableResource resource, bool shouldAddPrefix)
+    private void SpawnSinglePayment(Transform parent, CountableResource resource, bool shouldAddPrefix, bool isNegative)
     {
         var payment = Instantiate(PaymentPrefab, parent);
-        payment.Setup(resource.ResourceType.Icon, resource.Count, shouldAddPrefix);
+        payment.Setup(resource.ResourceType.Icon, isNegative ? -resource.Count : resource.Count, shouldAddPrefix);
     }
 
     private void SetupVisuals(EventData eventData)
@@ -113,14 +122,6 @@ public class CardModal : MonoBehaviour
         Title.text = eventData.Title;
         Description.text = eventData.Description;
         IllustrationSlot.sprite = eventData.Illustration;
-    }
-
-    private void Clear()
-    {
-        CloseButton.onClick.RemoveListener(Close);
-        ModalBackground.onClick.RemoveListener(Close);
-        AcceptButton.onClick.RemoveListener(Accept);
-        CancelButton.onClick.RemoveListener(Cancel);
     }
 
     // accept -> if has required items: drop items else add to quest backlog
@@ -144,7 +145,6 @@ public class CardModal : MonoBehaviour
         CanvasGroup.blocksRaycasts = false;
         CanvasGroup.interactable = false;
         Time.timeScale = 1;
-        Clear();
     }
 
     private void Open()

@@ -40,7 +40,7 @@ public class CountableResource
         get => _count;
         set
         {
-            _count = value;
+            _count = Mathf.Clamp(value, 0, 10000);
             OnCountChanged?.Invoke(this);
         }
     }

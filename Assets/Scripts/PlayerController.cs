@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     SelectedBuildingHud hud;
 
+    public CanvasGroup HUD;
+
     [SerializeField]
     BuildingPieInstance BuildingPiePrefab;
 
@@ -50,11 +52,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 newPosition;
     private Vector3 cachedPiePosition;
 
-   
-    public int HouseFromCollisionDistance = 2;
-    public int FisherhutFromRiverDistance = 2;
-    public int LumberjackFromForestDistance = 2;
-    public int StonecutterFromCaveDistance = 2;
     public bool IsInputActive = true;
 
     //public Dictionary<Vector2Int, FieldData> GridData = new Dictionary<Vector2Int, FieldData>();
@@ -69,7 +66,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!IsInputActive) return;
+        if (!IsInputActive)
+        {
+            HUD.alpha = 0;
+            HUD.blocksRaycasts = false;
+            HUD.interactable = false;
+            return;
+        }
 
         Vector3 HitPoint = PlayerCamera.ScreenToViewportPoint(Input.mousePosition);
 
@@ -201,8 +204,14 @@ public class PlayerController : MonoBehaviour
 
 
                     GridData.TryGetValue(new Vector2Int((int)newPosition.x, (int)newPosition.z), out var fieldDataOut);
-                    Tile tile = fieldDataOut.ObjectReference.GetComponent<Tile>();
-                    tile.ClearTile();
+
+                    if (fieldDataOut.ObjectReference != null)
+                    {
+                        if (fieldDataOut.ObjectReference.TryGetComponent<Tile>(out var tile))
+                        {
+                            tile.ClearTile();
+                        }
+                    }
 
                     GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
                     GameManager.Instance.Inventory.CreatedBuildings.Add(SelectedBuilding);
@@ -264,6 +273,7 @@ public class PlayerController : MonoBehaviour
     private void OnPointerClick()
     {
         BuildAt(cachedPiePosition);
+        TryClearPie();
     }
 
     public void UpdateCameraPosition()

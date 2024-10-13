@@ -1,4 +1,4 @@
-using Rubin;
+﻿using Rubin;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,19 +7,29 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    private Ticker Ticker;
-    public readonly Queue<EventInstance> EventQueue = new();
+    private Ticker NextEventTicker;
+    public Queue<EventInstance> EventQueue = new();
 
     public List<EventData> AllPossibleEvents;
     public Transform Parent;
     public PortraitEventHud PortraitPrefab;
     public CardModal Card;
 
+    private int PreviousEventsCount;
     private readonly List<PortraitEventHud> portraits = new();
+    private bool test;
+
+    private List<int> CopiedEventsNum;
 
     private void Start()
     {
-        Ticker = TickerCreator.CreateNormalTime(GameManager.Instance.Balance.TimeToFinishEvent);
+        CopiedEventsNum = new List<int>();
+        for(int i = 0; i < AllPossibleEvents.Count; i++)
+        {
+            CopiedEventsNum.Add(i);
+        }
+        
+        NextEventTicker = TickerCreator.CreateNormalTime(GameManager.Instance.Balance.TimeToNextEvent);
         Clear();
 
         foreach (var item in GameManager.Instance.Inventory.CountableResources)
@@ -58,19 +68,21 @@ public class EventManager : MonoBehaviour
         {
             SpendResources(eventData);
             GetRewards(eventData);
+            Remove(eventData);
         }
-        else
+
+        var instance = EventQueue.FirstOrDefault(x => x.Data == eventData);
+        if (instance != null)
         {
-            AddToQueue(eventData);
+            return;
         }
+        AddToQueue(eventData);
     }
 
     public void Cancel(EventData eventData)
     {
-        var instances = EventQueue.ToList();
-
-        var instance = instances.Find(x => x.Data == eventData);
-        instances.Remove(instance);
+        EventQueue = new Queue<EventInstance>(EventQueue.Where(x => x.Data != eventData));
+        Remove(eventData);
         PayResources(eventData);
     }
 
@@ -137,9 +149,7 @@ public class EventManager : MonoBehaviour
         EventQueue.Enqueue(new(eventData, false));
         var createdPortrait = Instantiate(PortraitPrefab, Parent);
 
-        var p = Ticker.TimeGetter;
-        var time = p.Invoke();
-        createdPortrait.Setup(time, eventData, Card);
+        createdPortrait.Setup(eventData, Card);
 
         portraits.Add(createdPortrait);
     }
@@ -147,33 +157,52 @@ public class EventManager : MonoBehaviour
     public EventInstance GetFromQueue()
     {
         var eventData = EventQueue.Dequeue();
-        var portraitToBeRemoved = portraits.Find(x => x.EventData == eventData.Data);
+        Remove(eventData.Data);
+
+        return eventData;
+    }
+
+    private void Remove(EventData eventData)
+    {
+        var portraitToBeRemoved = portraits.Find(x => x.EventData == eventData);
         if (portraitToBeRemoved != null)
         {
             Destroy(portraitToBeRemoved.gameObject);
         }
         portraits.Remove(portraitToBeRemoved);
-
-        return eventData;
+        NextEventTicker.Reset();
+        test = false;
     }
 
     private void Update()
     {
-        if (Ticker.Push() && EventQueue != null)
+        if (NextEventTicker.Done && EventQueue != null && !test)
         {
-            for (int i = 0; i < EventQueue.Count; i++)
+            if(CopiedEventsNum.Count == 0)
             {
-                var eventDataToCancel = GetFromQueue();
-                Cancel(eventDataToCancel.Data);
+                CopiedEventsNum = new List<int>();
+                for (int i = 0; i < AllPossibleEvents.Count; i++)
+                {
+                    CopiedEventsNum.Add(i);
+                }
+            }
+            int selectedEventNum = Randomer.Base.NextRandomElement(CopiedEventsNum);
+            var rngEventData = AllPossibleEvents[selectedEventNum];
+            CopiedEventsNum.Remove(selectedEventNum);
+            
+            rngEventData = Instantiate(rngEventData);
+            var percentage = PreviousEventsCount * GameManager.Instance.Balance.DifficultyPercentageForNextEvent;
+
+            foreach (var item in rngEventData.Requirement)
+            {
+                // starting from 2
+                var newRequirement = item.Count * (1 + percentage);
+                item.Count = Mathf.CeilToInt(newRequirement);
             }
 
-            var rngNum = UnityEngine.Random.Range(1, 3);
-
-            for (int i = 0; i < rngNum; i++)
-            {
-                var rngEventData = Randomer.Base.NextRandomElement(AllPossibleEvents);
-                Card.OpenWith(rngEventData);
-            }
+            Card.OpenWith(rngEventData);
+            PreviousEventsCount += 1;
+            test = true;
         }
     }
 }

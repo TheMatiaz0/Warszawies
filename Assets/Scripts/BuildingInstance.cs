@@ -8,6 +8,8 @@ public class BuildingInstance : MonoBehaviour
 {
     public BuildingData Data;
 
+    public List<ParticleSystem> ParticleSystem;
+
     private Ticker ticker;
 
     private void Awake()
@@ -23,6 +25,10 @@ public class BuildingInstance : MonoBehaviour
             {
                 var inventoryRef = GameManager.Instance.Inventory.CountableResources.Find(x => x.ResourceType == result.ResourceType);
                 inventoryRef.Count += result.Count;
+            }
+            foreach (var particle in ParticleSystem)
+            {
+                particle.Play();
             }
         }
     }

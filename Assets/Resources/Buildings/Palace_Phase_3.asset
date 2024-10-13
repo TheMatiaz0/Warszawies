@@ -16,9 +16,9 @@ MonoBehaviour:
   Requirements: []
   Result:
   - ResourceType: {fileID: 11400000, guid: b80b1d83b2c0d4340b7058a3609f5890, type: 2}
-    _count: 100
+    _count: 1
   - ResourceType: {fileID: 11400000, guid: 9330921651de13043b23d1e558912ca0, type: 2}
-    _count: 100
+    _count: 1
   PrefabToSpawn: {fileID: 6180039705268661490, guid: dd418b57d57fdde40bca2f8a1c265311,
     type: 3}
   AllowedObjects: 32

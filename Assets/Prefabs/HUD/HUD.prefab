@@ -850,6 +850,7 @@ GameObject:
   - component: {fileID: 3492171524933206322}
   - component: {fileID: 381519137717254556}
   - component: {fileID: 7182730547266263926}
+  - component: {fileID: 2628719709068832639}
   m_Layer: 5
   m_Name: TopBar
   m_TagString: Untagged
@@ -915,6 +916,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &2628719709068832639
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2956991544472564237}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &3388888263216285386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,6 +1194,7 @@ MonoBehaviour:
   AcceptButton: {fileID: 5759884186149895425}
   RestartButton: {fileID: 3583445799598751847}
   CanvasGroup: {fileID: 6644593836423848466}
+  IsActive: 1
 --- !u!114 &2027374644813234611
 MonoBehaviour:
   m_ObjectHideFlags: 0

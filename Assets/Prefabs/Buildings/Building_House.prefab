@@ -66,6 +66,16 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 6770640039368544838, guid: b1d69c31667f65f4aba3215694c35287,
         type: 3}
+      propertyPath: ParticleSystem.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770640039368544838, guid: b1d69c31667f65f4aba3215694c35287,
+        type: 3}
+      propertyPath: ParticleSystem.Array.data[0]
+      value: 
+      objectReference: {fileID: 6490680949549376250}
+    - target: {fileID: 6770640039368544838, guid: b1d69c31667f65f4aba3215694c35287,
+        type: 3}
       propertyPath: Extraction.CountableResource.ResourceType
       value: 
       objectReference: {fileID: 11400000, guid: a9bbbf48696911a4289c312fd14f983c,
@@ -170,6 +180,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3117b6f7d489cad45b44e0eaba4e597f, type: 3}
+--- !u!198 &6490680949549376250 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1936841825782945508, guid: 3117b6f7d489cad45b44e0eaba4e597f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4679957512082977822}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8448068095953372222 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3877350392895172640, guid: 3117b6f7d489cad45b44e0eaba4e597f,

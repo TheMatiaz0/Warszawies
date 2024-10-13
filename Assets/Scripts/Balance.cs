@@ -23,4 +23,6 @@ public class Balance : ScriptableObject
     public List<ThresholdBuilding> PopulationThresholds;
     [Header("Event")]
     public float TimeToFinishEvent;
+    public float TimeToNextEvent;
+    public float DifficultyPercentageForNextEvent = 0.2f;
 }
