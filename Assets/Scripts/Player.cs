@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
 
     public class FieldData
     {
+        public GameObject ObjectReference;
         public BlockingObjects Objects;
         public bool ObjectPlaced = false;
     };
@@ -48,8 +49,8 @@ public class Player : MonoBehaviour
         ForestDistanceArray = new int[31, 31];
         CaveDistanceArray = new int[31, 31];
         CreateFields();
-        UpdateFieldCollisions();
         CalculateDistanceArrays();
+        UpdateFieldCollisions();
         RemoveLandscapeColliders();
 
         if (GameManager.Instance != null || GameManager.Instance.Inventory != null)
@@ -76,7 +77,7 @@ public class Player : MonoBehaviour
     {
         var resourceHud = ResourceHuds.Find(x => x.ResourceType == countableResource.ResourceType);
 
-        Debug.Log(BuildingManager.GetIdleCount(countableResource.ResourceType));
+        //Debug.Log(BuildingManager.GetIdleCount(countableResource.ResourceType));
 
         resourceHud.Refresh(countableResource.Count, BuildingManager.GetIdleCount(countableResource.ResourceType));
     }
@@ -126,7 +127,12 @@ public class Player : MonoBehaviour
         {
             Destroy(collider.GetComponent<BoxCollider>());
         }
-        
+        var collidersDeco = FindObjectsOfType<DecorativeTile>();
+        foreach (var collider in collidersDeco)
+        {
+            Destroy(collider.GetComponent<BoxCollider>());
+        }
+
     }
     private void UpdateFieldCollisions()
     {
@@ -140,18 +146,36 @@ public class Player : MonoBehaviour
                 if (hit.collider.GetComponent<RiverObstacle>() != null)
                 {
                     Debug.Log("River on: " + Field.Key.x + " "+ Field.Key.y);
+                    int i = (Field.Key.x - 5) / 10;
+                    int j = (Field.Key.y - 5) / 10;
+                    RiverDistanceArray[i, j] = 0;
+                    Debug.Log("River after calc: " + i + " " + j);
                     Field.Value.Objects = Field.Value.Objects | BlockingObjects.River;
                 }
                 else if (hit.collider.GetComponent<ForestObstacle>() != null)
                 {
+
+                    int i = (Field.Key.x - 5) / 10;
+                    int j = (Field.Key.y - 5) / 10;
+                    ForestDistanceArray[i, j] = 0;
+                    //Debug.Log("Forest on: " + Field.Key.x + " " + Field.Key.y);
                     Field.Value.Objects = Field.Value.Objects | BlockingObjects.Forest;
                 }
                 else if (hit.collider.GetComponent<CaveObstacle>() != null)
                 {
+                    int i = (Field.Key.x - 5) / 10;
+                    int j = (Field.Key.y - 5) / 10;
+                    CaveDistanceArray[i, j] = 0;
                     Field.Value.Objects = Field.Value.Objects | BlockingObjects.Cave;
+                    //Debug.Log("Cave on: " + Field.Key.x + " "+ Field.Key.y);
+                }
+                else if (hit.collider.GetComponent<DecorativeTile>() != null)
+                {
+                    Field.Value.ObjectReference = hit.collider.gameObject;
                 }
 
-                // debug end
+                Field.Value.ObjectReference = hit.collider.gameObject;
+
             }
 
         }
@@ -169,31 +193,31 @@ public class Player : MonoBehaviour
                 ForestDistanceArray[i, j] = 999;
             }
         }
-        for (int i = 0; i <= GridSize; i++)
+        /*for (int i = 0; i <= GridSize; i++)
         {
             for (int j = 0; j <= GridSize; j++)
             {
-                if (GridData.ContainsKey(new Vector2Int(i * 10 + 5, j * 10 + 5)))
+                if (GridData.ContainsKey(new Vector2Int(j * 10 + 5, i * 10 + 5)))
                 {
-                    if (GridData[new Vector2Int(i * 10 + 5, j * 10 + 5)].Objects.HasFlag(BlockingObjects.River))
+                    if (GridData[new Vector2Int(j * 10 + 5, i * 10 + 5)].Objects.HasFlag(BlockingObjects.River))
                     {
-                        RiverDistanceArray[i, j] = 0;
-                        Debug.Log("River hit on "+ i * 10 + 5 + ", " + j * 10 + 5);
+                        RiverDistanceArray[j, i] = 0;
+                        //Debug.Log("River hit on "+ (j * 10 + 5) + ", " + (i * 10 + 5));
                     }
-                    if (GridData[new Vector2Int(i * 10 + 5, j * 10 + 5)].Objects.HasFlag(BlockingObjects.Forest))
+                    if (GridData[new Vector2Int(j * 10 + 5, i * 10 + 5)].Objects.HasFlag(BlockingObjects.Forest))
                     {
-                        ForestDistanceArray[i, j] = 0;
-                        Debug.Log("Forest hit");
+                        ForestDistanceArray[j, i] = 0;
+                        //Debug.Log("Forest hit");
                     }
-                    if (GridData[new Vector2Int(i * 10 + 5, j * 10 + 5)].Objects.HasFlag(BlockingObjects.Cave))
+                    if (GridData[new Vector2Int(j * 10 + 5, i * 10 + 5)].Objects.HasFlag(BlockingObjects.Cave))
                     {
-                        CaveDistanceArray[i, j] = 0;
-                        Debug.Log("Cave hit");
+                        CaveDistanceArray[j, i] = 0;
+                        //Debug.Log("Cave hit");
                     }
                 }
 
             }
-        }
+        }*/
         /*for (int a = 0; a < GridSize; a++)
         {
             for (int i = 1; i < GridSize; i++)
@@ -226,14 +250,14 @@ public class Player : MonoBehaviour
         
         for (int i = 1; i < GridSize; i++)
         {
-            string debugStr = "i = " + i;
+            string debugStr = "i = " + i + " ";
             for (int j = 1; j < GridSize; j++)
             {
                 //debugStr += "[j=" + j + "]:";
-                debugStr += RiverDistanceArray[i, j];
+                debugStr += ForestDistanceArray[j, i];
                 debugStr += " ";
             }
-            Debug.Log(debugStr);
+            //Debug.Log(debugStr);
         }
     }
 }
