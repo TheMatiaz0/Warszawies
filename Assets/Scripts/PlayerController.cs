@@ -52,11 +52,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 newPosition;
     private Vector3 cachedPiePosition;
 
-   
-    public int HouseFromCollisionDistance = 2;
-    public int FisherhutFromRiverDistance = 2;
-    public int LumberjackFromForestDistance = 2;
-    public int StonecutterFromCaveDistance = 2;
     public bool IsInputActive = true;
 
     //public Dictionary<Vector2Int, FieldData> GridData = new Dictionary<Vector2Int, FieldData>();

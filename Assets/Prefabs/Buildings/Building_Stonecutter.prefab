@@ -449,12 +449,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c60f3aad7f5d54683b31bfabf81556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParticleSystem: {fileID: 0}
+  ParticleSystem: {fileID: 7972330429995679058}
   Cooldown: 10
   PercentageChance: 0.7
 --- !u!4 &4723570716328876950 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3716713484688980945, guid: 9d86161f91a79ae4e9b726bd78c5865b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8221626452495441991}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7972330429995679058 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2070105498926963989, guid: 9d86161f91a79ae4e9b726bd78c5865b,
     type: 3}
   m_PrefabInstance: {fileID: 8221626452495441991}
   m_PrefabAsset: {fileID: 0}

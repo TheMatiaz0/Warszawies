@@ -15,9 +15,9 @@ MonoBehaviour:
   Name: "Kamienio\u0142om"
   Requirements:
   - ResourceType: {fileID: 11400000, guid: b80b1d83b2c0d4340b7058a3609f5890, type: 2}
-    _count: 15
+    _count: 4
   - ResourceType: {fileID: 11400000, guid: 9330921651de13043b23d1e558912ca0, type: 2}
-    _count: 50
+    _count: 4
   Result:
   - ResourceType: {fileID: 11400000, guid: b80b1d83b2c0d4340b7058a3609f5890, type: 2}
     _count: 1
