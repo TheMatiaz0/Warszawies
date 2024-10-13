@@ -13,7 +13,7 @@ public class CameraMagnet : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.Instance.PlayerController.TopBar.gameObject.SetActive(false);
+        // GameManager.Instance.PlayerController.TopBar.gameObject.SetActive(false);
 
         GameManager.Instance.Card.IsActive = false;
         GameManager.Instance.PlayerController.IsInputActive = false;

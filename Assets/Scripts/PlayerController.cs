@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     SelectedBuildingHud hud;
 
-    public GameObject TopBar;
+    public CanvasGroup HUD;
 
     [SerializeField]
     BuildingPieInstance BuildingPiePrefab;
@@ -66,7 +66,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!IsInputActive) return;
+        if (!IsInputActive)
+        {
+            HUD.alpha = 0;
+            HUD.blocksRaycasts = false;
+            HUD.interactable = false;
+            return;
+        }
 
         Vector3 HitPoint = PlayerCamera.ScreenToViewportPoint(Input.mousePosition);
 
@@ -199,9 +205,12 @@ public class PlayerController : MonoBehaviour
 
                     GridData.TryGetValue(new Vector2Int((int)newPosition.x, (int)newPosition.z), out var fieldDataOut);
 
-                    if (fieldDataOut.ObjectReference.TryGetComponent<Tile>(out var tile))
+                    if (fieldDataOut.ObjectReference != null)
                     {
-                        tile.ClearTile();
+                        if (fieldDataOut.ObjectReference.TryGetComponent<Tile>(out var tile))
+                        {
+                            tile.ClearTile();
+                        }
                     }
 
                     GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;

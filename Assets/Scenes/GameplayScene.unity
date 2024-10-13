@@ -6207,14 +6207,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aa2ea2ec73184674dbcdcb93e1cd45ba, type: 2}
   - {fileID: 11400000, guid: 3b72e7fd9fbf8c84d91ad2f4d6be602b, type: 2}
   cameraRotationPivot: {fileID: 1763549972}
-  maxDistanceToPivotPoint: 65
+  maxDistanceToPivotPoint: 70
   minDistanceToPivotPoint: 30
   xRotSpeed: 1.5
   SelectedBuilding: {fileID: 0}
   BuildingManager: {fileID: 2103171961}
   Parent: {fileID: 665654447}
   hud: {fileID: 2102621822}
-  TopBar: {fileID: 1663568091}
+  HUD: {fileID: 1826900706}
   BuildingPiePrefab: {fileID: 1299863283032816028, guid: 5104dd55da31a874690b1c277c39b2e7,
     type: 3}
   IsInputActive: 1
@@ -22929,7 +22929,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7150490863582054467, guid: 582f34fd7b55b2e40bbb1ce89411f9dd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1826900706}
   m_SourcePrefab: {fileID: 100100000, guid: 582f34fd7b55b2e40bbb1ce89411f9dd, type: 3}
 --- !u!114 &1560637485 stripped
 MonoBehaviour:
@@ -24480,12 +24484,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8159e3553777c514dad320c91699819e, type: 3}
---- !u!1 &1663568091 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2956991544472564237, guid: 582f34fd7b55b2e40bbb1ce89411f9dd,
-    type: 3}
-  m_PrefabInstance: {fileID: 1560637483}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1672829872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26431,6 +26429,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2faf9c1c6ceea944874f71783173eb7, type: 3}
+--- !u!1 &1826900702 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7150490863582054467, guid: 582f34fd7b55b2e40bbb1ce89411f9dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1560637483}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1826900706
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826900702}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &1829473604
 PrefabInstance:
   m_ObjectHideFlags: 0
