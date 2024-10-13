@@ -10,8 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     GameObject Building;
 
-    [SerializeField]
-    Camera PlayerCamera;
+    public Camera PlayerCamera;
 
     [SerializeField]
     Player player;
@@ -19,8 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     List<BuildingData> Buildings;
 
-    [SerializeField] 
-    Transform cameraRotationPivot;
+    public Transform cameraRotationPivot;
 
     [SerializeField] 
     float maxDistanceToPivotPoint = 70;
@@ -57,21 +55,22 @@ public class PlayerController : MonoBehaviour
     public int FisherhutFromRiverDistance = 2;
     public int LumberjackFromForestDistance = 2;
     public int StonecutterFromCaveDistance = 2;
+    public bool IsInputActive = true;
 
     //public Dictionary<Vector2Int, FieldData> GridData = new Dictionary<Vector2Int, FieldData>();
 
     private Vector3 previousPosition = new Vector3();
 
-    // Start is called before the first frame update
     void Start()
     {
         SelectedBuilding = Buildings[0];
         //UpdateCameraPosition();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (!IsInputActive) return;
+
         Vector3 HitPoint = PlayerCamera.ScreenToViewportPoint(Input.mousePosition);
 
         Ray ray = PlayerCamera.ViewportPointToRay(PlayerCamera.ScreenToViewportPoint(Input.mousePosition));
@@ -267,9 +266,8 @@ public class PlayerController : MonoBehaviour
         BuildAt(cachedPiePosition);
     }
 
-    void UpdateCameraPosition()
+    public void UpdateCameraPosition()
     {
-
         Vector3 currentPosition = PlayerCamera.ScreenToViewportPoint(Input.mousePosition);
         Vector3 direction = previousPosition - currentPosition;
 
@@ -281,6 +279,17 @@ public class PlayerController : MonoBehaviour
         PlayerCamera.transform.Translate(new Vector3(0, 0, -currentDistanceToPivotPoint));
 
         previousPosition = currentPosition;
+    }
+
+    public void OrbitCamera(float x) 
+    {
+        // float rotationAroundYAxis = -direction.x * 180 * xRotSpeed;
+        float rotationAroundYAxis = x * 180 * xRotSpeed;
+
+        // PlayerCamera.transform.position = cameraRotationPivot.position;
+
+        PlayerCamera.transform.Rotate(new Vector3(0, 1, 0), rotationAroundYAxis, Space.World);
+        PlayerCamera.transform.Translate(new Vector3(0, 0, -currentDistanceToPivotPoint));
     }
 
     int CheckForNearestRiver(int x, int z)

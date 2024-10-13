@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public EventData GameOverEvent;
     public BuildingManager BuildingManager;
     public EventManager EventManager;
+    public PlayerController PlayerController;
 
     public static GameManager Instance { get; private set; }
 
