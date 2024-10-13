@@ -160,18 +160,21 @@ public class PlayerController : MonoBehaviour
                 {
                     BuildingManager.Build(SelectedBuilding, newPosition);
 
+
                     GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
                     GameManager.Instance.Inventory.CreatedBuildings.Add(SelectedBuilding);
-                }
-                else
-                {
                 }
             }
             else if (SelectedBuilding.AllowedObjects.HasFlag(BlockingObjects.Forest)) // Mozna postawic przy lesie
             {
-                if (forestDistance < LumberjackFromForestDistance)
+                if (forestDistance == 0)
                 {
                     BuildingManager.Build(SelectedBuilding, newPosition);
+
+
+                    GridData.TryGetValue(new Vector2Int((int)newPosition.x, (int)newPosition.z), out var fieldDataOut);
+                    Tile tile = fieldDataOut.ObjectReference.GetComponent<Tile>();
+                    tile.ClearTile();
 
                     GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
                     GameManager.Instance.Inventory.CreatedBuildings.Add(SelectedBuilding);
@@ -179,9 +182,13 @@ public class PlayerController : MonoBehaviour
             }
             else if (SelectedBuilding.AllowedObjects.HasFlag(BlockingObjects.Cave)) // Mozna postawic przy jaskiniach
             {
-                if (caveDistance < StonecutterFromCaveDistance)
+                if (caveDistance == 0)
                 {
                     BuildingManager.Build(SelectedBuilding, newPosition);
+
+                    GridData.TryGetValue(new Vector2Int((int)newPosition.x, (int)newPosition.z), out var fieldDataOut);
+                    Tile tile = fieldDataOut.ObjectReference.GetComponent<Tile>();
+                    tile.ClearTile();
 
                     GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
                     GameManager.Instance.Inventory.CreatedBuildings.Add(SelectedBuilding);
@@ -189,10 +196,14 @@ public class PlayerController : MonoBehaviour
             }
             else if (SelectedBuilding.AllowedObjects.HasFlag(BlockingObjects.House)) // to dom
             {
-                int minDist = Mathf.Min(caveDistance, forestDistance, riverDistance);
-                if (minDist < HouseFromCollisionDistance)
+                if (riverDistance != 0)
                 {
                     BuildingManager.Build(SelectedBuilding, newPosition);
+
+
+                    GridData.TryGetValue(new Vector2Int((int)newPosition.x, (int)newPosition.z), out var fieldDataOut);
+                    Tile tile = fieldDataOut.ObjectReference.GetComponent<Tile>();
+                    tile.ClearTile();
 
                     GridData[new Vector2Int((int)newPosition.x, (int)newPosition.z)].ObjectPlaced = true;
                     GameManager.Instance.Inventory.CreatedBuildings.Add(SelectedBuilding);
@@ -275,15 +286,15 @@ public class PlayerController : MonoBehaviour
     int CheckForNearestRiver(int x, int z)
     {
         //Debug.Log(RiverDistanceArray[x / 5, z / 5]);
-        return RiverDistanceArray[x / 5, z / 5];
+        return RiverDistanceArray[(x - 5) / 10, (z - 5) / 10];
         //player.GridData[new Vector2Int(x, z)].Objects.HasFlag(BlockingObjects.River)
     }
     int CheckForNearestForest(int x, int z)
     {
-        return ForestDistanceArray[x / 5, z / 5];
+        return ForestDistanceArray[(x - 5) / 10, (z - 5) / 10];
     }
     int CheckForNearestCave(int x, int z)
     {
-        return CaveDistanceArray[x / 5, z / 5];
+        return CaveDistanceArray[(x - 5) / 10, (z - 5) / 10];
     }
 }
