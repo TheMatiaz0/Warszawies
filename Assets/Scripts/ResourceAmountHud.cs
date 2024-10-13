@@ -15,7 +15,7 @@ public class ResourceAmountHud : MonoBehaviour
         string prefix = string.Empty;
         if (shouldAddPrefix)
         {
-            prefix = count > 0 ? "+" : "-";
+            prefix = count > 0 ? "+" : "";
         }
 
         Count.text = $"{prefix}{count}";

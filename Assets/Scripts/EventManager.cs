@@ -8,7 +8,7 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
     private Ticker Ticker;
-    public readonly Queue<EventInstance> EventQueue = new();
+    public Queue<EventInstance> EventQueue = new();
 
     public List<EventData> AllPossibleEvents;
     public Transform Parent;
@@ -59,18 +59,19 @@ public class EventManager : MonoBehaviour
             SpendResources(eventData);
             GetRewards(eventData);
         }
-        else
+
+        var instance = EventQueue.FirstOrDefault(x => x.Data == eventData);
+        if (instance != null)
         {
-            AddToQueue(eventData);
+            return;
         }
+        AddToQueue(eventData);
     }
 
     public void Cancel(EventData eventData)
     {
-        var instances = EventQueue.ToList();
-
-        var instance = instances.Find(x => x.Data == eventData);
-        instances.Remove(instance);
+        EventQueue = new Queue<EventInstance>(EventQueue.Where(x => x.Data != eventData));
+        Remove(eventData);
         PayResources(eventData);
     }
 
@@ -145,14 +146,19 @@ public class EventManager : MonoBehaviour
     public EventInstance GetFromQueue()
     {
         var eventData = EventQueue.Dequeue();
-        var portraitToBeRemoved = portraits.Find(x => x.EventData == eventData.Data);
+        Remove(eventData.Data);
+
+        return eventData;
+    }
+
+    private void Remove(EventData eventData)
+    {
+        var portraitToBeRemoved = portraits.Find(x => x.EventData == eventData);
         if (portraitToBeRemoved != null)
         {
             Destroy(portraitToBeRemoved.gameObject);
         }
         portraits.Remove(portraitToBeRemoved);
-
-        return eventData;
     }
 
     private void Update()

@@ -71,6 +71,12 @@ public class CardModal : MonoBehaviour
 
     private void Purge()
     {
+        CloseButton.onClick.RemoveAllListeners();
+        ModalBackground.onClick.RemoveAllListeners();
+        AcceptButton.onClick.RemoveAllListeners();
+        CancelButton.onClick.RemoveAllListeners();
+        RestartButton.onClick.RemoveAllListeners();
+
         foreach (Transform item in RequirementLayout)
         {
             Destroy(item.gameObject);
@@ -91,24 +97,24 @@ public class CardModal : MonoBehaviour
     {
         foreach (var resource in data.Requirement)
         {
-            SpawnSinglePayment(RequirementLayout, resource, false);
+            SpawnSinglePayment(RequirementLayout, resource, false, false);
         }
 
         foreach (var resource in data.FailCondition)
         {
-            SpawnSinglePayment(PenaltyLayout, resource, true);
+            SpawnSinglePayment(PenaltyLayout, resource, true, true);
         }
 
         foreach (var resource in data.WinCondition)
         {
-            SpawnSinglePayment(RewardLayout, resource, true);
+            SpawnSinglePayment(RewardLayout, resource, true, false);
         }
     }
 
-    private void SpawnSinglePayment(Transform parent, CountableResource resource, bool shouldAddPrefix)
+    private void SpawnSinglePayment(Transform parent, CountableResource resource, bool shouldAddPrefix, bool isNegative)
     {
         var payment = Instantiate(PaymentPrefab, parent);
-        payment.Setup(resource.ResourceType.Icon, resource.Count, shouldAddPrefix);
+        payment.Setup(resource.ResourceType.Icon, isNegative ? -resource.Count : resource.Count, shouldAddPrefix);
     }
 
     private void SetupVisuals(EventData eventData)
