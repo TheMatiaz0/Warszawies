@@ -22,7 +22,7 @@ public class PopulationFoodDeployer : MonoBehaviour
 
     public void CheckRequiredFood()
     {
-        var requiredFood = (population.Count / 10) * GameManager.Instance.Balance.FoodEatenPerTick;
+        var requiredFood = ((population.Count / 10) * GameManager.Instance.Balance.FoodEatenPerTick) / 2;
 
         if (food.Count >= requiredFood)
         {

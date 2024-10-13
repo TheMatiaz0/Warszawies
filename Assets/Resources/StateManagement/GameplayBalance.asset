@@ -23,7 +23,7 @@ MonoBehaviour:
   - Building: {fileID: 11400000, guid: a4022dd79fd32a84db519bae47545b88, type: 2}
     Threshold: 100
   - Building: {fileID: 11400000, guid: edb6e2b6b2ee8b74c85d1ff129eab063, type: 2}
-    Threshold: 1000
+    Threshold: 250
   TimeToFinishEvent: 70
-  TimeToNextEvent: 20
-  DifficultyPercentageForNextEvent: 0.2
+  TimeToNextEvent: 15
+  DifficultyPercentageForNextEvent: 0.5
