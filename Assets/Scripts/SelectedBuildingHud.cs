@@ -50,7 +50,7 @@ public class SelectedBuildingHud : MonoBehaviour
         foreach (var item in buildingData.Requirements)
         {
             var display = Instantiate(ResourceAmountPrefab, requirementParent);
-            display.Setup(item.ResourceType.Icon, item.Count, true);
+            display.Setup(item.ResourceType.Icon, -item.Count, true);
         }
 
         Open();
