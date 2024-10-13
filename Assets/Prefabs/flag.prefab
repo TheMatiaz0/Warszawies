@@ -133,8 +133,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -1.5977218, y: 16.515926, z: 0}
-    m_Extent: {x: 1.5977218, y: 1.115766, z: 0}
+    m_Center: {x: -1.5971078, y: 16.481464, z: -0.08906524}
+    m_Extent: {x: 1.5971078, y: 1.1502285, z: 0.22347696}
   m_DirtyAABB: 0
 --- !u!183 &9181680518705613421
 Cloth:
@@ -149,8 +149,8 @@ Cloth:
   m_UseTethers: 1
   m_UseGravity: 1
   m_Damping: 0
-  m_ExternalAcceleration: {x: 0, y: 20, z: 0}
-  m_RandomAcceleration: {x: 0, y: 20, z: 0}
+  m_ExternalAcceleration: {x: -50, y: 0, z: 0}
+  m_RandomAcceleration: {x: 0, y: 0, z: 20}
   m_WorldVelocityScale: 0.5
   m_WorldAccelerationScale: 1
   m_Friction: 0.2

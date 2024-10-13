@@ -77,8 +77,7 @@ public class BuildingManager : MonoBehaviour
 
     public int GetIdleCount(ResourceData resourceData)
     {
-        return BuildingInstances.Where(x => x.Data == resourceData)
-            .Sum(x => x.Data.Result.Count);
+        return BuildingInstances.Sum(x => x.Data.Result.Count);
     }
 
     public void Build(BuildingData data, Vector3 position)
