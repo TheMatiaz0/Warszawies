@@ -137,9 +137,7 @@ public class EventManager : MonoBehaviour
         EventQueue.Enqueue(new(eventData, false));
         var createdPortrait = Instantiate(PortraitPrefab, Parent);
 
-        var p = Ticker.TimeGetter;
-        var time = p.Invoke();
-        createdPortrait.Setup(time, eventData, Card);
+        createdPortrait.Setup(ref Ticker, eventData, Card);
 
         portraits.Add(createdPortrait);
     }
