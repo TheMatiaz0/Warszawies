@@ -124,14 +124,6 @@ public class CardModal : MonoBehaviour
         IllustrationSlot.sprite = eventData.Illustration;
     }
 
-    private void Clear()
-    {
-        CloseButton.onClick.RemoveListener(Close);
-        ModalBackground.onClick.RemoveListener(Close);
-        AcceptButton.onClick.RemoveListener(Accept);
-        CancelButton.onClick.RemoveListener(Cancel);
-    }
-
     // accept -> if has required items: drop items else add to quest backlog
     // cancel -> pay the price
 
@@ -153,7 +145,6 @@ public class CardModal : MonoBehaviour
         CanvasGroup.blocksRaycasts = false;
         CanvasGroup.interactable = false;
         Time.timeScale = 1;
-        Clear();
     }
 
     private void Open()

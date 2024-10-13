@@ -13,7 +13,6 @@ public class PortraitEventHud : MonoBehaviour
     [Header("Dynamic")]
     public EventData EventData;
     public CardModal Card;
-    public EventManager EventManager;
 
     private Ticker ticker;
 
@@ -37,6 +36,11 @@ public class PortraitEventHud : MonoBehaviour
     {
         var percentage = ticker.Passed / GameManager.Instance.Balance.TimeToFinishEvent;
         TimeSlider.fillAmount = percentage;
+
+        if (percentage >= 0.99f)
+        {
+            GameManager.Instance.EventManager.Cancel(EventData);
+        }
     }
 
     private void OnDestroy()

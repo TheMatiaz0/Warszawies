@@ -1,4 +1,4 @@
-using Rubin;
+﻿using Rubin;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +8,6 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
     private Ticker NextEventTicker;
-    private Ticker FinishEventTicker;
     public Queue<EventInstance> EventQueue = new();
 
     public List<EventData> AllPossibleEvents;
@@ -171,12 +170,6 @@ public class EventManager : MonoBehaviour
     {
         if (NextEventTicker.Done && EventQueue != null && !test)
         {
-            for (int i = 0; i < EventQueue.Count; i++)
-            {
-                var eventDataToCancel = GetFromQueue();
-                Cancel(eventDataToCancel.Data);
-            }
-
             var rngEventData = Randomer.Base.NextRandomElement(AllPossibleEvents);
             rngEventData = Instantiate(rngEventData);
             var percentage = PreviousEventsCount * GameManager.Instance.Balance.DifficultyPercentageForNextEvent;
