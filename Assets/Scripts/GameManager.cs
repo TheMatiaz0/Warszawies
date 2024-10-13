@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public BuildingManager BuildingManager;
     public EventManager EventManager;
     public PlayerController PlayerController;
+    public AudioSource MusicMain;
 
     public static GameManager Instance { get; private set; }
 

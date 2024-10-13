@@ -29159,6 +29159,7 @@ MonoBehaviour:
   BuildingManager: {fileID: 2103171961}
   EventManager: {fileID: 550433223}
   PlayerController: {fileID: 479467124}
+  MusicMain: {fileID: 2008324489}
 --- !u!1001 &2030379468
 PrefabInstance:
   m_ObjectHideFlags: 0

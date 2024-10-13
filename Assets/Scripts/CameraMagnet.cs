@@ -13,6 +13,9 @@ public class CameraMagnet : MonoBehaviour
 
     private void Awake()
     {
+
+        GameManager.Instance.MusicMain.Stop();
+        GameManager.Instance.MusicMain.volume = 0;
         // GameManager.Instance.PlayerController.TopBar.gameObject.SetActive(false);
 
         GameManager.Instance.Card.IsActive = false;
