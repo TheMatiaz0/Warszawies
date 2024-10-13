@@ -24,6 +24,6 @@ MonoBehaviour:
     Threshold: 50
   - Building: {fileID: 11400000, guid: edb6e2b6b2ee8b74c85d1ff129eab063, type: 2}
     Threshold: 200
-  TimeToFinishEvent: 75
-  TimeToNextEvent: 5
-  DifficultyPercentageForNextEvent: 0.4
+  TimeToFinishEvent: 70
+  TimeToNextEvent: 10
+  DifficultyPercentageForNextEvent: 0.37
