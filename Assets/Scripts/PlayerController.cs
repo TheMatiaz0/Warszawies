@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     SelectedBuildingHud hud;
 
+    public GameObject TopBar;
+
     [SerializeField]
     BuildingPieInstance BuildingPiePrefab;
 

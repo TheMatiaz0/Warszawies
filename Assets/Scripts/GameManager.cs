@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour
     {
         if (populationResource.Count >= Balance.PopulationThresholds[^1].Threshold)
         {
-            // last threshold overflown
             Debug.Log("you win!");
         }
     }

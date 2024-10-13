@@ -26,6 +26,7 @@ public class CardModal : MonoBehaviour
     public Button RestartButton;
 
     public CanvasGroup CanvasGroup;
+    public bool IsActive = true;
 
     private EventData EventData;
 
@@ -36,6 +37,8 @@ public class CardModal : MonoBehaviour
 
     public void OpenWith(EventData eventData)
     {
+        if (!IsActive) return;
+
         Purge();
 
         EventData = eventData;

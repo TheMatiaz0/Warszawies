@@ -6214,6 +6214,7 @@ MonoBehaviour:
   BuildingManager: {fileID: 2103171961}
   Parent: {fileID: 665654447}
   hud: {fileID: 2102621822}
+  TopBar: {fileID: 1663568091}
   BuildingPiePrefab: {fileID: 1299863283032816028, guid: 5104dd55da31a874690b1c277c39b2e7,
     type: 3}
   HouseFromCollisionDistance: 2
@@ -24483,6 +24484,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8159e3553777c514dad320c91699819e, type: 3}
+--- !u!1 &1663568091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2956991544472564237, guid: 582f34fd7b55b2e40bbb1ce89411f9dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1560637483}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1672829872
 PrefabInstance:
   m_ObjectHideFlags: 0
