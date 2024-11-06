@@ -73,12 +73,12 @@ public class EventManager : MonoBehaviour
                 var inventoryResource = GameManager.Instance.Inventory.CountableResources.Find(x => x.ResourceType == resource.ResourceType);
                 var delta = inventoryResource.Count - resource.Count;
 
-                if (delta > maxValue)
+                if (buildings < minValue)
                 {
-                    maxValue = delta;
-                    if (buildings < minValue)
+                    minValue = buildings;
+                    if (delta > maxValue)
                     {
-                        minValue = buildings;
+                        maxValue = delta;
                         requiredResource = resource;
                     }
                 }
