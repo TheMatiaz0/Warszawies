@@ -16,7 +16,11 @@ public class BuildingInstance : MonoBehaviour
 
     private void Awake()
     {
-        Audio.PlayOneShot(Data.OnBuiltClip);
+        if (Data.OnBuiltClip != null)
+        {
+            Audio.PlayOneShot(Data.OnBuiltClip);
+        }
+
         Invoke(nameof(PlayFirstIdle), 0.2f);
         ticker = TickerCreator.CreateNormalTime(GameManager.Instance.Balance.CooldownForAllBuildings);
         audioTicker = TickerCreator.CreateNormalTime(GameManager.Instance.Balance.CooldownForAllBuildings + 10f + Random.Range(-1f, 1f));
@@ -24,7 +28,10 @@ public class BuildingInstance : MonoBehaviour
 
     private void PlayFirstIdle()
     {
-        Audio.PlayOneShot(Data.OnIdleClip);
+        if (Data.OnIdleClip != null)
+        {
+            Audio.PlayOneShot(Data.OnIdleClip);
+        }
     }
 
     private void Update()

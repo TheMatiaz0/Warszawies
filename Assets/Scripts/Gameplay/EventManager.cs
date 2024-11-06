@@ -18,6 +18,7 @@ public class EventManager : MonoBehaviour
     public AudioClip AcceptQuestClip;
     public AudioClip DeclineQuestClip;
     public AudioClip CompleteQuestClip;
+    public AudioClip ReminderQuestClip;
 
     private int PreviousEventsCount;
     private readonly List<PortraitEventHud> portraits = new();
@@ -55,6 +56,10 @@ public class EventManager : MonoBehaviour
         foreach (var eventData in EventQueue)
         {
             eventData.IsGoalAccomplished = IsEventAccomplished(eventData.Data);
+            if (eventData.IsGoalAccomplished)
+            {
+                Audio.PlayOneShot(ReminderQuestClip);
+            }
         }
     }
     
