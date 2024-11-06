@@ -3,7 +3,7 @@ using System;
 [Serializable]
 public class EventInstance
 {
-    public event Action<bool> OnAccomplishmentChanged;
+    public event Action<EventInstance, bool> OnAccomplishmentChanged;
 
     public EventData Data;
     public bool IsGoalAccomplished 
@@ -12,7 +12,7 @@ public class EventInstance
         set
         {
             _isGoalAccomplished = value;
-            OnAccomplishmentChanged?.Invoke(value);
+            OnAccomplishmentChanged?.Invoke(this, value);
         }
     }
 

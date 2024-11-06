@@ -56,36 +56,31 @@ public class EventManager : MonoBehaviour
         foreach (var eventData in EventQueue)
         {
             eventData.IsGoalAccomplished = IsEventAccomplished(eventData.Data);
-            if (eventData.IsGoalAccomplished)
-            {
-                Audio.PlayOneShot(ReminderQuestClip);
-            }
         }
     }
     
     public CountableResource GetDeltaOfRequirements()
     {
-        int maxValue = int.MinValue;
         CountableResource requiredResource = null;
-        int minValue = int.MaxValue;
+        var latest = EventQueue.ToArray()[^1];
         
-        foreach (var eventData in EventQueue)
+        int maxValue = int.MinValue;
+        int minValue = int.MaxValue;
+            
+        foreach (var resource in latest.Data.Requirement)
         {
-            foreach (var resource in eventData.Data.Requirement)
-            {
-                var buildings = BuildingManager.GetAllBuildingsThatGatherResourceWithPalace(resource);
+            var buildings = BuildingManager.GetAllBuildingsThatGatherResourceWithPalace(resource);
                 
-                var inventoryResource = GameManager.Instance.Inventory.CountableResources.Find(x => x.ResourceType == resource.ResourceType);
-                var delta = resource.Count - inventoryResource.Count;
+            var inventoryResource = GameManager.Instance.Inventory.CountableResources.Find(x => x.ResourceType == resource.ResourceType);
+            var delta = resource.Count - inventoryResource.Count;
 
-                if (buildings < minValue)
+            if (buildings < minValue)
+            {
+                minValue = buildings;
+                if (delta > maxValue)
                 {
-                    minValue = buildings;
-                    if (delta > maxValue)
-                    {
-                        maxValue = delta;
-                        requiredResource = resource;
-                    }
+                    maxValue = delta;
+                    requiredResource = resource;
                 }
             }
         }
@@ -191,12 +186,23 @@ public class EventManager : MonoBehaviour
 
     public void AddToQueue(EventData eventData)
     {
-        EventQueue.Enqueue(new(eventData, false));
+        var t = new EventInstance(eventData, false);
+        t.OnAccomplishmentChanged += OnGoalAccomplished;
+        EventQueue.Enqueue(t);
         var createdPortrait = Instantiate(PortraitPrefab, Parent);
 
         createdPortrait.Setup(eventData, Card);
 
         portraits.Add(createdPortrait);
+    }
+
+    private void OnGoalAccomplished(EventInstance instance, bool isTrue)
+    {
+        if (isTrue)
+        {
+            instance.OnAccomplishmentChanged -= OnGoalAccomplished;
+            Audio.PlayOneShot(ReminderQuestClip);
+        }
     }
 
     public EventInstance GetFromQueue()

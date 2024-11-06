@@ -51,7 +51,7 @@ public class PortraitEventHud : MonoBehaviour
         }
     }
 
-    private void OnAccomplishmentChanged(bool canAccept)
+    private void OnAccomplishmentChanged(EventInstance _, bool canAccept)
     {
         CompleteOutline.gameObject.SetActive(canAccept);
     }
