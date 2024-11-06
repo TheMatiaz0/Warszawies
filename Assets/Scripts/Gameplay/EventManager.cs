@@ -71,7 +71,7 @@ public class EventManager : MonoBehaviour
                 var buildings = BuildingManager.GetAllBuildingsThatGatherResourceWithPalace(resource);
                 
                 var inventoryResource = GameManager.Instance.Inventory.CountableResources.Find(x => x.ResourceType == resource.ResourceType);
-                var delta = inventoryResource.Count - resource.Count;
+                var delta = resource.Count - inventoryResource.Count;
 
                 if (buildings < minValue)
                 {

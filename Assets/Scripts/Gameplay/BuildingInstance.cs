@@ -47,7 +47,10 @@ public class BuildingInstance : MonoBehaviour
             audioTicker.RequiredTime = GameManager.Instance.Balance.CooldownForAllBuildings + Random.Range(-1f, 1f);
             Audio.volume = Random.Range(0.75f, 1f);
             Audio.pitch = Random.Range(0.8f, 1.15f);
-            Audio.PlayOneShot(Data.OnIdleClip);
+            if (Data.OnIdleClip != null)
+            {
+                Audio.PlayOneShot(Data.OnIdleClip);
+            }
         }
     }
 }
