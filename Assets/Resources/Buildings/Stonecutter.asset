@@ -26,3 +26,6 @@ MonoBehaviour:
   AllowedObjects: 2
   StartPosition: {x: 0, y: 0, z: 0}
   BuildingIcon: {fileID: -724787450, guid: 369a885745b3c3143ba9add92e501552, type: 3}
+  OnBuiltClip: {fileID: 8300000, guid: 5d700e0385a913746b6e076fa149b0d6, type: 3}
+  OnIdleClip: {fileID: 8300000, guid: 76cf8c829352caf41bdfcd36fc30ed3b, type: 3}
+  PercentageToPlayIdle: 60

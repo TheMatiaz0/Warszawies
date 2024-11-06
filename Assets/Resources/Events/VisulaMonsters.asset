@@ -35,3 +35,4 @@ MonoBehaviour:
   AbleToCancel: 1
   AbleToAccept: 1
   AbleToRestart: 0
+  OnEventStartClip: {fileID: 8300000, guid: 4daad71e05859fa4f987f8b0225ae710, type: 3}

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Drewno
   Icon: {fileID: -1523808770, guid: 369a885745b3c3143ba9add92e501552, type: 3}
+  OnZeroResourceClip: {fileID: 8300000, guid: 1e530c524f7c5dc4ca9d4637c4f22d00, type: 3}

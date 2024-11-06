@@ -1,6 +1,4 @@
 ﻿using Rubin;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,6 +12,12 @@ public class EventManager : MonoBehaviour
     public Transform Parent;
     public PortraitEventHud PortraitPrefab;
     public CardModal Card;
+    public BuildingManager BuildingManager;
+    [Header("Audio")]
+    public AudioSource Audio;
+    public AudioClip AcceptQuestClip;
+    public AudioClip DeclineQuestClip;
+    public AudioClip CompleteQuestClip;
 
     private int PreviousEventsCount;
     private readonly List<PortraitEventHud> portraits = new();
@@ -46,12 +50,42 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    private void OnResourcesCountChanged(CountableResource obj)
+    private void OnResourcesCountChanged(CountableResource resource)
     {
         foreach (var eventData in EventQueue)
         {
             eventData.IsGoalAccomplished = IsEventAccomplished(eventData.Data);
         }
+    }
+    
+    public CountableResource GetDeltaOfRequirements()
+    {
+        int maxValue = int.MinValue;
+        CountableResource requiredResource = null;
+        int minValue = int.MaxValue;
+        
+        foreach (var eventData in EventQueue)
+        {
+            foreach (var resource in eventData.Data.Requirement)
+            {
+                var buildings = BuildingManager.GetAllBuildingsThatGatherResourceWithPalace(resource);
+                
+                var inventoryResource = GameManager.Instance.Inventory.CountableResources.Find(x => x.ResourceType == resource.ResourceType);
+                var delta = inventoryResource.Count - resource.Count;
+
+                if (delta > maxValue)
+                {
+                    maxValue = delta;
+                    if (buildings < minValue)
+                    {
+                        minValue = buildings;
+                        requiredResource = resource;
+                    }
+                }
+            }
+        }
+
+        return requiredResource;
     }
 
     private void Clear()
@@ -69,6 +103,7 @@ public class EventManager : MonoBehaviour
             SpendResources(eventData);
             GetRewards(eventData);
             Remove(eventData);
+            Audio.PlayOneShot(CompleteQuestClip);
         }
 
         var instance = EventQueue.FirstOrDefault(x => x.Data == eventData);
@@ -77,6 +112,8 @@ public class EventManager : MonoBehaviour
             return;
         }
         AddToQueue(eventData);
+        Audio.Stop();
+        Audio.PlayOneShot(AcceptQuestClip);
     }
 
     public void Cancel(EventData eventData)
@@ -84,6 +121,9 @@ public class EventManager : MonoBehaviour
         EventQueue = new Queue<EventInstance>(EventQueue.Where(x => x.Data != eventData));
         Remove(eventData);
         PayResources(eventData);
+
+        Audio.Stop();
+        Audio.PlayOneShot(DeclineQuestClip);
     }
 
     public void PayResources(EventData eventData)
@@ -201,6 +241,7 @@ public class EventManager : MonoBehaviour
             }
 
             Card.OpenWith(rngEventData);
+            Audio.PlayOneShot(rngEventData.OnEventStartClip);
             PreviousEventsCount += 1;
             test = true;
         }

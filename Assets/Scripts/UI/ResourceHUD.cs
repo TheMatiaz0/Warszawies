@@ -15,8 +15,9 @@ public class ResourceHUD : MonoBehaviour
     {
         CountDisplay.text = count.ToString();
 
-        string prefix = idleCount > 0 ? "+" : "-";
+        string prefix = idleCount == 0 ? "" : idleCount > 0 ? "+" : "-";
+        string color = idleCount == 0 ? "white" : idleCount > 0 ? "green" : "red";
 
-        IdleCountDisplay.text = $"({prefix}{idleCount})";
+        IdleCountDisplay.text = $"<color={color}>({prefix}{idleCount})</color>";
     }
 }

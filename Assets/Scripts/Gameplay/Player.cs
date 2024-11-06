@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Rubin;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 
@@ -22,10 +24,12 @@ public class Player : MonoBehaviour
     public List<ResourceHUD> ResourceHuds;
     public CardModal EventCard;
     public BuildingManager BuildingManager;
+    public EventManager EventManager;
+    public AudioSource Audio;
 
+    public int TimeToSpeak = 15;
     public int GridSize = 20;
-
-
+    
     public static int[,] RiverDistanceArray = new int[31, 31];
     public static int[,] ForestDistanceArray = new int[31, 31];
     public static int[,] CaveDistanceArray = new int[31, 31];
@@ -38,10 +42,11 @@ public class Player : MonoBehaviour
     };
 
     public static Dictionary<Vector2Int, FieldData> GridData;
-
+    private Ticker ticker;
 
     private void Start()
     {
+        ticker = TickerCreator.CreateNormalTime(TimeToSpeak);
         GridData = new Dictionary<Vector2Int, FieldData>();
         RiverDistanceArray = new int[31, 31];
         ForestDistanceArray = new int[31, 31];
@@ -63,6 +68,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (ticker.Push())
+        {
+            var resourceDelta = EventManager.GetDeltaOfRequirements();
+            if (resourceDelta != null)
+            {
+                Audio.PlayOneShot(resourceDelta.ResourceType.OnZeroResourceClip);
+            }
+        }
+    }
+
     private void OnNewBuilding(BuildingData obj)
     {
         foreach (var resource in GameManager.Instance.Inventory.CountableResources)
@@ -74,8 +91,8 @@ public class Player : MonoBehaviour
     private void RefreshHud(CountableResource countableResource)
     {
         var resourceHud = ResourceHuds.Find(x => x.ResourceType == countableResource.ResourceType);
-
-        resourceHud.Refresh(countableResource.Count, BuildingManager.GetIdleCount(countableResource.ResourceType));
+        
+        resourceHud.Refresh(countableResource.Count, BuildingManager.GetAllBuildingsThatGatherResourceWithPalace(countableResource));
     }
 
     private void OnDestroy()

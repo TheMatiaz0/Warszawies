@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Populacja
   Icon: {fileID: 1653554327, guid: 369a885745b3c3143ba9add92e501552, type: 3}
+  OnZeroResourceClip: {fileID: 8300000, guid: 9ed64cfe2df4fde4a8b8f3274080adcf, type: 3}

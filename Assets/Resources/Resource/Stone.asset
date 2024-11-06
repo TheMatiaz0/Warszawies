@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "Kamie\u0144"
   Icon: {fileID: 1962093265, guid: 369a885745b3c3143ba9add92e501552, type: 3}
+  OnZeroResourceClip: {fileID: 8300000, guid: db5ae0d5c6a401b4e92bfdb249d61e0a, type: 3}

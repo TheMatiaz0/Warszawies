@@ -74,10 +74,10 @@ public class BuildingManager : MonoBehaviour
     {
         return BuildingInstances.FindAll(x => x.Data.AllowedObjects.HasFlag(blockingObjects));
     }
-
-    public int GetIdleCount(ResourceData resourceData)
+    
+    public int GetAllBuildingsThatGatherResourceWithPalace(CountableResource resource)
     {
-        return BuildingInstances.Sum(x => x.Data.Result.Count);
+        return BuildingInstances.Sum(x => x.Data.Result.FindAll(y => y.ResourceType == resource.ResourceType).Count);
     }
 
     public void Build(BuildingData data, Vector3 position)

@@ -15,7 +15,7 @@ MonoBehaviour:
   Title: "Lesz si\u0119 na g\u0142ow\u0119"
   Description: "Jaki\u015B siwy i natarczywy pan powiada, \u017Ce jest Leszym i \u017Ce
     chroni las przed wycink\u0105. Mo\u017Ce to wp\u0142yn\u0105\u0107 powa\u017Cnie
-    na nasze zbiory na opa\u0142. Wymusza na nas u\u017Cywanie kamienia."
+    na nasze zbiory na opa\u0142."
   Illustration: {fileID: 2098746256, guid: 9e4c4d658375af848b526ecee0a6a6c8, type: 3}
   SmallThumbnail: {fileID: -140402850, guid: 369a885745b3c3143ba9add92e501552, type: 3}
   Requirement:
@@ -32,3 +32,4 @@ MonoBehaviour:
   AbleToCancel: 1
   AbleToAccept: 1
   AbleToRestart: 0
+  OnEventStartClip: {fileID: 8300000, guid: 58c8c9794aa2eac42a8696db966e364e, type: 3}

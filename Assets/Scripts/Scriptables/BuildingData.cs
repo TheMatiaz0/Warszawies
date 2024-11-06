@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,4 +14,8 @@ public class BuildingData : ResettableScriptableObject
     public BlockingObjects AllowedObjects;
     public Vector3 StartPosition;
     public Sprite BuildingIcon;
+
+    [Header("Audio")]
+    public AudioClip OnBuiltClip;
+    public AudioClip OnIdleClip;
 }

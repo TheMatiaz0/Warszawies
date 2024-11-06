@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,4 +19,7 @@ public class EventData : ScriptableObject
     public bool AbleToCancel = true;
     public bool AbleToAccept = true;
     public bool AbleToRestart = false;
+
+    public AudioClip OnEventStartClip;
 }
+

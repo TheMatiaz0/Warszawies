@@ -24,3 +24,5 @@ MonoBehaviour:
   AllowedObjects: 32
   StartPosition: {x: 105, y: 7.66, z: 105}
   BuildingIcon: {fileID: 0}
+  OnBuiltClip: {fileID: 8300000, guid: f08a0c291fd6b744aab7d279e1437f25, type: 3}
+  OnIdleClip: {fileID: 0}
